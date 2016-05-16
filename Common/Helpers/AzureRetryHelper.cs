@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.Azure.Devices.Client.Exceptions;
+//using Microsoft.Azure.Devices.Client.Exceptions;
 namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Helpers
 {
     /// <summary>
