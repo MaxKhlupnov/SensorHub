@@ -30,14 +30,91 @@ public ref class TemperatureServiceEventAdapter sealed : [Windows::Foundation::M
 {
 public:
     // Method Invocation Events
-
     // Property Read Events
-    event Windows::Foundation::TypedEventHandler<TemperatureServiceEventAdapter^, TemperatureGetCelsiusRequestedEventArgs^>^ GetCelsiusRequested;
-    event Windows::Foundation::TypedEventHandler<TemperatureServiceEventAdapter^, TemperatureGetFahrenheitsRequestedEventArgs^>^ GetFahrenheitsRequested;
-    
+    event Windows::Foundation::TypedEventHandler<TemperatureServiceEventAdapter^, TemperatureGetCelsiusRequestedEventArgs^>^ GetCelsiusRequested 
+    { 
+        Windows::Foundation::EventRegistrationToken add(Windows::Foundation::TypedEventHandler<TemperatureServiceEventAdapter^, TemperatureGetCelsiusRequestedEventArgs^>^ handler) 
+        { 
+            return _GetCelsiusRequested += ref new Windows::Foundation::EventHandler<Platform::Object^>
+            ([handler](Platform::Object^ sender, Platform::Object^ args)
+            {
+                handler->Invoke(safe_cast<TemperatureServiceEventAdapter^>(sender), safe_cast<TemperatureGetCelsiusRequestedEventArgs^>(args));
+            }, Platform::CallbackContext::Same);
+        } 
+        void remove(Windows::Foundation::EventRegistrationToken token) 
+        { 
+            _GetCelsiusRequested -= token; 
+        } 
+    internal: 
+        void raise(TemperatureServiceEventAdapter^ sender, TemperatureGetCelsiusRequestedEventArgs^ args) 
+        { 
+            _GetCelsiusRequested(sender, args);
+        } 
+    }
+
+    event Windows::Foundation::TypedEventHandler<TemperatureServiceEventAdapter^, TemperatureGetFahrenheitsRequestedEventArgs^>^ GetFahrenheitsRequested 
+    { 
+        Windows::Foundation::EventRegistrationToken add(Windows::Foundation::TypedEventHandler<TemperatureServiceEventAdapter^, TemperatureGetFahrenheitsRequestedEventArgs^>^ handler) 
+        { 
+            return _GetFahrenheitsRequested += ref new Windows::Foundation::EventHandler<Platform::Object^>
+            ([handler](Platform::Object^ sender, Platform::Object^ args)
+            {
+                handler->Invoke(safe_cast<TemperatureServiceEventAdapter^>(sender), safe_cast<TemperatureGetFahrenheitsRequestedEventArgs^>(args));
+            }, Platform::CallbackContext::Same);
+        } 
+        void remove(Windows::Foundation::EventRegistrationToken token) 
+        { 
+            _GetFahrenheitsRequested -= token; 
+        } 
+    internal: 
+        void raise(TemperatureServiceEventAdapter^ sender, TemperatureGetFahrenheitsRequestedEventArgs^ args) 
+        { 
+            _GetFahrenheitsRequested(sender, args);
+        } 
+    }
+
     // Property Write Events
-    event Windows::Foundation::TypedEventHandler<TemperatureServiceEventAdapter^, TemperatureSetCelsiusRequestedEventArgs^>^ SetCelsiusRequested;
-    event Windows::Foundation::TypedEventHandler<TemperatureServiceEventAdapter^, TemperatureSetFahrenheitsRequestedEventArgs^>^ SetFahrenheitsRequested;
+    event Windows::Foundation::TypedEventHandler<TemperatureServiceEventAdapter^, TemperatureSetCelsiusRequestedEventArgs^>^ SetCelsiusRequested 
+    { 
+        Windows::Foundation::EventRegistrationToken add(Windows::Foundation::TypedEventHandler<TemperatureServiceEventAdapter^, TemperatureSetCelsiusRequestedEventArgs^>^ handler) 
+        { 
+            return _SetCelsiusRequested += ref new Windows::Foundation::EventHandler<Platform::Object^>
+            ([handler](Platform::Object^ sender, Platform::Object^ args)
+            {
+                handler->Invoke(safe_cast<TemperatureServiceEventAdapter^>(sender), safe_cast<TemperatureSetCelsiusRequestedEventArgs^>(args));
+            }, Platform::CallbackContext::Same);
+        } 
+        void remove(Windows::Foundation::EventRegistrationToken token) 
+        { 
+            _SetCelsiusRequested -= token; 
+        } 
+    internal: 
+        void raise(TemperatureServiceEventAdapter^ sender, TemperatureSetCelsiusRequestedEventArgs^ args) 
+        { 
+            _SetCelsiusRequested(sender, args);
+        } 
+    }
+
+    event Windows::Foundation::TypedEventHandler<TemperatureServiceEventAdapter^, TemperatureSetFahrenheitsRequestedEventArgs^>^ SetFahrenheitsRequested 
+    { 
+        Windows::Foundation::EventRegistrationToken add(Windows::Foundation::TypedEventHandler<TemperatureServiceEventAdapter^, TemperatureSetFahrenheitsRequestedEventArgs^>^ handler) 
+        { 
+            return _SetFahrenheitsRequested += ref new Windows::Foundation::EventHandler<Platform::Object^>
+            ([handler](Platform::Object^ sender, Platform::Object^ args)
+            {
+                handler->Invoke(safe_cast<TemperatureServiceEventAdapter^>(sender), safe_cast<TemperatureSetFahrenheitsRequestedEventArgs^>(args));
+            }, Platform::CallbackContext::Same);
+        } 
+        void remove(Windows::Foundation::EventRegistrationToken token) 
+        { 
+            _SetFahrenheitsRequested -= token; 
+        } 
+    internal: 
+        void raise(TemperatureServiceEventAdapter^ sender, TemperatureSetFahrenheitsRequestedEventArgs^ args) 
+        { 
+            _SetFahrenheitsRequested(sender, args);
+        } 
+    }
 
     // ITemperatureService Implementation
 
@@ -46,6 +123,12 @@ public:
 
     virtual Windows::Foundation::IAsyncOperation<TemperatureSetCelsiusResult^>^ SetCelsiusAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info, _In_ double value);
     virtual Windows::Foundation::IAsyncOperation<TemperatureSetFahrenheitsResult^>^ SetFahrenheitsAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info, _In_ double value);
+
+private:
+    event Windows::Foundation::EventHandler<Platform::Object^>^ _GetCelsiusRequested;
+    event Windows::Foundation::EventHandler<Platform::Object^>^ _GetFahrenheitsRequested;
+    event Windows::Foundation::EventHandler<Platform::Object^>^ _SetCelsiusRequested;
+    event Windows::Foundation::EventHandler<Platform::Object^>^ _SetFahrenheitsRequested;
 };
 
 } } } } 

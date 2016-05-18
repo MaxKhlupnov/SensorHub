@@ -6,7 +6,6 @@ using System.Dynamic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.CSharp.RuntimeBinder;
-using D = Dynamitey;
 
 namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Helpers
 {
@@ -149,7 +148,7 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Helpers
                     comparisonType = StringComparison.CurrentCulture;
                 }
 
-                propertyName = D.Dynamic.GetMemberNames(item, true).FirstOrDefault(
+                propertyName = ReflectionHelper.GetMemberNames(item, true).FirstOrDefault(
                         t => string.Equals(t, propertyName, comparisonType));
 
                 if (string.IsNullOrEmpty(propertyName))
@@ -165,7 +164,7 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Helpers
 
             try
             {
-                return D.Dynamic.InvokeGet(item, propertyName);
+                return ReflectionHelper.InvokeGet(item, propertyName);
             }
             catch (RuntimeBinderException)
             {
@@ -240,276 +239,321 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Helpers
         }
 
         /// <summary>
-        /// Produces a Func<dynamic, dynamic> for extracting a named
-        /// property's value from a dynamic-typed item.
+        /// Gets the member names of properties. Not all IDynamicMetaObjectProvider have support for this.
         /// </summary>
-        /// <param name="propertyName">
-        /// The name of the property.
-        /// </param>
-        /// <param name="usesCaseSensitivePropertyNameMatch">
-        /// A value indicating wether the property name match should be
-        /// case-sensitive.
-        /// </param>
-        /// <param name="exceptionThrownIfNoMatch">
-        /// A value indicating whether the produced
-        /// Func<dynamic, dynamic> should throw an
-        /// ArgumentException if no matching property can be
-        /// found on the current item.
-        /// </param>
-        /// <returns>
-        /// A Func<dynamic, dynamic> for extracting the value of
-        /// a property, named by propertyName from a dynamic-typed item.
-        /// </returns>
-    /*    public static Func<dynamic, dynamic> ProducePropertyValueExtractor(
-            string propertyName,
-            bool usesCaseSensitivePropertyNameMatch,
-            bool exceptionThrownIfNoMatch)
+        /// <param name="target">The target.</param>
+        /// <param name="dynamicOnly">if set to <c>true</c> [dynamic only]. Won't add reflected properties</param>
+        /// <returns></returns>
+        public static IEnumerable<string> GetMemberNames(object target, bool dynamicOnly = false)
         {
-            if (string.IsNullOrEmpty(propertyName))
+            var t = target.GetType().GetTypeInfo();
+            try
             {
-                throw new ArgumentException("propertyName is a null reference or empty string.", "propertyName");
+                return t.DeclaredProperties.Select<PropertyInfo, string>(s => s.Name).ToArray<string>();
             }
-
-            Func<Type, MethodInfo> getMethodInfo =
-                FunctionalHelper.Memoize<Type, MethodInfo>(ProduceGetMethodExtractor(propertyName,usesCaseSensitivePropertyNameMatch));
-
-            return (item) =>
+            catch
             {
-                if (object.ReferenceEquals(item, null))
+            }
+            return new string[0];
+
+        }
+
+        /// <summary>
+        /// Dynamically Invokes a get member using the DLR.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="name">The name.</param>
+        /// <returns>The result.</returns>
+        /// <example>
+        /// Unit Test that describes usage
+        /// <code>
+        /// <![CDATA[
+        ///    var tSetValue = "1";
+        ///    var tAnon = new { Test = tSetValue };
+        ///
+        ///    var tOut =Impromptu.InvokeGet(tAnon, "Test");
+        ///
+        ///    Assert.AreEqual(tSetValue, tOut);
+        /// ]]>
+        /// </code>
+        /// </example>
+        public static dynamic InvokeGet(object target, string name)
+        {
+            var t = target.GetType().GetTypeInfo();
+            return t.GetDeclaredProperty(name).GetValue(target);
+        }
+
+            /// <summary>
+            /// Produces a Func<dynamic, dynamic> for extracting a named
+            /// property's value from a dynamic-typed item.
+            /// </summary>
+            /// <param name="propertyName">
+            /// The name of the property.
+            /// </param>
+            /// <param name="usesCaseSensitivePropertyNameMatch">
+            /// A value indicating wether the property name match should be
+            /// case-sensitive.
+            /// </param>
+            /// <param name="exceptionThrownIfNoMatch">
+            /// A value indicating whether the produced
+            /// Func<dynamic, dynamic> should throw an
+            /// ArgumentException if no matching property can be
+            /// found on the current item.
+            /// </param>
+            /// <returns>
+            /// A Func<dynamic, dynamic> for extracting the value of
+            /// a property, named by propertyName from a dynamic-typed item.
+            /// </returns>
+            /*    public static Func<dynamic, dynamic> ProducePropertyValueExtractor(
+                    string propertyName,
+                    bool usesCaseSensitivePropertyNameMatch,
+                    bool exceptionThrownIfNoMatch)
                 {
-                    throw new ArgumentNullException("item");
+                    if (string.IsNullOrEmpty(propertyName))
+                    {
+                        throw new ArgumentException("propertyName is a null reference or empty string.", "propertyName");
+                    }
+
+                    Func<Type, MethodInfo> getMethodInfo =
+                        FunctionalHelper.Memoize<Type, MethodInfo>(ProduceGetMethodExtractor(propertyName,usesCaseSensitivePropertyNameMatch));
+
+                    return (item) =>
+                    {
+                        if (object.ReferenceEquals(item, null))
+                        {
+                            throw new ArgumentNullException("item");
+                        }
+
+                        ICustomTypeDescriptor customTypeDescriptor;
+                        IDynamicMetaObjectProvider dynamicMetaObjectProvider;
+                        if ((dynamicMetaObjectProvider = item as IDynamicMetaObjectProvider) != null)
+                        {
+                            return GetNamedPropertyValue(
+                                dynamicMetaObjectProvider,
+                                propertyName,
+                                usesCaseSensitivePropertyNameMatch,
+                                exceptionThrownIfNoMatch);
+                        }
+                        else if ((customTypeDescriptor = item as ICustomTypeDescriptor) != null)
+                        {
+                            return GetNamedPropertyValue(
+                                customTypeDescriptor,
+                                propertyName,
+                                usesCaseSensitivePropertyNameMatch,
+                                exceptionThrownIfNoMatch);
+                        }
+                        else
+                        {
+                            MethodInfo methodInfo = getMethodInfo(item.GetType());
+
+                            if (methodInfo == null)
+                            {
+                                if (exceptionThrownIfNoMatch)
+                                {
+                                    throw new ArgumentException("propertyName does not name a property on item", "propertyName");
+                                }
+                            }
+                            else
+                            {
+                                return methodInfo.Invoke(item, EmptyArray);
+                            }
+                        }
+
+                        return null;
+                    };
                 }
 
-                ICustomTypeDescriptor customTypeDescriptor;
-                IDynamicMetaObjectProvider dynamicMetaObjectProvider;
-                if ((dynamicMetaObjectProvider = item as IDynamicMetaObjectProvider) != null)
+                /// <summary>
+                /// Sets a named property's value.
+                /// </summary>
+                /// <param name="item">
+                /// The ICustomTypeDescriptor implementation on which
+                /// to set a named property's value.
+                /// </param>
+                /// <param name="newValue">
+                /// The value to assign to the named property.
+                /// </param>
+                /// <param name="propertyName">
+                /// The name of the property to set.
+                /// </param>
+                /// <param name="usesCaseSensitivePropertyNameMatch">
+                /// A value indicating whether the property name matching should be
+                /// case-sensitive.
+                /// </param>
+                /// <param name="exceptionThrownIfNoMatch">
+                /// A value indicating whether an ArgumentException
+                /// should be thrown if no matching property can be found.
+                /// </param>
+                public static void SetNamedPropertyValue(
+                    ICustomTypeDescriptor item,
+                    object newValue,
+                    string propertyName,
+                    bool usesCaseSensitivePropertyNameMatch,
+                    bool exceptionThrownIfNoMatch)
                 {
-                    return GetNamedPropertyValue(
-                        dynamicMetaObjectProvider,
-                        propertyName,
-                        usesCaseSensitivePropertyNameMatch,
-                        exceptionThrownIfNoMatch);
-                }
-                else if ((customTypeDescriptor = item as ICustomTypeDescriptor) != null)
-                {
-                    return GetNamedPropertyValue(
-                        customTypeDescriptor,
-                        propertyName,
-                        usesCaseSensitivePropertyNameMatch,
-                        exceptionThrownIfNoMatch);
-                }
-                else
-                {
-                    MethodInfo methodInfo = getMethodInfo(item.GetType());
+                    if (item == null)
+                    {
+                        throw new ArgumentNullException("item");
+                    }
 
-                    if (methodInfo == null)
+                    if (string.IsNullOrEmpty("propertyName"))
+                    {
+                        throw new ArgumentException("propertyName is a null reference or empty string.", "propertyName");
+                    }
+
+                    StringComparison comparisonType = StringComparison.CurrentCultureIgnoreCase;
+                    if (usesCaseSensitivePropertyNameMatch)
+                    {
+                        comparisonType = StringComparison.CurrentCulture;
+                    }
+
+                    PropertyDescriptor descriptor = default(PropertyDescriptor);
+                    foreach (PropertyDescriptor pd in item.GetProperties())
+                    {
+                        if (string.Equals(propertyName, pd.Name, comparisonType))
+                        {
+                            descriptor = pd;
+                        }
+                    }
+
+                    if (descriptor == default(PropertyDescriptor))
                     {
                         if (exceptionThrownIfNoMatch)
                         {
-                            throw new ArgumentException("propertyName does not name a property on item", "propertyName");
+                            throw new ArgumentException("propertyName does not name a property on item.", "propertyName");
                         }
                     }
                     else
                     {
-                        return methodInfo.Invoke(item, EmptyArray);
+                        descriptor.SetValue(item, newValue);
                     }
                 }
 
-                return null;
-            };
-        }
-
-        /// <summary>
-        /// Sets a named property's value.
-        /// </summary>
-        /// <param name="item">
-        /// The ICustomTypeDescriptor implementation on which
-        /// to set a named property's value.
-        /// </param>
-        /// <param name="newValue">
-        /// The value to assign to the named property.
-        /// </param>
-        /// <param name="propertyName">
-        /// The name of the property to set.
-        /// </param>
-        /// <param name="usesCaseSensitivePropertyNameMatch">
-        /// A value indicating whether the property name matching should be
-        /// case-sensitive.
-        /// </param>
-        /// <param name="exceptionThrownIfNoMatch">
-        /// A value indicating whether an ArgumentException
-        /// should be thrown if no matching property can be found.
-        /// </param>
-        public static void SetNamedPropertyValue(
-            ICustomTypeDescriptor item,
-            object newValue,
-            string propertyName,
-            bool usesCaseSensitivePropertyNameMatch,
-            bool exceptionThrownIfNoMatch)
-        {
-            if (item == null)
-            {
-                throw new ArgumentNullException("item");
-            }
-
-            if (string.IsNullOrEmpty("propertyName"))
-            {
-                throw new ArgumentException("propertyName is a null reference or empty string.", "propertyName");
-            }
-
-            StringComparison comparisonType = StringComparison.CurrentCultureIgnoreCase;
-            if (usesCaseSensitivePropertyNameMatch)
-            {
-                comparisonType = StringComparison.CurrentCulture;
-            }
-
-            PropertyDescriptor descriptor = default(PropertyDescriptor);
-            foreach (PropertyDescriptor pd in item.GetProperties())
-            {
-                if (string.Equals(propertyName, pd.Name, comparisonType))
+                /// <summary>
+                /// Gets an IDynamicMetaObjectProvider implementation's
+                /// properties and their values as an
+                /// IEnumerable<KeyValuePair<string, object>>.
+                /// </summary>
+                /// <param name="item">
+                /// The IDynamicMetaObjectProvider implementation.
+                /// </param>
+                /// <returns>
+                /// item's properties and their values as an IEnumerable<KeyValuePair<string, object>>.
+                /// </returns>
+                public static IEnumerable<KeyValuePair<string, object>> ToKeyValuePairs(this IDynamicMetaObjectProvider item)
                 {
-                    descriptor = pd;
-                }
-            }
+                    if (item == null)
+                    {
+                        throw new ArgumentNullException("item");
+                    }
 
-            if (descriptor == default(PropertyDescriptor))
-            {
-                if (exceptionThrownIfNoMatch)
-                {
-                    throw new ArgumentException("propertyName does not name a property on item.", "propertyName");
-                }
-            }
-            else
-            {
-                descriptor.SetValue(item, newValue);
-            }
-        }
-
-        /// <summary>
-        /// Gets an IDynamicMetaObjectProvider implementation's
-        /// properties and their values as an
-        /// IEnumerable<KeyValuePair<string, object>>.
-        /// </summary>
-        /// <param name="item">
-        /// The IDynamicMetaObjectProvider implementation.
-        /// </param>
-        /// <returns>
-        /// item's properties and their values as an IEnumerable<KeyValuePair<string, object>>.
-        /// </returns>
-        public static IEnumerable<KeyValuePair<string, object>> ToKeyValuePairs(this IDynamicMetaObjectProvider item)
-        {
-            if (item == null)
-            {
-                throw new ArgumentNullException("item");
-            }
-
-            foreach (string memberName in D.Dynamic.GetMemberNames(item, true))
-            {
-                yield return new KeyValuePair<string, object>(
-                    memberName,
-                    D.Dynamic.InvokeGet(item, memberName));
-            }
-        }
-
-        /// <summary>
-        /// Gets an ICustomTypeDescriptor implementation's
-        /// properties and their values as an
-        /// IEnumerable<KeyValuePair<string, object>>.
-        /// </summary>
-        /// <param name="item">
-        /// The ICustomTypeDescriptor implementation.
-        /// </param>
-        /// <returns>
-        /// item's properties and their values as an IEnumerable<KeyValuePair<string, object>>.
-        /// </returns>
-        public static IEnumerable<KeyValuePair<string, object>> ToKeyValuePairs(this ICustomTypeDescriptor item)
-        {
-            if (item == null)
-            {
-                throw new ArgumentNullException("item");
-            }
-
-            foreach (PropertyDescriptor prop in item.GetProperties())
-            {
-                yield return new KeyValuePair<string, object>(
-                    prop.Name,
-                    prop.GetValue(item));
-            }
-        }
-
-        /// <summary>
-        /// Gets an object properties and their values as an
-        /// IEnumerable<KeyValuePair<string, object>>.
-        /// </summary>
-        /// <param name="item">
-        /// The object implementation.
-        /// </param>
-        /// <returns>
-        /// item's properties and their values as an IEnumerable<KeyValuePair<string, object>>.
-        /// </returns>
-        public static IEnumerable<KeyValuePair<string, object>> ToKeyValuePairs(this object item)
-        {
-            if (item == null)
-            {
-                throw new ArgumentNullException("item");
-            }
-
-            IDynamicMetaObjectProvider metaObjectProvider;
-            ICustomTypeDescriptor typeDescriptor;
-            if ((metaObjectProvider = item as IDynamicMetaObjectProvider) != null)
-            {
-                return metaObjectProvider.ToKeyValuePairs();
-            }
-            else if ((typeDescriptor = item as ICustomTypeDescriptor) != null)
-            {
-                return typeDescriptor.ToKeyValuePairs();
-            }
-
-            return item.ToKeyValuePairImpl();
-        }
-
-        private static Func<Type, MethodInfo> ProduceGetMethodExtractor(
-            string propertyName,
-            bool usesCaseSensitivePropertyNameMatch)
-        {
-            Debug.Assert(!string.IsNullOrEmpty(propertyName), "propertyName is a null reference or empty string.");
-
-            StringComparison comparisonType = StringComparison.CurrentCultureIgnoreCase;
-            if (usesCaseSensitivePropertyNameMatch)
-            {
-                comparisonType = StringComparison.CurrentCulture;
-            }
-
-            return (type) =>
-            {
-                if (type == null)
-                {
-                    throw new ArgumentNullException("type");
+                    foreach (string memberName in D.Dynamic.GetMemberNames(item, true))
+                    {
+                        yield return new KeyValuePair<string, object>(
+                            memberName,
+                            D.Dynamic.InvokeGet(item, memberName));
+                    }
                 }
 
-                IEnumerable<PropertyInfo> properties =
-                    type.GetProperties().Where(t => string.Equals(propertyName, t.Name, comparisonType));
-
-                return properties.Select(t => t.GetGetMethod()).FirstOrDefault(u => u != null);
-            };
-        }
-
-        private static IEnumerable<KeyValuePair<string, object>> ToKeyValuePairImpl(this object item)
-        {
-            MethodInfo getter;
-
-            Debug.Assert(item != null, "item is a null reference.");
-
-            foreach (PropertyInfo prop in item.GetType().GetProperties())
-            {
-                if ((getter = prop.GetGetMethod()) != null)
+                /// <summary>
+                /// Gets an ICustomTypeDescriptor implementation's
+                /// properties and their values as an
+                /// IEnumerable<KeyValuePair<string, object>>.
+                /// </summary>
+                /// <param name="item">
+                /// The ICustomTypeDescriptor implementation.
+                /// </param>
+                /// <returns>
+                /// item's properties and their values as an IEnumerable<KeyValuePair<string, object>>.
+                /// </returns>
+                public static IEnumerable<KeyValuePair<string, object>> ToKeyValuePairs(this ICustomTypeDescriptor item)
                 {
-                    yield return new KeyValuePair<string, object>(
-                        prop.Name,
-                        getter.Invoke(item, EmptyArray));
+                    if (item == null)
+                    {
+                        throw new ArgumentNullException("item");
+                    }
+
+                    foreach (PropertyDescriptor prop in item.GetProperties())
+                    {
+                        yield return new KeyValuePair<string, object>(
+                            prop.Name,
+                            prop.GetValue(item));
+                    }
                 }
-            }
+
+                /// <summary>
+                /// Gets an object properties and their values as an
+                /// IEnumerable<KeyValuePair<string, object>>.
+                /// </summary>
+                /// <param name="item">
+                /// The object implementation.
+                /// </param>
+                /// <returns>
+                /// item's properties and their values as an IEnumerable<KeyValuePair<string, object>>.
+                /// </returns>
+                public static IEnumerable<KeyValuePair<string, object>> ToKeyValuePairs(this object item)
+                {
+                    if (item == null)
+                    {
+                        throw new ArgumentNullException("item");
+                    }
+
+                    IDynamicMetaObjectProvider metaObjectProvider;
+                    ICustomTypeDescriptor typeDescriptor;
+                    if ((metaObjectProvider = item as IDynamicMetaObjectProvider) != null)
+                    {
+                        return metaObjectProvider.ToKeyValuePairs();
+                    }
+                    else if ((typeDescriptor = item as ICustomTypeDescriptor) != null)
+                    {
+                        return typeDescriptor.ToKeyValuePairs();
+                    }
+
+                    return item.ToKeyValuePairImpl();
+                }
+
+                private static Func<Type, MethodInfo> ProduceGetMethodExtractor(
+                    string propertyName,
+                    bool usesCaseSensitivePropertyNameMatch)
+                {
+                    Debug.Assert(!string.IsNullOrEmpty(propertyName), "propertyName is a null reference or empty string.");
+
+                    StringComparison comparisonType = StringComparison.CurrentCultureIgnoreCase;
+                    if (usesCaseSensitivePropertyNameMatch)
+                    {
+                        comparisonType = StringComparison.CurrentCulture;
+                    }
+
+                    return (type) =>
+                    {
+                        if (type == null)
+                        {
+                            throw new ArgumentNullException("type");
+                        }
+
+                        IEnumerable<PropertyInfo> properties =
+                            type.GetProperties().Where(t => string.Equals(propertyName, t.Name, comparisonType));
+
+                        return properties.Select(t => t.GetGetMethod()).FirstOrDefault(u => u != null);
+                    };
+                }
+
+                private static IEnumerable<KeyValuePair<string, object>> ToKeyValuePairImpl(this object item)
+                {
+                    MethodInfo getter;
+
+                    Debug.Assert(item != null, "item is a null reference.");
+
+                    foreach (PropertyInfo prop in item.GetType().GetProperties())
+                    {
+                        if ((getter = prop.GetGetMethod()) != null)
+                        {
+                            yield return new KeyValuePair<string, object>(
+                                prop.Name,
+                                getter.Invoke(item, EmptyArray));
+                        }
+                    }
+                }
+                */
         }
-        */
-    }
 }

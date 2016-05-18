@@ -1,6 +1,5 @@
 ﻿{
   "dependencies": {
-    "Dynamitey": "1.0.2",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
     "SQLite.Net-PCL": "3.1.1",
     "System.ComponentModel": "4.0.0",

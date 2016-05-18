@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Dynamitey;
+using Helpers = Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Helpers;
+//using Dynamitey;
 
 namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.DeviceSchema
 {
@@ -22,7 +23,7 @@ namespace Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.DeviceSch
                 throw new ArgumentNullException("eventData");
             }
 
-            IEnumerable<string> members = Dynamic.GetMemberNames(eventData);
+            IEnumerable<string> members = Helpers.ReflectionHelper.GetMemberNames(eventData);
 
             if (!members.Any(m => m == "ObjectType"))
             {

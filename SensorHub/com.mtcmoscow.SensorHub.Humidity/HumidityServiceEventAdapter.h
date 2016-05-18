@@ -30,18 +30,59 @@ public ref class HumidityServiceEventAdapter sealed : [Windows::Foundation::Meta
 {
 public:
     // Method Invocation Events
-
     // Property Read Events
-    event Windows::Foundation::TypedEventHandler<HumidityServiceEventAdapter^, HumidityGetRHRequestedEventArgs^>^ GetRHRequested;
-    
+    event Windows::Foundation::TypedEventHandler<HumidityServiceEventAdapter^, HumidityGetRHRequestedEventArgs^>^ GetRHRequested 
+    { 
+        Windows::Foundation::EventRegistrationToken add(Windows::Foundation::TypedEventHandler<HumidityServiceEventAdapter^, HumidityGetRHRequestedEventArgs^>^ handler) 
+        { 
+            return _GetRHRequested += ref new Windows::Foundation::EventHandler<Platform::Object^>
+            ([handler](Platform::Object^ sender, Platform::Object^ args)
+            {
+                handler->Invoke(safe_cast<HumidityServiceEventAdapter^>(sender), safe_cast<HumidityGetRHRequestedEventArgs^>(args));
+            }, Platform::CallbackContext::Same);
+        } 
+        void remove(Windows::Foundation::EventRegistrationToken token) 
+        { 
+            _GetRHRequested -= token; 
+        } 
+    internal: 
+        void raise(HumidityServiceEventAdapter^ sender, HumidityGetRHRequestedEventArgs^ args) 
+        { 
+            _GetRHRequested(sender, args);
+        } 
+    }
+
     // Property Write Events
-    event Windows::Foundation::TypedEventHandler<HumidityServiceEventAdapter^, HumiditySetRHRequestedEventArgs^>^ SetRHRequested;
+    event Windows::Foundation::TypedEventHandler<HumidityServiceEventAdapter^, HumiditySetRHRequestedEventArgs^>^ SetRHRequested 
+    { 
+        Windows::Foundation::EventRegistrationToken add(Windows::Foundation::TypedEventHandler<HumidityServiceEventAdapter^, HumiditySetRHRequestedEventArgs^>^ handler) 
+        { 
+            return _SetRHRequested += ref new Windows::Foundation::EventHandler<Platform::Object^>
+            ([handler](Platform::Object^ sender, Platform::Object^ args)
+            {
+                handler->Invoke(safe_cast<HumidityServiceEventAdapter^>(sender), safe_cast<HumiditySetRHRequestedEventArgs^>(args));
+            }, Platform::CallbackContext::Same);
+        } 
+        void remove(Windows::Foundation::EventRegistrationToken token) 
+        { 
+            _SetRHRequested -= token; 
+        } 
+    internal: 
+        void raise(HumidityServiceEventAdapter^ sender, HumiditySetRHRequestedEventArgs^ args) 
+        { 
+            _SetRHRequested(sender, args);
+        } 
+    }
 
     // IHumidityService Implementation
 
     virtual Windows::Foundation::IAsyncOperation<HumidityGetRHResult^>^ GetRHAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info);
 
     virtual Windows::Foundation::IAsyncOperation<HumiditySetRHResult^>^ SetRHAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info, _In_ double value);
+
+private:
+    event Windows::Foundation::EventHandler<Platform::Object^>^ _GetRHRequested;
+    event Windows::Foundation::EventHandler<Platform::Object^>^ _SetRHRequested;
 };
 
 } } } } 

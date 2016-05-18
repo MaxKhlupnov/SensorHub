@@ -200,15 +200,15 @@
       <Name>BridgeRT</Name>
     </ProjectReference>
     <ProjectReference Include="..\com.mtcmoscow.SensorHub.Humidity\com.mtcmoscow.SensorHub.Humidity.vcxproj">
-      <Project>{bcb7c5b2-d2a5-4996-a540-dc3583c6581e}</Project>
+      <Project>{4af4a6d7-40b2-465b-b1c2-ccbc8f7978c0}</Project>
       <Name>com.mtcmoscow.SensorHub.Humidity</Name>
     </ProjectReference>
     <ProjectReference Include="..\com.mtcmoscow.SensorHub.Pressure\com.mtcmoscow.SensorHub.Pressure.vcxproj">
-      <Project>{8eb040ce-4cc9-4f7f-ab52-1ae010549fef}</Project>
+      <Project>{687e5a89-55c7-4379-babf-02ee77c70616}</Project>
       <Name>com.mtcmoscow.SensorHub.Pressure</Name>
     </ProjectReference>
     <ProjectReference Include="..\com.mtcmoscow.SensorHub.Temperature\com.mtcmoscow.SensorHub.Temperature.vcxproj">
-      <Project>{47c0f097-062d-499e-880f-968bff41e5ae}</Project>
+      <Project>{2f86d6b6-44dc-4fd4-b7a1-a9737eb730e0}</Project>
       <Name>com.mtcmoscow.SensorHub.Temperature</Name>
     </ProjectReference>
   </ItemGroup>

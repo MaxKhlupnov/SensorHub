@@ -30,18 +30,175 @@ public ref class PressureServiceEventAdapter sealed : [Windows::Foundation::Meta
 {
 public:
     // Method Invocation Events
-
     // Property Read Events
-    event Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureGetAltitudeRequestedEventArgs^>^ GetAltitudeRequested;
-    event Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureGetInchesOfMercuryRequestedEventArgs^>^ GetInchesOfMercuryRequested;
-    event Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureGetMmOfMercuryRequestedEventArgs^>^ GetMmOfMercuryRequested;
-    event Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureGetPascalRequestedEventArgs^>^ GetPascalRequested;
-    
+    event Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureGetAltitudeRequestedEventArgs^>^ GetAltitudeRequested 
+    { 
+        Windows::Foundation::EventRegistrationToken add(Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureGetAltitudeRequestedEventArgs^>^ handler) 
+        { 
+            return _GetAltitudeRequested += ref new Windows::Foundation::EventHandler<Platform::Object^>
+            ([handler](Platform::Object^ sender, Platform::Object^ args)
+            {
+                handler->Invoke(safe_cast<PressureServiceEventAdapter^>(sender), safe_cast<PressureGetAltitudeRequestedEventArgs^>(args));
+            }, Platform::CallbackContext::Same);
+        } 
+        void remove(Windows::Foundation::EventRegistrationToken token) 
+        { 
+            _GetAltitudeRequested -= token; 
+        } 
+    internal: 
+        void raise(PressureServiceEventAdapter^ sender, PressureGetAltitudeRequestedEventArgs^ args) 
+        { 
+            _GetAltitudeRequested(sender, args);
+        } 
+    }
+
+    event Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureGetInchesOfMercuryRequestedEventArgs^>^ GetInchesOfMercuryRequested 
+    { 
+        Windows::Foundation::EventRegistrationToken add(Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureGetInchesOfMercuryRequestedEventArgs^>^ handler) 
+        { 
+            return _GetInchesOfMercuryRequested += ref new Windows::Foundation::EventHandler<Platform::Object^>
+            ([handler](Platform::Object^ sender, Platform::Object^ args)
+            {
+                handler->Invoke(safe_cast<PressureServiceEventAdapter^>(sender), safe_cast<PressureGetInchesOfMercuryRequestedEventArgs^>(args));
+            }, Platform::CallbackContext::Same);
+        } 
+        void remove(Windows::Foundation::EventRegistrationToken token) 
+        { 
+            _GetInchesOfMercuryRequested -= token; 
+        } 
+    internal: 
+        void raise(PressureServiceEventAdapter^ sender, PressureGetInchesOfMercuryRequestedEventArgs^ args) 
+        { 
+            _GetInchesOfMercuryRequested(sender, args);
+        } 
+    }
+
+    event Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureGetMmOfMercuryRequestedEventArgs^>^ GetMmOfMercuryRequested 
+    { 
+        Windows::Foundation::EventRegistrationToken add(Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureGetMmOfMercuryRequestedEventArgs^>^ handler) 
+        { 
+            return _GetMmOfMercuryRequested += ref new Windows::Foundation::EventHandler<Platform::Object^>
+            ([handler](Platform::Object^ sender, Platform::Object^ args)
+            {
+                handler->Invoke(safe_cast<PressureServiceEventAdapter^>(sender), safe_cast<PressureGetMmOfMercuryRequestedEventArgs^>(args));
+            }, Platform::CallbackContext::Same);
+        } 
+        void remove(Windows::Foundation::EventRegistrationToken token) 
+        { 
+            _GetMmOfMercuryRequested -= token; 
+        } 
+    internal: 
+        void raise(PressureServiceEventAdapter^ sender, PressureGetMmOfMercuryRequestedEventArgs^ args) 
+        { 
+            _GetMmOfMercuryRequested(sender, args);
+        } 
+    }
+
+    event Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureGetPascalRequestedEventArgs^>^ GetPascalRequested 
+    { 
+        Windows::Foundation::EventRegistrationToken add(Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureGetPascalRequestedEventArgs^>^ handler) 
+        { 
+            return _GetPascalRequested += ref new Windows::Foundation::EventHandler<Platform::Object^>
+            ([handler](Platform::Object^ sender, Platform::Object^ args)
+            {
+                handler->Invoke(safe_cast<PressureServiceEventAdapter^>(sender), safe_cast<PressureGetPascalRequestedEventArgs^>(args));
+            }, Platform::CallbackContext::Same);
+        } 
+        void remove(Windows::Foundation::EventRegistrationToken token) 
+        { 
+            _GetPascalRequested -= token; 
+        } 
+    internal: 
+        void raise(PressureServiceEventAdapter^ sender, PressureGetPascalRequestedEventArgs^ args) 
+        { 
+            _GetPascalRequested(sender, args);
+        } 
+    }
+
     // Property Write Events
-    event Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureSetAltitudeRequestedEventArgs^>^ SetAltitudeRequested;
-    event Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureSetInchesOfMercuryRequestedEventArgs^>^ SetInchesOfMercuryRequested;
-    event Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureSetMmOfMercuryRequestedEventArgs^>^ SetMmOfMercuryRequested;
-    event Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureSetPascalRequestedEventArgs^>^ SetPascalRequested;
+    event Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureSetAltitudeRequestedEventArgs^>^ SetAltitudeRequested 
+    { 
+        Windows::Foundation::EventRegistrationToken add(Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureSetAltitudeRequestedEventArgs^>^ handler) 
+        { 
+            return _SetAltitudeRequested += ref new Windows::Foundation::EventHandler<Platform::Object^>
+            ([handler](Platform::Object^ sender, Platform::Object^ args)
+            {
+                handler->Invoke(safe_cast<PressureServiceEventAdapter^>(sender), safe_cast<PressureSetAltitudeRequestedEventArgs^>(args));
+            }, Platform::CallbackContext::Same);
+        } 
+        void remove(Windows::Foundation::EventRegistrationToken token) 
+        { 
+            _SetAltitudeRequested -= token; 
+        } 
+    internal: 
+        void raise(PressureServiceEventAdapter^ sender, PressureSetAltitudeRequestedEventArgs^ args) 
+        { 
+            _SetAltitudeRequested(sender, args);
+        } 
+    }
+
+    event Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureSetInchesOfMercuryRequestedEventArgs^>^ SetInchesOfMercuryRequested 
+    { 
+        Windows::Foundation::EventRegistrationToken add(Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureSetInchesOfMercuryRequestedEventArgs^>^ handler) 
+        { 
+            return _SetInchesOfMercuryRequested += ref new Windows::Foundation::EventHandler<Platform::Object^>
+            ([handler](Platform::Object^ sender, Platform::Object^ args)
+            {
+                handler->Invoke(safe_cast<PressureServiceEventAdapter^>(sender), safe_cast<PressureSetInchesOfMercuryRequestedEventArgs^>(args));
+            }, Platform::CallbackContext::Same);
+        } 
+        void remove(Windows::Foundation::EventRegistrationToken token) 
+        { 
+            _SetInchesOfMercuryRequested -= token; 
+        } 
+    internal: 
+        void raise(PressureServiceEventAdapter^ sender, PressureSetInchesOfMercuryRequestedEventArgs^ args) 
+        { 
+            _SetInchesOfMercuryRequested(sender, args);
+        } 
+    }
+
+    event Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureSetMmOfMercuryRequestedEventArgs^>^ SetMmOfMercuryRequested 
+    { 
+        Windows::Foundation::EventRegistrationToken add(Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureSetMmOfMercuryRequestedEventArgs^>^ handler) 
+        { 
+            return _SetMmOfMercuryRequested += ref new Windows::Foundation::EventHandler<Platform::Object^>
+            ([handler](Platform::Object^ sender, Platform::Object^ args)
+            {
+                handler->Invoke(safe_cast<PressureServiceEventAdapter^>(sender), safe_cast<PressureSetMmOfMercuryRequestedEventArgs^>(args));
+            }, Platform::CallbackContext::Same);
+        } 
+        void remove(Windows::Foundation::EventRegistrationToken token) 
+        { 
+            _SetMmOfMercuryRequested -= token; 
+        } 
+    internal: 
+        void raise(PressureServiceEventAdapter^ sender, PressureSetMmOfMercuryRequestedEventArgs^ args) 
+        { 
+            _SetMmOfMercuryRequested(sender, args);
+        } 
+    }
+
+    event Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureSetPascalRequestedEventArgs^>^ SetPascalRequested 
+    { 
+        Windows::Foundation::EventRegistrationToken add(Windows::Foundation::TypedEventHandler<PressureServiceEventAdapter^, PressureSetPascalRequestedEventArgs^>^ handler) 
+        { 
+            return _SetPascalRequested += ref new Windows::Foundation::EventHandler<Platform::Object^>
+            ([handler](Platform::Object^ sender, Platform::Object^ args)
+            {
+                handler->Invoke(safe_cast<PressureServiceEventAdapter^>(sender), safe_cast<PressureSetPascalRequestedEventArgs^>(args));
+            }, Platform::CallbackContext::Same);
+        } 
+        void remove(Windows::Foundation::EventRegistrationToken token) 
+        { 
+            _SetPascalRequested -= token; 
+        } 
+    internal: 
+        void raise(PressureServiceEventAdapter^ sender, PressureSetPascalRequestedEventArgs^ args) 
+        { 
+            _SetPascalRequested(sender, args);
+        } 
+    }
 
     // IPressureService Implementation
 
@@ -54,6 +211,16 @@ public:
     virtual Windows::Foundation::IAsyncOperation<PressureSetInchesOfMercuryResult^>^ SetInchesOfMercuryAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info, _In_ double value);
     virtual Windows::Foundation::IAsyncOperation<PressureSetMmOfMercuryResult^>^ SetMmOfMercuryAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info, _In_ double value);
     virtual Windows::Foundation::IAsyncOperation<PressureSetPascalResult^>^ SetPascalAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info, _In_ double value);
+
+private:
+    event Windows::Foundation::EventHandler<Platform::Object^>^ _GetAltitudeRequested;
+    event Windows::Foundation::EventHandler<Platform::Object^>^ _GetInchesOfMercuryRequested;
+    event Windows::Foundation::EventHandler<Platform::Object^>^ _GetMmOfMercuryRequested;
+    event Windows::Foundation::EventHandler<Platform::Object^>^ _GetPascalRequested;
+    event Windows::Foundation::EventHandler<Platform::Object^>^ _SetAltitudeRequested;
+    event Windows::Foundation::EventHandler<Platform::Object^>^ _SetInchesOfMercuryRequested;
+    event Windows::Foundation::EventHandler<Platform::Object^>^ _SetMmOfMercuryRequested;
+    event Windows::Foundation::EventHandler<Platform::Object^>^ _SetPascalRequested;
 };
 
 } } } } 

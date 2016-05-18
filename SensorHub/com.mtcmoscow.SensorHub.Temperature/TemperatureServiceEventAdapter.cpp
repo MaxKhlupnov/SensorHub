@@ -38,18 +38,14 @@ using namespace com::mtcmoscow::SensorHub::Temperature;
 IAsyncOperation<TemperatureGetCelsiusResult^>^ TemperatureServiceEventAdapter::GetCelsiusAsync(_In_ AllJoynMessageInfo^ info)
 {
     auto args = ref new TemperatureGetCelsiusRequestedEventArgs(info);
-    AllJoynHelpers::DispatchEvent([=]() {
-        GetCelsiusRequested(this, args);
-    });
+    GetCelsiusRequested(this, args);
     return TemperatureGetCelsiusRequestedEventArgs::GetResultAsync(args);
 }
 
 IAsyncOperation<TemperatureGetFahrenheitsResult^>^ TemperatureServiceEventAdapter::GetFahrenheitsAsync(_In_ AllJoynMessageInfo^ info)
 {
     auto args = ref new TemperatureGetFahrenheitsRequestedEventArgs(info);
-    AllJoynHelpers::DispatchEvent([=]() {
-        GetFahrenheitsRequested(this, args);
-    });
+    GetFahrenheitsRequested(this, args);
     return TemperatureGetFahrenheitsRequestedEventArgs::GetResultAsync(args);
 }
 
@@ -57,18 +53,14 @@ IAsyncOperation<TemperatureGetFahrenheitsResult^>^ TemperatureServiceEventAdapte
 IAsyncOperation<TemperatureSetCelsiusResult^>^ TemperatureServiceEventAdapter::SetCelsiusAsync(_In_ AllJoynMessageInfo^ info, _In_ double value)
 {
     auto args = ref new TemperatureSetCelsiusRequestedEventArgs(info, value);
-    AllJoynHelpers::DispatchEvent([=]() {
-        SetCelsiusRequested(this, args);
-    });
+    SetCelsiusRequested(this, args);
     return TemperatureSetCelsiusRequestedEventArgs::GetResultAsync(args);
 }
 
 IAsyncOperation<TemperatureSetFahrenheitsResult^>^ TemperatureServiceEventAdapter::SetFahrenheitsAsync(_In_ AllJoynMessageInfo^ info, _In_ double value)
 {
     auto args = ref new TemperatureSetFahrenheitsRequestedEventArgs(info, value);
-    AllJoynHelpers::DispatchEvent([=]() {
-        SetFahrenheitsRequested(this, args);
-    });
+    SetFahrenheitsRequested(this, args);
     return TemperatureSetFahrenheitsRequestedEventArgs::GetResultAsync(args);
 }
 

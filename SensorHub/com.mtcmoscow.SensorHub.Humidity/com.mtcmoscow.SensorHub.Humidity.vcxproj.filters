@@ -2,7 +2,7 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Resources">
-      <UniqueIdentifier>56dc8d65-6a41-4566-a33c-b5f395d2581e</UniqueIdentifier>
+      <UniqueIdentifier>69bdafb1-42b1-4912-8b59-a5a22fd30af0</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
@@ -31,7 +31,7 @@
     <ClInclude Include="HumiditySignals.h" />
     <ClInclude Include="HumidityStructures.h" />
     <ClInclude Include="HumidityWatcher.h" />
-    <ClInclude Include="TypeConversionHelpers.h" />
     <ClInclude Include="IHumidityService.h" />
+    <ClInclude Include="TypeConversionHelpers.h" />
   </ItemGroup>
 </Project>

@@ -38,36 +38,28 @@ using namespace com::mtcmoscow::SensorHub::Pressure;
 IAsyncOperation<PressureGetAltitudeResult^>^ PressureServiceEventAdapter::GetAltitudeAsync(_In_ AllJoynMessageInfo^ info)
 {
     auto args = ref new PressureGetAltitudeRequestedEventArgs(info);
-    AllJoynHelpers::DispatchEvent([=]() {
-        GetAltitudeRequested(this, args);
-    });
+    GetAltitudeRequested(this, args);
     return PressureGetAltitudeRequestedEventArgs::GetResultAsync(args);
 }
 
 IAsyncOperation<PressureGetInchesOfMercuryResult^>^ PressureServiceEventAdapter::GetInchesOfMercuryAsync(_In_ AllJoynMessageInfo^ info)
 {
     auto args = ref new PressureGetInchesOfMercuryRequestedEventArgs(info);
-    AllJoynHelpers::DispatchEvent([=]() {
-        GetInchesOfMercuryRequested(this, args);
-    });
+    GetInchesOfMercuryRequested(this, args);
     return PressureGetInchesOfMercuryRequestedEventArgs::GetResultAsync(args);
 }
 
 IAsyncOperation<PressureGetMmOfMercuryResult^>^ PressureServiceEventAdapter::GetMmOfMercuryAsync(_In_ AllJoynMessageInfo^ info)
 {
     auto args = ref new PressureGetMmOfMercuryRequestedEventArgs(info);
-    AllJoynHelpers::DispatchEvent([=]() {
-        GetMmOfMercuryRequested(this, args);
-    });
+    GetMmOfMercuryRequested(this, args);
     return PressureGetMmOfMercuryRequestedEventArgs::GetResultAsync(args);
 }
 
 IAsyncOperation<PressureGetPascalResult^>^ PressureServiceEventAdapter::GetPascalAsync(_In_ AllJoynMessageInfo^ info)
 {
     auto args = ref new PressureGetPascalRequestedEventArgs(info);
-    AllJoynHelpers::DispatchEvent([=]() {
-        GetPascalRequested(this, args);
-    });
+    GetPascalRequested(this, args);
     return PressureGetPascalRequestedEventArgs::GetResultAsync(args);
 }
 
@@ -75,36 +67,28 @@ IAsyncOperation<PressureGetPascalResult^>^ PressureServiceEventAdapter::GetPasca
 IAsyncOperation<PressureSetAltitudeResult^>^ PressureServiceEventAdapter::SetAltitudeAsync(_In_ AllJoynMessageInfo^ info, _In_ double value)
 {
     auto args = ref new PressureSetAltitudeRequestedEventArgs(info, value);
-    AllJoynHelpers::DispatchEvent([=]() {
-        SetAltitudeRequested(this, args);
-    });
+    SetAltitudeRequested(this, args);
     return PressureSetAltitudeRequestedEventArgs::GetResultAsync(args);
 }
 
 IAsyncOperation<PressureSetInchesOfMercuryResult^>^ PressureServiceEventAdapter::SetInchesOfMercuryAsync(_In_ AllJoynMessageInfo^ info, _In_ double value)
 {
     auto args = ref new PressureSetInchesOfMercuryRequestedEventArgs(info, value);
-    AllJoynHelpers::DispatchEvent([=]() {
-        SetInchesOfMercuryRequested(this, args);
-    });
+    SetInchesOfMercuryRequested(this, args);
     return PressureSetInchesOfMercuryRequestedEventArgs::GetResultAsync(args);
 }
 
 IAsyncOperation<PressureSetMmOfMercuryResult^>^ PressureServiceEventAdapter::SetMmOfMercuryAsync(_In_ AllJoynMessageInfo^ info, _In_ double value)
 {
     auto args = ref new PressureSetMmOfMercuryRequestedEventArgs(info, value);
-    AllJoynHelpers::DispatchEvent([=]() {
-        SetMmOfMercuryRequested(this, args);
-    });
+    SetMmOfMercuryRequested(this, args);
     return PressureSetMmOfMercuryRequestedEventArgs::GetResultAsync(args);
 }
 
 IAsyncOperation<PressureSetPascalResult^>^ PressureServiceEventAdapter::SetPascalAsync(_In_ AllJoynMessageInfo^ info, _In_ double value)
 {
     auto args = ref new PressureSetPascalRequestedEventArgs(info, value);
-    AllJoynHelpers::DispatchEvent([=]() {
-        SetPascalRequested(this, args);
-    });
+    SetPascalRequested(this, args);
     return PressureSetPascalRequestedEventArgs::GetResultAsync(args);
 }
 

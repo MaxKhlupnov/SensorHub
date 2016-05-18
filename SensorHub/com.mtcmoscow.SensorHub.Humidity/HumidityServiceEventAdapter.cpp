@@ -38,9 +38,7 @@ using namespace com::mtcmoscow::SensorHub::Humidity;
 IAsyncOperation<HumidityGetRHResult^>^ HumidityServiceEventAdapter::GetRHAsync(_In_ AllJoynMessageInfo^ info)
 {
     auto args = ref new HumidityGetRHRequestedEventArgs(info);
-    AllJoynHelpers::DispatchEvent([=]() {
-        GetRHRequested(this, args);
-    });
+    GetRHRequested(this, args);
     return HumidityGetRHRequestedEventArgs::GetResultAsync(args);
 }
 
@@ -48,9 +46,7 @@ IAsyncOperation<HumidityGetRHResult^>^ HumidityServiceEventAdapter::GetRHAsync(_
 IAsyncOperation<HumiditySetRHResult^>^ HumidityServiceEventAdapter::SetRHAsync(_In_ AllJoynMessageInfo^ info, _In_ double value)
 {
     auto args = ref new HumiditySetRHRequestedEventArgs(info, value);
-    AllJoynHelpers::DispatchEvent([=]() {
-        SetRHRequested(this, args);
-    });
+    SetRHRequested(this, args);
     return HumiditySetRHRequestedEventArgs::GetResultAsync(args);
 }
 

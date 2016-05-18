@@ -1,6 +1,5 @@
 ﻿{
   "dependencies": {
-    "Dynamitey": "1.0.2",
     "Microsoft.Azure.Devices.Client": "1.0.7",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
     "Newtonsoft.Json": "8.0.2",
