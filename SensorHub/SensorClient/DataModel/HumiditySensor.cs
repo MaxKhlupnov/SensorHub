@@ -19,7 +19,7 @@ namespace SensorClient.DataModel
     {
         private HumidityConsumer consumer;
        
-        public HumiditySensor(HumidityConsumer consumer, string UniqueName) : base(UniqueName)
+        public HumiditySensor(HumidityConsumer consumer, string UniqueName) : base("Humidity_" + UniqueName)
         {                   
             this.consumer = consumer;
             this.Title = "Humidity";

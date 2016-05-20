@@ -86,8 +86,8 @@ namespace SensorClient.Devices
                 config = new InitialDeviceConfig();
                 ///HostName=MtcDataCenter.azure-devices.net;DeviceId=makhluDev;SharedAccessKey=Q3e1wSyrkpspcR06m11bNw==
                 config.DeviceId = deviceID;
-                config.Key = @"67NV07jiafIZGjA0OFkpCQ==";//string.Empty;
-                config.HostName = @"MtcDataCenter.azure-devices.net";//string.Empty;                        
+                config.Key = @"EKW9OBSzAOEQ3rXrBJMSPQ==";///@"UpnqqiFPnndWF5HeiXcIOQ=="//string.Empty;
+                config.HostName = @"mtcdatacenter.azure-devices.net";//MtcDataCenter.azure-devices.netstring.Empty;                        
             }
             WeatherShieldDevice newDevice =  this.CreateDevice(this._logger, this._transportFactory, this._telemetryFactory,
                 this._configProvider, config) as WeatherShieldDevice;
@@ -106,7 +106,7 @@ namespace SensorClient.Devices
 
         public static dynamic CreateAllJoynDevice(AllJoynAboutDataView deviceDataView)
         {
-            string DeviceId = deviceDataView.DeviceId;
+            string DeviceId = deviceDataView.DeviceName;
 
             ///Make shre we don't have breakets in the guid
             Guid DeviceIdGuid = Guid.Empty;
@@ -150,7 +150,7 @@ namespace SensorClient.Devices
         {
             dynamic deviceProperties = DeviceSchemaHelper.GetDeviceProperties(device);
             
-            deviceProperties.HubEnabledState = false;
+            deviceProperties.HubEnabledState = true;
             deviceProperties.Manufacturer = deviceDataView.Manufacturer;
             deviceProperties.ModelNumber = deviceDataView.ModelNumber;
             deviceProperties.SerialNumber = deviceDataView.DeviceId;
@@ -216,12 +216,12 @@ namespace SensorClient.Devices
             CommandSchemaHelper.AddCommandToDevice(device, command);
         }
 
-        private static void AssignTelemetry(dynamic device, AbstractSensor sensor)
+      /*  private static void AssignTelemetry(dynamic device, AbstractSensor sensor)
         {
-            dynamic telemetry = CommandSchemaHelper.CreateNewTelemetry(sensor.UniqueName, sensor.Title, "double");
+            dynamic telemetry = CommandSchemaHelper.CreateNewTelemetry(sensor.Title, sensor.Title, "double");
             CommandSchemaHelper.AddTelemetryToDevice(device, telemetry);
 
-        }
+        }*/
 
     }
 }

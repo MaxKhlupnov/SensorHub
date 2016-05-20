@@ -28,7 +28,7 @@ namespace SensorClient.DataModel
         }
 
         private TemperatureConsumer consumer;
-        public TemperatureSensor(TemperatureConsumer consumer, string UniqueName) : base(UniqueName)
+        public TemperatureSensor(TemperatureConsumer consumer, string UniqueName) : base("Temperature_" + UniqueName)
         {                       
             this.consumer = consumer;
             this.Title = "Temperature";

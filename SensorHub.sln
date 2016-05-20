@@ -22,6 +22,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorClient", "SensorHub\SensorClient\SensorClient.csproj", "{D8A9872F-32D5-4B89-BCA0-F99B9ECD9907}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RemoteMonitoring", "RemoteMonitoring", "{76B12416-A13F-4B4D-A875-2C8FC09E7E92}"
+	ProjectSection(SolutionItems) = preProject
+		..\Rpi_DeviceInfo.json = ..\Rpi_DeviceInfo.json
+		..\SampleDevice_DeviceInfo.json = ..\SampleDevice_DeviceInfo.json
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteMonitoring", "RemoteMonitoring\RemoteMonitoring.csproj", "{96E8B61D-4196-4602-A669-7FA4B160884E}"
 EndProject

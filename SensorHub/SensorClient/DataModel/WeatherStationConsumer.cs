@@ -45,29 +45,24 @@ namespace SensorClient.DataModel
 
         public WeatherStationConsumer()
         {
-            
-
             this.temperatureWatcher = new TemperatureWatcher(this.temperatureBusAttachment);
             this.temperatureWatcher.Added += TemperatureWatcher_Added;
             this.temperatureWatcher.Start();
 
-            /*   For easy debugging
+            this.humidityWatcher = new HumidityWatcher(this.humidityBusAttachment);
+            this.humidityWatcher.Added += HumidityWatcher_Added;
+            this.humidityWatcher.Start();
 
-                 this.humidityWatcher = new HumidityWatcher(this.humidityBusAttachment);
-                 this.humidityWatcher.Added += HumidityWatcher_Added;
-                 this.humidityWatcher.Start();
-
-                 this.pressureWatcher = new PressureWatcher(this.pressureBusAttachment);
-                 this.pressureWatcher.Added += PressureWatcher_Added;
-                 this.pressureWatcher.Start();*/
+            this.pressureWatcher = new PressureWatcher(this.pressureBusAttachment);
+            this.pressureWatcher.Added += PressureWatcher_Added;
+            this.pressureWatcher.Start();
 
             /*    this.ControlPanelWatcher = new ControlPanelWatcher(controlPanelWatcherBusAttachment);
                 this.ControlPanelWatcher.Added += ControlPanelWatcher_Added;
                 this.ControlPanelWatcher.Start();*/
-
         }
 
-        /*      private async void ControlPanelWatcher_Added(ControlPanelWatcher sender, AllJoynServiceInfo args)
+        /*     private async void ControlPanelWatcher_Added(ControlPanelWatcher sender, AllJoynServiceInfo args)
               {
                   ControlPanelJoinSessionResult joinResult = await ControlPanelConsumer.JoinSessionAsync(args, sender);
                   AllJoynAboutDataView view = await AllJoynAboutDataView.GetDataBySessionPortAsync(args.UniqueName, 
@@ -80,6 +75,7 @@ namespace SensorClient.DataModel
                   }
 
               }*/
+        
 
         private async void PressureWatcher_Added(PressureWatcher sender, AllJoynServiceInfo args)
         {            

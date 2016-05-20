@@ -24,6 +24,8 @@ namespace RemoteMonitoring.Devices
     {
         // pointer to the currently executing event group
         private int _currentEventGroup = 0;
+        public const string OBJECT_TYPE_DEVICE_INFO = "DeviceInfo";
+        public const string VERSION_1_0 = "1.0";
 
         protected readonly ILogger Logger;
         protected readonly ITransportFactory TransportFactory;
@@ -118,8 +120,8 @@ namespace RemoteMonitoring.Devices
             device.DeviceProperties = DeviceSchemaHelper.GetDeviceProperties(this);
             device.Commands = CommandSchemaHelper.GetSupportedCommands(this);
             device.Telemetry = CommandSchemaHelper.GetTelemetrySchema(this);
-           // device.Version = AbstarctDeviceFactory.VERSION_1_0;
-           // device.ObjectType = SampleDeviceFactory.OBJECT_TYPE_DEVICE_INFO;
+            device.Version =  VERSION_1_0;
+            device.ObjectType = OBJECT_TYPE_DEVICE_INFO;
 
             // Remove the system properties from a device, to better emulate the behavior of real devices when sending device info messages.
            // DeviceSchemaHelper.RemoveSystemPropertiesForSimulatedDeviceInfo(device);

@@ -27,7 +27,7 @@ namespace SensorClient.DataModel
         }
 
         private PressureConsumer consumer;
-        public PressureSensor(PressureConsumer consumer, string UniqueName) : base(UniqueName)
+        public PressureSensor(PressureConsumer consumer, string UniqueName) : base("Pressure_" + UniqueName)
         {
             this.consumer = consumer;
             this.Title = "Pressure";

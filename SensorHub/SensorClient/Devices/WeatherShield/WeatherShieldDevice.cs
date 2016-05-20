@@ -103,8 +103,10 @@ namespace SensorClient.Devices.WeatherShield
             {
                 hasMutex = _mutex.WaitOne(1000);
                 this.Logger.LogInfo("Adding sensor {0} uniquename {1} for deviceid {2}", sensor.Title, sensor.UniqueName, this.DeviceID);
+
                 this.DeviceSensors.Add(sensor);
-                dynamic telemetry = CommandSchemaHelper.CreateNewTelemetry(sensor.UniqueName, sensor.Title, "double");
+               
+                dynamic telemetry = CommandSchemaHelper.CreateNewTelemetry(sensor.Title, sensor.Title, "double");
                 CommandSchemaHelper.AddTelemetryToDevice(this, telemetry);
               
                 sensor.onSensorSessionLost += onRemoveSensor;
