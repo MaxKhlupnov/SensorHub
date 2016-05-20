@@ -89,8 +89,8 @@ namespace SensorClient
                             if (dsbBrifge != null)
                                 dsbBrifge.Initialize();
                         }
-                        catch (Exception ex) {                           
-                            Debug.WriteLine("Error loding local sensors: " + ex.Message);
+                        catch (Exception ex) {                                                 
+                                  //  Debug.WriteLine("Error loding local sensors: " + ex.Message);
                         }
 
                     }));

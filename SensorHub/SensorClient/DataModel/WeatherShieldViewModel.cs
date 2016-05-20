@@ -24,7 +24,7 @@ namespace SensorClient.DataModel
     public class WeatherShieldViewModel
     {
         private readonly int _devicePollIntervalSeconds;
-        private const int DEFAULT_DEVICE_POLL_INTERVAL_SECONDS = 20;//120;
+        private const int DEFAULT_DEVICE_POLL_INTERVAL_SECONDS = 60;//120;
 
         private static WeatherStationConsumer weatherStationConsumer = new WeatherStationConsumer();
         private ILogger logger;

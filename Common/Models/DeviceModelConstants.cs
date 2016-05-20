@@ -39,6 +39,7 @@
     public static class SystemPropertiesConstants
     {
         public const string ICCID = "ICCID";
+        public const string IP = "IP";
     }
 
     public static class CommandModelConstants

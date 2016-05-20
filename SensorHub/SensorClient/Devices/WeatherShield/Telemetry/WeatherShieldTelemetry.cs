@@ -18,7 +18,7 @@ namespace SensorClient.Devices.WeatherShield.Telemetry
         private readonly ILogger _logger;
         private readonly WeatherShieldDevice _device;
 
-        private const int REPORT_FREQUENCY_IN_SECONDS = 5;
+        private const int REPORT_FREQUENCY_IN_SECONDS = 60;
         private const int PEAK_FREQUENCY_IN_SECONDS = 90;
 
         public bool TelemetryActive { get; set; }

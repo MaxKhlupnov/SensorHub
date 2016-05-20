@@ -5,6 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Windows.Devices.AllJoyn;
+using Windows.Networking;
+using Windows.Networking.Connectivity;
+
 
 using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Repository;
 using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Configurations;
@@ -61,9 +64,7 @@ namespace SensorClient.Devices
 
         private static List<Location> _possibleDeviceLocations = new List<Location>{
             new Location("Microsoft Red West Campus, Building A", 47.659159, -122.141515),  // 
-            new Location("800 Occidental Ave S, Seattle, WA 98134",47.593307, -122.332165),  // 
-            new Location("11111 NE 8th St, Bellevue, WA 98004", 47.617025, -122.191285),  // 
-            new Location("3003 160th Ave SE Bellevue, WA 98008", 47.583582, -122.130622)  // 
+            new Location("MTC Moscow",55.779051, 37.589251)  //             
         };
 
         internal AllJoynDeviceFactory(ILogger logger, IConfigurationProvider configProvider)
@@ -86,12 +87,15 @@ namespace SensorClient.Devices
                 config = new InitialDeviceConfig();
                 ///HostName=MtcDataCenter.azure-devices.net;DeviceId=makhluDev;SharedAccessKey=Q3e1wSyrkpspcR06m11bNw==
                 config.DeviceId = deviceID;
-                config.Key = @"EKW9OBSzAOEQ3rXrBJMSPQ==";///@"UpnqqiFPnndWF5HeiXcIOQ=="//string.Empty;
+                config.Key = @"SQowcaxvaxxE+ZSo4V/lEA==";///@"UpnqqiFPnndWF5HeiXcIOQ=="//string.Empty;
                 config.HostName = @"mtcdatacenter.azure-devices.net";//MtcDataCenter.azure-devices.netstring.Empty;                        
             }
             WeatherShieldDevice newDevice =  this.CreateDevice(this._logger, this._transportFactory, this._telemetryFactory,
                 this._configProvider, config) as WeatherShieldDevice;
             newDevice.DeviceProperties = DeviceSchemaHelper.GetDeviceProperties(device);
+            newDevice.DeviceProperties.Latitude = _possibleDeviceLocations[1].Latitude;
+            newDevice.DeviceProperties.Longitude = _possibleDeviceLocations[1].Longitude;
+            newDevice.DeviceProperties.HostName = GetLocalIp();
             newDevice.Init(config);
             return newDevice;
         }
@@ -113,7 +117,9 @@ namespace SensorClient.Devices
             if (Guid.TryParse(DeviceId, out DeviceIdGuid)){
                 DeviceId = DeviceIdGuid.ToString("D");
             }
-            ;
+            
+            
+
             var device = DeviceSchemaHelper.BuildDeviceStructure(DeviceId, IS_SIMULATED_DEVICE,"IOT_HUB_ID");
 
             AssignDeviceProperties(deviceDataView, device);
@@ -176,7 +182,26 @@ namespace SensorClient.Devices
             // Choose a location between the 3 above and set Lat and Long for device properties
             int chosenLocation = GetIntBasedOnString(deviceDataView.DeviceId + "Location", _possibleDeviceLocations.Count);
             deviceProperties.Latitude = _possibleDeviceLocations[chosenLocation].Latitude;
-            deviceProperties.Longitude = _possibleDeviceLocations[chosenLocation].Longitude;*/
+            deviceProperties.Longitude = _possibleDeviceLocations[chosenLocation].Longitude;*/             
+        }
+
+        private static string GetLocalIp()
+        {
+            var icp = NetworkInformation.GetInternetConnectionProfile();
+
+            if (icp?.NetworkAdapter == null) return null;
+
+            foreach (HostName localHostName in NetworkInformation.GetHostNames())
+            {
+                if (localHostName.IPInformation != null)
+                {
+                    if (localHostName.Type == HostNameType.Ipv4)
+                    {
+                        return localHostName.RawName;
+                    }
+                }
+            }
+            return null;
         }
 
         private static int GetIntBasedOnString(string input, int maxValueExclusive)
