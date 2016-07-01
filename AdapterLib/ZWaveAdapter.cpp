@@ -160,10 +160,13 @@ namespace AdapterLib
             {
                 for (auto iterator = devices->First(); iterator->HasCurrent; iterator->MoveNext())
                 {
-                   /* string currentId = ConvertTo<string>(iterator->Current->Id);
-                    if (currentId.find(path) != string::npos && m_pMgr)
+                    Platform::String^ currentId = iterator->Current->Id;
+					m_pMgr->AddDriver("\\.\COM3", (Driver::ControllerInterface)inf);
+                    /*if (Platform::String::
+						currentId-> != string::npos && m_pMgr)
                     {
-                        m_pMgr->AddDriver(currentId, (Driver::ControllerInterface)inf);
+                    //    m_pMgr->AddDriver(currentId, (Driver::ControllerInterface)inf);
+						
                     }*/
                 }
             });

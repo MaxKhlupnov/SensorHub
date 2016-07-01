@@ -26,11 +26,7 @@
 
 namespace AdapterLib
 {
-    //const definitions
-    static const std::wstring cVendor = L"Microsoft";
-    static const std::wstring cAdapterName = L"ZWave Bridge";
-    static const std::wstring cDomainPrefix = L"com";
-
+   
     //
     // ZWaveAdapter class.
     // Description:
