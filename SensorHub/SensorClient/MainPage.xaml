@@ -51,7 +51,7 @@
                 <HubSection.Header>
                     <TextBlock x:Uid="ByNameHeader" TextLineBounds="TrimToBaseline" OpticalMarginAlignment="TrimSideBearings"/>
                 </HubSection.Header>
-                <DataTemplate x:DataType="data:WeatherShieldViewModel">
+                <DataTemplate x:DataType="data:MultisensorViewModel">
                     <ScrollViewer x:Name="sensorsScroll" VerticalScrollMode="Auto" HorizontalScrollMode="Disabled">
                         <GridView 
                         x:Name="sensorsGridView"

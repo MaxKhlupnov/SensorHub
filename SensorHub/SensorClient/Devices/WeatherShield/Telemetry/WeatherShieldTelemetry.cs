@@ -56,6 +56,7 @@ namespace SensorClient.Devices.WeatherShield.Telemetry
                             new object[] { ex.Message, _device.DeviceID });
                     }
                 }
+                await Task.Delay(TimeSpan.FromSeconds(REPORT_FREQUENCY_IN_SECONDS), token);
 
             }
         }

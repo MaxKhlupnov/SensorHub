@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 
-using SensorClient.DataModel.Telemetry;
-
 namespace SensorClient.DataModel
 {
     public abstract class AbstractSensor : INotifyPropertyChanged

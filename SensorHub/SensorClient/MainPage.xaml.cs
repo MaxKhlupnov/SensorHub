@@ -28,14 +28,14 @@ namespace SensorClient
         static CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
         /* Device */          
-        public WeatherShieldViewModel devicesViewModel = null;
+        public MultisensorViewModel devicesViewModel = null;
         private readonly IConfigurationProvider _configProvider = new ConfigurationProvider();
         TextBox txtDeviceId;
         private TraceLogger _logger = new TraceLogger();
         public MainPage()
         {
             DC.ShowLog();
-            this.devicesViewModel = new WeatherShieldViewModel(_logger, _configProvider);
+            this.devicesViewModel = new MultisensorViewModel(_logger, _configProvider);
             this.DataContext = this.devicesViewModel;
             this.InitializeComponent();
   
@@ -111,9 +111,9 @@ namespace SensorClient
         private void btnAddDevice_Click(object sender, RoutedEventArgs e)
         {
             
-            dynamic testDevice = SensorClient.Devices.AllJoynDeviceFactory.CreateDummyDevice("000-000");
+           /* dynamic testDevice = SensorClient.Devices.AllJoynDeviceFactory.CreateDummyDevice("000-000");
             TemperatureSensor sensor = new TemperatureSensor(null, "Dummy");
-            this.devicesViewModel.SensorStarted(sensor, testDevice);
+            this.devicesViewModel.SensorStarted(sensor, testDevice);*/
 
         }
     }

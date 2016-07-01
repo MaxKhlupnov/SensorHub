@@ -125,28 +125,14 @@
     <Compile Include="Controls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Devices\WeatherShield\Telemetry\SensorTelemetry.cs" />
-    <Compile Include="Devices\WeatherShield\Telemetry\StartupTelemetry.cs" />
+    <Compile Include="DataModel\MultisensorViewModel.cs" />
+    <Compile Include="Devices\MultisensorDeviceFactory.cs" />
     <Compile Include="Common\DeviceConfigTableStorage.cs" />
-    <Compile Include="Devices\WeatherShield\CommandProcessors\ChangeDeviceStateCommandProcessor.cs" />
-    <Compile Include="Devices\WeatherShield\CommandProcessors\ChangeSetPointTempCommandProcessor.cs" />
-    <Compile Include="Devices\WeatherShield\CommandProcessors\DiagnosticTelemetryCommandProcessor.cs" />
-    <Compile Include="Devices\WeatherShield\CommandProcessors\StartCommandProcessor.cs" />
-    <Compile Include="Devices\WeatherShield\CommandProcessors\StopCommandProcessor.cs" />
-    <Compile Include="Devices\WeatherShield\Telemetry\WeatherShieldTelemetry.cs" />
-    <Compile Include="Devices\WeatherShield\WeatherShieldTelemetryData.cs" />
-    <Compile Include="Devices\WeatherShield\WeatherShieldDevice.cs" />
     <Compile Include="DataModel\AbstractSensor.cs" />
     <Compile Include="DataModel\AppSettings.cs" />
     <Compile Include="DataModel\SensorTelemetryData.cs" />
-    <Compile Include="DataModel\HumiditySensor.cs" />
-    <Compile Include="DataModel\PressureSensor.cs" />
     <Compile Include="DataModel\SensorsCollection.cs" />
-    <Compile Include="DataModel\TemperatureSensor.cs" />
-    <Compile Include="DataModel\WeatherShieldViewModel.cs" />
-    <Compile Include="DataModel\WeatherStationConsumer.cs" />
-    <Compile Include="Devices\AllJoynDeviceFactory.cs" />
-    <Compile Include="Devices\WeatherShield\WeatherShieldTelemetryFactory.cs" />
+    <Compile Include="Devices\ZWaveMultisensor\Multisensor.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -183,6 +169,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AdapterLib\AdapterLib.vcxproj">
+      <Project>{8d539c08-ea54-475f-b691-7bd8b8b67956}</Project>
+      <Name>AdapterLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\Common.csproj">
       <Project>{277a58e4-4d92-4bdb-aacd-2f8dfb5603bf}</Project>
       <Name>Common</Name>
@@ -190,26 +180,6 @@
     <ProjectReference Include="..\..\RemoteMonitoring\RemoteMonitoring.csproj">
       <Project>{96e8b61d-4196-4602-a669-7fa4b160884e}</Project>
       <Name>RemoteMonitoring</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AdapterLib\AdapterLib.vcxproj">
-      <Project>{8d539c08-ea54-475f-b691-7bd8b8b67956}</Project>
-      <Name>AdapterLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BridgeRT\BridgeRT.vcxproj">
-      <Project>{2783a617-8e1d-40d1-9684-dfaeb8dd5406}</Project>
-      <Name>BridgeRT</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\com.mtcmoscow.SensorHub.Humidity\com.mtcmoscow.SensorHub.Humidity.vcxproj">
-      <Project>{4af4a6d7-40b2-465b-b1c2-ccbc8f7978c0}</Project>
-      <Name>com.mtcmoscow.SensorHub.Humidity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\com.mtcmoscow.SensorHub.Pressure\com.mtcmoscow.SensorHub.Pressure.vcxproj">
-      <Project>{687e5a89-55c7-4379-babf-02ee77c70616}</Project>
-      <Name>com.mtcmoscow.SensorHub.Pressure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\com.mtcmoscow.SensorHub.Temperature\com.mtcmoscow.SensorHub.Temperature.vcxproj">
-      <Project>{2f86d6b6-44dc-4fd4-b7a1-a9737eb730e0}</Project>
-      <Name>com.mtcmoscow.SensorHub.Temperature</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

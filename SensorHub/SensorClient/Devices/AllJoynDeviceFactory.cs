@@ -87,7 +87,7 @@ namespace SensorClient.Devices
                 config = new InitialDeviceConfig();
                 ///HostName=MtcDataCenter.azure-devices.net;DeviceId=makhluDev;SharedAccessKey=Q3e1wSyrkpspcR06m11bNw==
                 config.DeviceId = deviceID;
-                config.Key = @"SQowcaxvaxxE+ZSo4V/lEA==";///@"UpnqqiFPnndWF5HeiXcIOQ=="//string.Empty;
+                config.Key = @"SunXH340ulzicUe7KzaCZg==";///SQowcaxvaxxE+ZSo4V/lEA==
                 config.HostName = @"mtcdatacenter.azure-devices.net";//MtcDataCenter.azure-devices.netstring.Empty;                        
             }
             WeatherShieldDevice newDevice =  this.CreateDevice(this._logger, this._transportFactory, this._telemetryFactory,
