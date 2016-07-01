@@ -158,17 +158,15 @@ namespace AdapterLib
             create_task(DeviceInformation::FindAllAsync(selector))
                 .then([path, inf, this](DeviceInformationCollection ^ devices)
             {
-                for (auto iterator = devices->First(); iterator->HasCurrent; iterator->MoveNext())
-                {
-                    Platform::String^ currentId = iterator->Current->Id;
-					m_pMgr->AddDriver("\\.\COM3", (Driver::ControllerInterface)inf);
-                    /*if (Platform::String::
-						currentId-> != string::npos && m_pMgr)
-                    {
-                    //    m_pMgr->AddDriver(currentId, (Driver::ControllerInterface)inf);
-						
-                    }*/
-                }
+				for (auto iterator = devices->First(); iterator->HasCurrent; iterator->MoveNext())
+				{
+					wstring wCurrentId = iterator->Current->Id->Data();
+					string currentId = ConvertTo<string>(wCurrentId);
+					if (currentId.find(path) != string::npos && m_pMgr)
+					{
+						m_pMgr->AddDriver(currentId, (Driver::ControllerInterface)inf);
+					}
+				}
             });
         }
 

@@ -43,10 +43,10 @@ namespace SensorClient.DataModel
 
             this.Devices = new List<Multisensor>();
             zWaveAdapter.Initialize();
-
-           /*  weatherStationConsumer.HumiditySensorSessionStarted += SensorStarted;
-            weatherStationConsumer.TemperatureSensorSessionStarted += SensorStarted;
-            weatherStationConsumer.PerssureSensorSessionStarted += SensorStarted;*/
+           
+            /*  weatherStationConsumer.HumiditySensorSessionStarted += SensorStarted;
+             weatherStationConsumer.TemperatureSensorSessionStarted += SensorStarted;
+             weatherStationConsumer.PerssureSensorSessionStarted += SensorStarted;*/
 
             string pollingIntervalString = configProvider.GetConfigurationSettingValueOrDefault(
                                         "DevicePollIntervalSeconds",

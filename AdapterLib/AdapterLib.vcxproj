@@ -47,7 +47,7 @@
     <ClInclude Include="ZWaveAdapter.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ZWMultisensorBridge\ZWMultisensorBridge\ZWMultisensorBridge\open-zwave\cpp\build\winRT\vs2015\OpenZWave.vcxproj">
+    <ProjectReference Include="..\open-zwave\cpp\build\winRT\vs2015\OpenZWave.vcxproj">
       <Project>{e830f9d6-8173-4b0b-9ece-caadfa531b54}</Project>
     </ProjectReference>
   </ItemGroup>
@@ -115,7 +115,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />    
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
