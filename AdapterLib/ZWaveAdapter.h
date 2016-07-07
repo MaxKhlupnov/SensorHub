@@ -20,13 +20,17 @@
 
 #include "Manager.h"
 #include "Notification.h"
+#include "ZWNotification.h"
 
 #include <string>
 #include <map>
 
 namespace AdapterLib
 {
-   
+
+	// Delegate for handling notification callbacks
+	public delegate void ZWNotificationsHandler(ZWNotification^ notification);
+
     //
     // ZWaveAdapter class.
     // Description:
@@ -35,9 +39,7 @@ namespace AdapterLib
     public ref class ZWaveAdapter sealed        
     {
     public:
-
-
-
+		//static void OnNotification(AdapterLib::ZWNotification^ _notification, void * _context);
         uint32 Initialize();
         uint32 Shutdown();
 
@@ -46,6 +48,12 @@ namespace AdapterLib
         //
         ZWaveAdapter();
         virtual ~ZWaveAdapter();
+		
+		//-----------------------------------------------------------------------------
+		// Events
+		//-----------------------------------------------------------------------------
+		event ZWNotificationsHandler^ zwNotofication;
+
 
     internal:
         static void OnNotification(OpenZWave::Notification const * _notification, void * _context);
@@ -57,6 +65,8 @@ namespace AdapterLib
         void RemoveDevice(const uint32 homeId, const uint8 nodeId, bool bMoveToPending = false);
         void RemoveAllDevices(uint32 homeId);*/
 
+	
+		
     private:
 
         

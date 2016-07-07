@@ -18,5 +18,7 @@
     <ClInclude Include="AdapterUtils.h" />
     <ClInclude Include="AdapterConfig.h" />
     <ClInclude Include="ZWaveAdapter.h" />
+    <ClInclude Include="ZWValueID.h" />
+    <ClInclude Include="ZWNotification.h" />
   </ItemGroup>
 </Project>

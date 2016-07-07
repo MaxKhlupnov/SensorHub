@@ -45,6 +45,8 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="ZWaveAdapter.h" />
+    <ClInclude Include="ZWNotification.h" />
+    <ClInclude Include="ZWValueID.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\open-zwave\cpp\build\winRT\vs2015\OpenZWave.vcxproj">
@@ -133,21 +135,27 @@
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <GenerateManifest>false</GenerateManifest>
+    <IncludePath>C:\PROJECTS\SensorHub\open-zwave\cpp\src\value_classes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <GenerateManifest>false</GenerateManifest>
+    <IncludePath>C:\PROJECTS\SensorHub\open-zwave\cpp\src\value_classes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <GenerateManifest>false</GenerateManifest>
+    <IncludePath>C:\PROJECTS\SensorHub\open-zwave\cpp\src\value_classes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <GenerateManifest>false</GenerateManifest>
+    <IncludePath>C:\PROJECTS\SensorHub\open-zwave\cpp\src\value_classes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <GenerateManifest>false</GenerateManifest>
+    <IncludePath>C:\PROJECTS\SensorHub\open-zwave\cpp\src\value_classes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <GenerateManifest>false</GenerateManifest>
+    <IncludePath>C:\PROJECTS\SensorHub\open-zwave\cpp\src\value_classes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
