@@ -58,6 +58,12 @@ done:
     return status;
 }
 
+
+Platform::String^ AdapterLib::ToPlatformString(std::string in_str) {
+	std::wstring win_str = ConvertTo<wstring>(in_str);
+	return ref new String(win_str.c_str());
+}
+
 bool
 AdapterLib::FileExist(String^ filePath)
 {

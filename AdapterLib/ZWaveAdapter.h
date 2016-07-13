@@ -28,6 +28,18 @@
 namespace AdapterLib
 {
 
+	public ref class NodeInfo sealed
+	{
+	public:
+		property Platform::String^ Type;
+		property Platform::String^ Manufacturer;
+		property Platform::String^ Product;
+		property Platform::String^ Location;
+		property Platform::String^ Name;
+		property Platform::String^ LibraryVersion;
+		//m_manager.GetNodeType(m_homeId, node.ID);
+	};
+
 	// Delegate for handling notification callbacks
 	public delegate void ZWNotificationsHandler(ZWNotification^ notification);
 
@@ -41,7 +53,9 @@ namespace AdapterLib
     public:
 		//static void OnNotification(AdapterLib::ZWNotification^ _notification, void * _context);
         uint32 Initialize();
-        uint32 Shutdown();
+        uint32 Shutdown();				
+
+		NodeInfo^ GetNodeInfo(uint32 homeId, uint8 nodeId);
 
         //
         // Construction
@@ -52,15 +66,19 @@ namespace AdapterLib
 		//-----------------------------------------------------------------------------
 		// Events
 		//-----------------------------------------------------------------------------
-		event ZWNotificationsHandler^ zwNotofication;
+		event ZWNotificationsHandler^ ZWaveNotification;
 
 
     internal:
-        static void OnNotification(OpenZWave::Notification const * _notification, void * _context);
+		//ZWNotificationsHandler^ notifyFunction = ref new  ZWNotificationsHandler();
+
+        void static OnNotification(OpenZWave::Notification const * _notification, void * _context);
 
     private:
        
         void StartDeviceDiscovery();
+
+
        /* void AddDevice(const uint32 homeId, const uint8 nodeId, bool bPending);
         void RemoveDevice(const uint32 homeId, const uint8 nodeId, bool bMoveToPending = false);
         void RemoveAllDevices(uint32 homeId);*/

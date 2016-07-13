@@ -45,12 +45,16 @@ namespace AdapterLib
     HRESULT CreateFolder(_In_ Platform::String^ folderName);
     HRESULT CopyFolder(_In_ Platform::String^ source, _In_ Platform::String^ destination);
     HRESULT DeleteFolder(_In_ Platform::String^ dir);
+	Platform::String^ ToPlatformString(std::string in_str);
+	
 
 	template<typename _TDest, typename _Tsrc>
 	inline _TDest ConvertTo(const _Tsrc& src)
 	{
 		return _TDest{ src.begin(), src.end() };
 	}
+
+	
 
 	// Win32 error codes from HRESULT codes.
 #ifndef WIN32_FROM_HRESULT

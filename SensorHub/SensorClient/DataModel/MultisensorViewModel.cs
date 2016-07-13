@@ -12,8 +12,7 @@ using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.DeviceSchema;
 using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Configurations;
 
 using SensorClient.Devices;
-using SensorClient.Devices.ZWaveMultisensor;
-using AdapterLib;
+
 
 using RemoteMonitoring.Logging;
 using RemoteMonitoring.Devices;
@@ -26,11 +25,8 @@ namespace SensorClient.DataModel
         private readonly int _devicePollIntervalSeconds;
         private const int DEFAULT_DEVICE_POLL_INTERVAL_SECONDS = 60;//120;
 
-        private static ZWaveAdapter zWaveAdapter= new ZWaveAdapter();
+        
         private ILogger logger;
-
-        MultisensorDeviceFactory deviceFactory = null;
-        public List<Multisensor> Devices { get; private set; }
 
 
         private static Mutex mutex = new Mutex(false, "temporaryUIMutex");
@@ -39,11 +35,7 @@ namespace SensorClient.DataModel
         {
 
             this.logger = logger;
-           this.deviceFactory = new MultisensorDeviceFactory(logger, configProvider);
-
-            this.Devices = new List<Multisensor>();
-            zWaveAdapter.Initialize();
-           
+          
             /*  weatherStationConsumer.HumiditySensorSessionStarted += SensorStarted;
              weatherStationConsumer.TemperatureSensorSessionStarted += SensorStarted;
              weatherStationConsumer.PerssureSensorSessionStarted += SensorStarted;*/
@@ -54,6 +46,8 @@ namespace SensorClient.DataModel
 
             _devicePollIntervalSeconds = Convert.ToInt32(pollingIntervalString, CultureInfo.InvariantCulture);
         }
+
+  
 
         /// <summary>
         /// Retrieves a set of device configs from the repository and creates devices with this information

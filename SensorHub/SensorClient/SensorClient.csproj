@@ -126,13 +126,25 @@
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataModel\MultisensorViewModel.cs" />
-    <Compile Include="Devices\MultisensorDeviceFactory.cs" />
+    <Compile Include="Devices\ZWaveMultisensor\MultisensorDeviceFactory.cs" />
     <Compile Include="Common\DeviceConfigTableStorage.cs" />
     <Compile Include="DataModel\AbstractSensor.cs" />
     <Compile Include="DataModel\AppSettings.cs" />
     <Compile Include="DataModel\SensorTelemetryData.cs" />
     <Compile Include="DataModel\SensorsCollection.cs" />
+    <Compile Include="Devices\ZWaveDeviceManager.cs" />
+    <Compile Include="Devices\ZWaveMultisensor\CommandProcessors\ChangeDeviceStateCommandProcessor.cs" />
+    <Compile Include="Devices\ZWaveMultisensor\CommandProcessors\ChangeSetPointTempCommandProcessor.cs" />
+    <Compile Include="Devices\ZWaveMultisensor\CommandProcessors\DiagnosticTelemetryCommandProcessor.cs" />
+    <Compile Include="Devices\ZWaveMultisensor\CommandProcessors\StartCommandProcessor.cs" />
+    <Compile Include="Devices\ZWaveMultisensor\CommandProcessors\StopCommandProcessor.cs" />
     <Compile Include="Devices\ZWaveMultisensor\Multisensor.cs" />
+    <Compile Include="Devices\ZWaveMultisensor\MultisensorTelemetryFactory.cs" />
+    <Compile Include="Devices\ZWaveMultisensor\Telemetry\PresenceTelemetryData.cs" />
+    <Compile Include="Devices\ZWaveMultisensor\Telemetry\StartupTelemetry.cs" />
+    <Compile Include="Devices\ZWaveMultisensor\Telemetry\PresenceTelemetry.cs" />
+    <Compile Include="Devices\ZWaveMultisensor\Telemetry\RoomMonitorTelemetry.cs" />
+    <Compile Include="Devices\ZWaveMultisensor\Telemetry\RoomMonitorTelemetryData.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

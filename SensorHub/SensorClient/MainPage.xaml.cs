@@ -7,13 +7,14 @@ using Windows.UI.Xaml.Controls;
 using System.Threading;
 using System.Threading.Tasks;
 
-using WinRTXamlToolkit.Debugging;
 
 using SensorClient.DataModel;
 using SensorClient.Common;
 
 using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Configurations;
+using SensorClient.Devices;
 
+using WinRTXamlToolkit.Debugging;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace SensorClient
@@ -29,25 +30,28 @@ namespace SensorClient
 
         /* Device */          
         public MultisensorViewModel devicesViewModel = null;
+        public ZWaveDeviceManager deviceManager = null;
         private readonly IConfigurationProvider _configProvider = new ConfigurationProvider();
         TextBox txtDeviceId;
         private TraceLogger _logger = new TraceLogger();
         public MainPage()
         {
             DC.ShowLog();
-            this.devicesViewModel = new MultisensorViewModel(_logger, _configProvider);
-            this.DataContext = this.devicesViewModel;
+           // this.devicesViewModel = new MultisensorViewModel(_logger, _configProvider);
+            this.deviceManager = new ZWaveDeviceManager(_configProvider, _logger, cancellationTokenSource.Token);
+
+            //this.DataContext = this.devicesViewModel;
             this.InitializeComponent();
   
-            ((SensorClient.App)Application.Current).OnBridgeInitialized += OnBridgeInitialized;
+            //((SensorClient.App)Application.Current).OnBridgeInitialized += OnBridgeInitialized;
             this.Loaded += MainPage_Loaded;            
         }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {            
-            DC.Hide();
+           // DC.Hide();
             
-            Task.Run(() => devicesViewModel.ProcessDevicesAsync(cancellationTokenSource.Token), cancellationTokenSource.Token);
+        //    Task.Run(() => devicesViewModel.ProcessDevicesAsync(cancellationTokenSource.Token), cancellationTokenSource.Token);
         }
         
         private void OnBridgeInitialized(IAsyncAction asyncAction, AsyncStatus asyncStatus)
@@ -81,15 +85,7 @@ namespace SensorClient
             this.Frame.Navigate(typeof(ItemPage), itemId);*/
         }
 
-        private void chkShowTracePanel_Unchecked(object sender, RoutedEventArgs e)
-        {
-                    DC.Hide();
-        }
-
-        private void chkShowTracePanel_Checked(object sender, RoutedEventArgs e)
-        {
-                    DC.ShowLog();   
-        }
+      
 
         private void DebugPopup_Closed(object sender, object e)
         {

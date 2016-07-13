@@ -18,17 +18,13 @@ using Windows.System.Threading;
 using Windows.ApplicationModel.Core;
 using WinRTXamlToolkit.Debugging;
 
-
 namespace SensorClient
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     sealed partial class App : Application
-    {
-        
-        public delegate void DsbBridgeInitializationCompleated(IAsyncAction asyncAction, AsyncStatus asyncStatus);
-        public DsbBridgeInitializationCompleated OnBridgeInitialized;
+    {               
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code

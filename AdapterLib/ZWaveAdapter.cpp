@@ -115,6 +115,19 @@ namespace AdapterLib
     }
 
 
+	NodeInfo^ ZWaveAdapter::GetNodeInfo(uint32 homeId, uint8 nodeId) {
+		NodeInfo^ info = ref new NodeInfo();
+		
+		info->Type =ToPlatformString(m_pMgr->GetNodeType(homeId, nodeId));
+		info->LibraryVersion = ToPlatformString(m_pMgr->GetLibraryVersion(homeId));
+		info->Manufacturer = ToPlatformString(m_pMgr->GetNodeManufacturerName(homeId, nodeId));
+		info->Location = ToPlatformString(m_pMgr->GetNodeLocation(homeId, nodeId));
+		info->Name = ToPlatformString(m_pMgr->GetNodeName(homeId, nodeId));
+		info->Product = ToPlatformString(m_pMgr->GetNodeProductName(homeId, nodeId));
+
+		return info;
+	}
+
     uint32 ZWaveAdapter::Shutdown()
     {
         uint32 status = ERROR_SUCCESS;
@@ -195,6 +208,10 @@ namespace AdapterLib
 
         uint32 const homeId = _notification->GetHomeId();
         uint8 const nodeId = _notification->GetNodeId();
+		
+		ZWNotification^ notification = ref new ZWNotification(_notification);
+		adapter->ZWaveNotification(notification);
+		
 
         try
         {

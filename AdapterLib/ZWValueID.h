@@ -38,72 +38,84 @@ using namespace Windows::System;
 
 namespace AdapterLib 
 {
-	public ref class ZWValueID
+
+	public enum class ValueGenre
 	{
-	public:
-		enum class ValueGenre
-		{
-			Basic	= ValueID::ValueGenre_Basic,
-			User	= ValueID::ValueGenre_User,	
-			Config	= ValueID::ValueGenre_Config,	
-			System	= ValueID::ValueGenre_System
-		};
+		Basic = ValueID::ValueGenre_Basic,
+		User = ValueID::ValueGenre_User,
+		Config = ValueID::ValueGenre_Config,
+		System = ValueID::ValueGenre_System
+	};
 
-		enum class ValueType
-		{
-			Bool		= ValueID::ValueType_Bool,
-			Byte		= ValueID::ValueType_Byte,
-			Decimal		= ValueID::ValueType_Decimal,
-			Int			= ValueID::ValueType_Int,
-			List		= ValueID::ValueType_List,
-			Schedule	= ValueID::ValueType_Schedule,
-			Short		= ValueID::ValueType_Short,
-			String		= ValueID::ValueType_String,
-			Button		= ValueID::ValueType_Button,
-			Raw		= ValueID::ValueType_Raw
-		};
+	public enum class ValueType
+	{
+		Bool = ValueID::ValueType_Bool,
+		Byte = ValueID::ValueType_Byte,
+		Decimal = ValueID::ValueType_Decimal,
+		Int = ValueID::ValueType_Int,
+		List = ValueID::ValueType_List,
+		Schedule = ValueID::ValueType_Schedule,
+		Short = ValueID::ValueType_Short,
+		String = ValueID::ValueType_String,
+		Button = ValueID::ValueType_Button,
+		Raw = ValueID::ValueType_Raw
+	};
 
+	public ref class ZWValueID sealed
+	{
+	
+
+	public: 
+		virtual ~ZWValueID()
+		{ 
+			//delete m_valueId;
+		}
+
+		property uint32 HomeId;
+
+		property uint8 NodeId;
+
+	internal:
 		/**
-		 * Create a ZWValue ID from its component parts.
-		 * This method is provided only to allow ValueIDs to be saved and recreated by the application.  Only
-		 * ValueIDs that have been reported by OpenZWave notifications should ever be used.
-		 * \param homeId Home ID of the PC Z-Wave Controller that manages the device.
-		 * \param nodeId Node ID of the device reporting the value.
-		 * \param genre classification of the value to enable low level system or configuration parameters to be filtered out.
-		 * \param commandClassId ID of command class that creates and manages this value.
-		 * \param instance Instance index of the command class.
-		 * \param valueIndex Index of the value within all the values created by the command class instance.
-		 * \param type Type of value (bool, byte, string etc).
-		 * \return The ValueID.
-		 * \see ValueID
-		 */
+		* Create a ZWValue ID from its component parts.
+		* This method is provided only to allow ValueIDs to be saved and recreated by the application.  Only
+		* ValueIDs that have been reported by OpenZWave notifications should ever be used.
+		* \param homeId Home ID of the PC Z-Wave Controller that manages the device.
+		* \param nodeId Node ID of the device reporting the value.
+		* \param genre classification of the value to enable low level system or configuration parameters to be filtered out.
+		* \param commandClassId ID of command class that creates and manages this value.
+		* \param instance Instance index of the command class.
+		* \param valueIndex Index of the value within all the values created by the command class instance.
+		* \param type Type of value (bool, byte, string etc).
+		* \return The ValueID.
+		* \see ValueID
+		*/
 		ZWValueID
-		( 
+		(
 			uint32 homeId,
 			uint8 nodeId,
-			ZWValueID::ValueGenre genre,
+			ValueGenre genre,
 			uint8 commandClassId,
 			uint8 instance,
 			uint8 valueIndex,
-			ZWValueID::ValueType type,
+			ValueType type,
 			uint8 pollIntensity
 		)
 		{
-			m_valueId = new ValueID( homeId, nodeId, (ValueID::ValueGenre)genre, commandClassId, instance, valueIndex, (ValueID::ValueType)type );
+			HomeId = homeId;
+			NodeId = nodeId;
+			//m_valueId = new ValueID(homeId, nodeId, (ValueID::ValueGenre)genre, commandClassId, instance, valueIndex, (ValueID::ValueType)type);
 		}
 
-		ZWValueID( ValueID const& valueId )
-		{ 
-			m_valueId = new ValueID( valueId );
+		ZWValueID(ValueID const& valueId)
+		{
+			HomeId = valueId.GetHomeId();
+			NodeId = valueId.GetNodeId();
 		}
 
-
-		virtual ~ZWValueID()
-		{ 
-			delete m_valueId;
-		}
-
-
+	private:
+		
+		/*
 		ValueID CreateUnmanagedValueID(){ return ValueID( *m_valueId ); }
 
 		uint32		GetHomeId()			{ return m_valueId->GetHomeId(); }
@@ -120,14 +132,17 @@ namespace AdapterLib
 			//return (ValueType)Enum::ToObject( ValueType::typeid, m_valueId->GetType() ); 
 		}
 		uint64		GetId()				{ return m_valueId->GetId(); }
+		
 
-		// Comparison Operators
+		 Comparison Operators
 		bool operator ==	( ZWValueID^ _other ){ return( (*m_valueId) == (*_other->m_valueId) ); }
 		bool operator !=	( ZWValueID^ _other ){ return( (*m_valueId) != (*_other->m_valueId) ); }
 		bool operator <		( ZWValueID^ _other ){ return( (*m_valueId) < (*_other->m_valueId) ); }
 		bool operator >		( ZWValueID^ _other ){ return( (*m_valueId) > (*_other->m_valueId) ); }
-
+		
 	internal:
-		ValueID* m_valueId;
+		 ValueID* m_valueId;
+		 */
+	
 	};
 }
