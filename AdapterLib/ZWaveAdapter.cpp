@@ -84,6 +84,7 @@ namespace AdapterLib
         Options::Create(ConvertTo<string>(AdapterConfig::GetConfigPath()), ConvertTo<string>(AdapterConfig::GetUserPath()), "");
 
         Options::Get()->AddOptionBool("Logging", false);    //Disable logging
+
         Options::Get()->AddOptionInt("PollInterval", 500);
         Options::Get()->AddOptionBool("IntervalBetweenPolls", true);
         Options::Get()->AddOptionBool("ConsoleOutput", false);
@@ -300,20 +301,41 @@ namespace AdapterLib
                // adapter->AddDevice(homeId, nodeId, false);
                 break;
             }
+			case Notification::Type_AwakeNodesQueried: {
+
+				uint32 m_homeId = _notification->GetHomeId();
+				uint8 m_nodeId = 2;// _notification->GetNodeId();
+
+				//ValueID value = _notification->GetValueID();
+				//uint8 commandClassId = value.GetCommandClassId();
+
+				
+					adapter->m_pMgr->AddAssociation(m_homeId, m_nodeId, 1, 1);
+				/*	adapter->m_pMgr->SetConfigParam(m_homeId, m_nodeId, (uint8)101, (int32)255, (uint8)4);
+					adapter->m_pMgr->SetConfigParam(m_homeId, m_nodeId, (uint8)111, (int32)60, (uint8)4);
+					*/
+				
+
+					
+				break;
+			}
             case Notification::Type_ValueAdded:
             {	
 				// Add the new node to our list 
 				  
 				  uint32 m_homeId = _notification->GetHomeId();
-				  uint32 m_nodeId = _notification->GetNodeId();
+				  uint8 m_nodeId = _notification->GetNodeId();
+				  //add the value
+				  ValueID value = _notification->GetValueID();
+				  uint8 commandClassId = value.GetCommandClassId();
 
+				 
 
            /*     //Value added should be received only during the addition of node. Hence look in the pending device list
                 auto iter = adapter->FindDevice(adapter->m_pendingDevices, homeId, nodeId);
                 if (iter != adapter->m_pendingDevices.end())
                 {
-                    //add the value
-                    ValueID value = _notification->GetValueID();
+                    
                 //    dynamic_cast<ZWaveAdapterDevice^>(*iter)->AddPropertyValue(value);
                 }
 				std::string * sensor_multilevel = new std::string("COMMAND_CLASS_SENSOR_MULTILEVEL");

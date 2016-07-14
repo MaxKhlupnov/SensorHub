@@ -78,13 +78,15 @@ namespace SensorClient.Devices.ZWaveMultisensor
         public IDevice CreateDevice(ILogger logger, ITransportFactory transportFactory, ITelemetryFactory telemetryFactory,
            IConfigurationProvider configurationProvider, InitialDeviceConfig config)
         {
-            var device = new Multisensor(logger, transportFactory, telemetryFactory, configurationProvider);            
+            var device = new Multisensor(logger, transportFactory, telemetryFactory, configurationProvider);           
             return device;
         }
 
         public async Task<Multisensor> CreateMultisensorDevice(dynamic device)
         {
             string deviceID = DeviceSchemaHelper.GetDeviceID(device);
+            
+            // TODO: read device configuration from config database
             InitialDeviceConfig config = await this._deviceConfiguration.GetDeviceAsync(deviceID);
             if (config == null)
             {
@@ -98,9 +100,8 @@ namespace SensorClient.Devices.ZWaveMultisensor
             Multisensor newDevice = this.CreateDevice(this._logger, this._transportFactory, this._telemetryFactory,
                this._configProvider, config) as Multisensor;
             newDevice.DeviceProperties = DeviceSchemaHelper.GetDeviceProperties(device);
-            // TODO: read device configuration from config database
-            // We should apply 
-            device.Init(config);
+            newDevice.Init(config);
+
             return newDevice;
         }
 

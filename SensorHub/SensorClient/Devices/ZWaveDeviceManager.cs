@@ -48,8 +48,11 @@ namespace SensorClient.Devices
             byte nodeId = notification.GetNodeId();
             uint installationId = notification.GetHomeId();
             AdapterLib.NotificationType notificationType = notification.GetType();
+            ZWValueID valueID = notification.GetValueID();
 
-            this._logger.LogInfo("Zwave otification nodeId: {0} HomeId: {1} NotificationType {2}", new object[] { nodeId, installationId, notificationType.ToString() });
+            this._logger.LogInfo("Zwave notification nodeId: {0} HomeId: {1} NotificationType: {2} Genre: {3} Type: {4}  ", new object[] { nodeId, installationId, notificationType.ToString(), valueID.Genre, valueID.Type});
+            if (valueID.Value != null)
+            this._logger.LogInfo("notigication Value -- ValueLabel: {0} ValueHelp: {1} ValueUnits: {2} Value: {3}", new object[] {  valueID.ValueLabel, valueID.ValueHelp, valueID.ValueUnits, valueID.Value });
 
 
             switch (notificationType)
@@ -81,6 +84,9 @@ namespace SensorClient.Devices
                         break;
                     }
 
+              //  case AdapterLib.NotificationType.ValueAdded:
+
+
             }
         }
         
@@ -98,9 +104,10 @@ namespace SensorClient.Devices
                 dynamic deviceProperties = DeviceSchemaHelper.GetDeviceProperties(node);
                 deviceProperties.Manufacturer = nodeInfo.Manufacturer;
                 deviceProperties.Platform = nodeInfo.Type;
+                deviceProperties.ModelNumber = nodeInfo.Product;
 
-            //    Multisensor roomSensor = await this.deviceFactory.CreateMultisensorDevice(node);
-           //     this.Devices.Add(roomSensor);
+                Multisensor roomSensor = await this.deviceFactory.CreateMultisensorDevice(node);
+                this.Devices.Add(roomSensor);
             }
 
             devicesInitQueue.Clear();

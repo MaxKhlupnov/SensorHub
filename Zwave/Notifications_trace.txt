@@ -1,0 +1,213 @@
+9:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: Config Type: Short  
+19:44:28 - notigication Value -- ValueLabel: Temperature Reporting Threshold ValueHelp: Threshold change in temperature to induce an automatic report. Note: 1. When the unit is Celsius, threshold=Value. 2. When the unit is Fahrenheit, threshold=Value*1.8. The accuracy is 0.1. 3. The high byte is the part of integer, the low byte is the fractional part. ValueUnits: % Value: -10072
+19:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: Config Type: Short  
+19:44:28 - notigication Value -- ValueLabel: Humidity Reporting Threshold ValueHelp: Threshold change in humidity to induce an automatic report. Note: The accuracy is 0.1. The high byte is the part of integer, the low byte is the fractional part. ValueUnits: % Value: -9672
+19:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: Config Type: Short  
+19:44:28 - notigication Value -- ValueLabel: Luminance Reporting Threshold ValueHelp: Threshold change in luminance to induce an automatic report. ValueUnits: LUX Value: -9032
+19:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: Config Type: Short  
+19:44:28 - notigication Value -- ValueLabel: Battery Reporting Threshold ValueHelp: Threshold change in battery level to induce an automatic report. Note: The accuracy is 0.1. The high byte is the part of integer, the low byte is the fractional part. ValueUnits: % Value: -9512
+19:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: Config Type: List  
+19:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: Config Type: Int  
+19:44:28 - notigication Value -- ValueLabel: Group 1 Reports ValueHelp: Which reports need to send automatically in timing intervals for group 1. Bitsets: 0 -> Battery report, 5 -> Temperature, 6 -> Humidity, 7 -> Luminosity ValueUnits:  Value: 246995752
+19:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: Config Type: Int  
+19:44:28 - notigication Value -- ValueLabel: Group 2 Reports ValueHelp: Which reports need to send automatically in timing intervals for group 2. Bitsets: 0 -> Battery report, 5 -> Temperature, 6 -> Humidity, 7 -> Luminosity ValueUnits:  Value: 246996072
+19:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: Config Type: Int  
+19:44:28 - notigication Value -- ValueLabel: Group 3 Reports ValueHelp: Which reports need to send automatically in timing intervals for group 3. Bitsets: 0 -> Battery report, 5 -> Temperature, 6 -> Humidity, 7 -> Luminosity ValueUnits:  Value: 246996112
+19:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: Config Type: Int  
+19:44:28 - notigication Value -- ValueLabel: Group 1 Interval ValueHelp: The interval of sending report group 1. 1 to 2678400 seconds ValueUnits: seconds Value: 246995792
+19:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: Config Type: Int  
+19:44:28 - notigication Value -- ValueLabel: Group 2 Interval ValueHelp: The interval of sending report group 2. 1 to 2678400 seconds ValueUnits: seconds Value: 246996712
+19:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: Config Type: Int  
+19:44:28 - notigication Value -- ValueLabel: Group 3 Interval ValueHelp: The interval of sending report group 3. 1 to 2678400 seconds ValueUnits: seconds Value: 246996832
+19:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: Config Type: List  
+19:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: Config Type: Button  
+19:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: Group Genre: Basic Type: Bool  
+19:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: NodeNaming Genre: Basic Type: Bool  
+19:44:29 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: System Type: Int  
+19:44:29 - notigication Value -- ValueLabel: Minimum Wake-up Interval ValueHelp:  ValueUnits: Seconds Value: 246995472
+19:44:29 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: System Type: Int  
+19:44:29 - notigication Value -- ValueLabel: Maximum Wake-up Interval ValueHelp:  ValueUnits: Seconds Value: 246996192
+19:44:29 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: System Type: Int  
+19:44:29 - notigication Value -- ValueLabel: Default Wake-up Interval ValueHelp:  ValueUnits: Seconds Value: 246995832
+19:44:29 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: System Type: Int  
+19:44:29 - notigication Value -- ValueLabel: Wake-up Interval Step ValueHelp:  ValueUnits: Seconds Value: 246995632
+19:44:29 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: EssentialNodeQueriesComplete Genre: Basic Type: Bool  
+19:45:12 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: User Type: Decimal  
+19:45:12 - notigication Value -- ValueLabel: Temperature ValueHelp:  ValueUnits:  Value: 0
+19:45:22 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: User Type: Decimal  
+19:45:22 - notigication Value -- ValueLabel: Luminance ValueHelp:  ValueUnits:  Value: 0
+19:45:23 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: User Type: Decimal  
+19:45:23 - notigication Value -- ValueLabel: Relative Humidity ValueHelp:  ValueUnits:  Value: 0
+19:45:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: Notification Genre: Basic Type: Bool  
+
+
+
+17:01:04 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:04 - notigication Value -- Genre: System Type: String ValueLabel: Library Version ValueHelp:  ValueUnits:  Value: 
+17:01:16 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:16 - notigication Value -- Genre: System Type: String ValueLabel: Protocol Version ValueHelp:  ValueUnits:  Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: System Type: String ValueLabel: Application Version ValueHelp:  ValueUnits:  Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: System Type: Byte ValueLabel: ZWave+ Version ValueHelp:  ValueUnits:  Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: System Type: Short ValueLabel: InstallerIcon ValueHelp:  ValueUnits:  Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: System Type: Short ValueLabel: UserIcon ValueHelp:  ValueUnits:  Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: System Type: List ValueLabel: Powerlevel ValueHelp:  ValueUnits: dB Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: System Type: Byte ValueLabel: Timeout ValueHelp:  ValueUnits: seconds Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: System Type: Button ValueLabel: Set Powerlevel ValueHelp:  ValueUnits:  Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: System Type: Byte ValueLabel: Test Node ValueHelp:  ValueUnits:  Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: System Type: List ValueLabel: Test Powerlevel ValueHelp:  ValueUnits: dB Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: System Type: Short ValueLabel: Frame Count ValueHelp:  ValueUnits:  Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: System Type: Button ValueLabel: Test ValueHelp:  ValueUnits:  Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: System Type: Button ValueLabel: Report ValueHelp:  ValueUnits:  Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: System Type: List ValueLabel: Test Status ValueHelp:  ValueUnits:  Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: System Type: Short ValueLabel: Acked Frames ValueHelp:  ValueUnits:  Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: User Type: Byte ValueLabel: Alarm Type ValueHelp:  ValueUnits:  Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: User Type: Byte ValueLabel: Alarm Level ValueHelp:  ValueUnits:  Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: User Type: Byte ValueLabel: Battery Level ValueHelp:  ValueUnits: % Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+17:01:19 - notigication Value -- Genre: User Type: Bool ValueLabel: Sensor ValueHelp:  ValueUnits:  Value: 
+17:01:19 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType Notification 
+17:01:19 - notigication Value -- Genre: Basic Type: Bool ValueLabel:  ValueHelp:  ValueUnits:  Value: 
+17:01:24 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType Notification 
+17:01:24 - notigication Value -- Genre: Basic Type: Bool ValueLabel:  ValueHelp:  ValueUnits:  Value: 
+17:01:24 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType Notification 
+17:01:24 - notigication Value -- Genre: Basic Type: Bool ValueLabel:  ValueHelp:  ValueUnits:  Value: 
+18:16:12 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:16:12 - notigication Value -- Genre: System Type: Byte ValueLabel: Test Node ValueHelp:  ValueUnits:  Value: 
+18:16:12 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:16:12 - notigication Value -- Genre: System Type: List ValueLabel: Test Powerlevel ValueHelp:  ValueUnits: dB Value: 
+18:16:12 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:16:12 - notigication Value -- Genre: System Type: Short ValueLabel: Frame Count ValueHelp:  ValueUnits:  Value: 
+18:16:12 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:16:12 - notigication Value -- Genre: System Type: Button ValueLabel: Test ValueHelp:  ValueUnits:  Value: 
+18:16:12 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:16:12 - notigication Value -- Genre: System Type: Button ValueLabel: Report ValueHelp:  ValueUnits:  Value: 
+18:16:12 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:16:12 - notigication Value -- Genre: System Type: List ValueLabel: Test Status ValueHelp:  ValueUnits:  Value: 
+18:16:12 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:16:12 - notigication Value -- Genre: System Type: Short ValueLabel: Acked Frames ValueHelp:  ValueUnits:  Value: 
+18:16:12 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:16:12 - notigication Value -- Genre: User Type: Byte ValueLabel: Alarm Type ValueHelp:  ValueUnits:  Value: 
+18:16:12 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:16:12 - notigication Value -- Genre: User Type: Byte ValueLabel: Alarm Level ValueHelp:  ValueUnits:  Value: 
+18:16:12 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:16:12 - notigication Value -- Genre: User Type: Byte ValueLabel: Battery Level ValueHelp:  ValueUnits: % Value: 
+18:16:12 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:16:12 - notigication Value -- Genre: User Type: Bool ValueLabel: Sensor ValueHelp:  ValueUnits:  Value: 
+18:16:12 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType Notification 
+18:16:12 - notigication Value -- Genre: Basic Type: Bool ValueLabel:  ValueHelp:  ValueUnits:  Value: 
+18:16:12 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType Notification 
+18:16:12 - notigication Value -- Genre: Basic Type: Bool ValueLabel:  ValueHelp:  ValueUnits:  Value: 
+18:16:12 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueChanged 
+18:16:12 - notigication Value -- Genre: System Type: Int ValueLabel: Wake-up Interval ValueHelp:  ValueUnits: Seconds Value: 
+18:16:13 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType NodeNaming 
+18:16:13 - notigication Value -- Genre: Basic Type: Bool ValueLabel:  ValueHelp:  ValueUnits:  Value: 
+18:16:13 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueChanged 
+18:16:13 - notigication Value -- Genre: System Type: Byte ValueLabel: ZWave+ Version ValueHelp:  ValueUnits:  Value: 
+18:16:13 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueChanged 
+18:16:13 - notigication Value -- Genre: System Type: Short ValueLabel: InstallerIcon ValueHelp:  ValueUnits:  Value: 
+18:16:13 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueChanged 
+18:16:13 - notigication Value -- Genre: System Type: Short ValueLabel: UserIcon ValueHelp:  ValueUnits:  Value: 
+18:16:13 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:03 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:03 - notigication Value -- Genre: System Type: Byte ValueLabel: Test Node ValueHelp:  ValueUnits:  Value: 
+18:21:03 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:03 - notigication Value -- Genre: System Type: List ValueLabel: Test Powerlevel ValueHelp:  ValueUnits: dB Value: 
+18:21:03 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:03 - notigication Value -- Genre: System Type: Short ValueLabel: Frame Count ValueHelp:  ValueUnits:  Value: 
+18:21:03 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:03 - notigication Value -- Genre: System Type: Button ValueLabel: Test ValueHelp:  ValueUnits:  Value: 
+18:21:03 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:03 - notigication Value -- Genre: System Type: Button ValueLabel: Report ValueHelp:  ValueUnits:  Value: 
+18:21:03 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:03 - notigication Value -- Genre: System Type: List ValueLabel: Test Status ValueHelp:  ValueUnits:  Value: 
+18:21:03 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:03 - notigication Value -- Genre: System Type: Short ValueLabel: Acked Frames ValueHelp:  ValueUnits:  Value: 
+18:21:03 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:03 - notigication Value -- Genre: User Type: Byte ValueLabel: Alarm Type ValueHelp:  ValueUnits:  Value: 
+18:21:03 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:03 - notigication Value -- Genre: User Type: Byte ValueLabel: Alarm Level ValueHelp:  ValueUnits:  Value: 
+18:21:03 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:03 - notigication Value -- Genre: User Type: Byte ValueLabel: Battery Level ValueHelp:  ValueUnits: % Value: 
+18:21:03 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:03 - notigication Value -- Genre: User Type: Bool ValueLabel: Sensor ValueHelp:  ValueUnits:  Value: 
+18:21:03 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType Notification 
+18:21:03 - notigication Value -- Genre: Basic Type: Bool ValueLabel:  ValueHelp:  ValueUnits:  Value: 
+18:21:03 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueChanged 
+18:21:03 - notigication Value -- Genre: System Type: Int ValueLabel: Wake-up Interval ValueHelp:  ValueUnits: Seconds Value: 
+18:21:03 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType NodeNaming 
+18:21:03 - notigication Value -- Genre: Basic Type: Bool ValueLabel:  ValueHelp:  ValueUnits:  Value: 
+18:21:04 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueChanged 
+18:21:04 - notigication Value -- Genre: System Type: Byte ValueLabel: ZWave+ Version ValueHelp:  ValueUnits:  Value: 
+18:21:04 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueChanged 
+18:21:04 - notigication Value -- Genre: System Type: Short ValueLabel: InstallerIcon ValueHelp:  ValueUnits:  Value: 
+18:21:04 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueChanged 
+18:21:04 - notigication Value -- Genre: System Type: Short ValueLabel: UserIcon ValueHelp:  ValueUnits:  Value: 
+18:21:04 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:04 - notigication Value -- Genre: Config Type: List ValueLabel: Wake up 10 minutes on Power On ValueHelp: Stay awake for 10 minutes after batteries are inserted ValueUnits:  Value: 
+18:21:04 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:04 - notigication Value -- Genre: Config Type: Short ValueLabel: On time ValueHelp: How long should the device associated to multi sensor keep state On before sending it Off command (if the value is bigger than 255, the value would be rounded to next integer in minutes) ValueUnits: seconds Value: 
+18:21:04 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:04 - notigication Value -- Genre: Config Type: List ValueLabel: Enable Motion Sensor ValueHelp: Enable Motion Sensor ValueUnits:  Value: 
+18:21:04 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:04 - notigication Value -- Genre: Config Type: List ValueLabel: Command Options ValueHelp: Which commands to send when PIR motion sensor triggered OZW Ideal Value is Binary Sensor Report ValueUnits:  Value: 
+18:21:04 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:21:04 - notigication Value -- Genre: Config Type: List ValueLabel: Reporting Threshold ValueHelp: Enable/disable the selective reporting only when measurements reach a certain threshold or percentage set in the threshold settings. This is used to reduce network traffic. ValueUnits:  
+8:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueChanged 
+18:28:31 - notigication Value -- Genre: System Type: Byte ValueLabel: ZWave+ Version ValueHelp:  ValueUnits:  Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueChanged 
+18:28:31 - notigication Value -- Genre: System Type: Short ValueLabel: InstallerIcon ValueHelp:  ValueUnits:  Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueChanged 
+18:28:31 - notigication Value -- Genre: System Type: Short ValueLabel: UserIcon ValueHelp:  ValueUnits:  Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: List ValueLabel: Wake up 10 minutes on Power On ValueHelp: Stay awake for 10 minutes after batteries are inserted ValueUnits:  Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: Short ValueLabel: On time ValueHelp: How long should the device associated to multi sensor keep state On before sending it Off command (if the value is bigger than 255, the value would be rounded to next integer in minutes) ValueUnits: seconds Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: List ValueLabel: Enable Motion Sensor ValueHelp: Enable Motion Sensor ValueUnits:  Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: List ValueLabel: Command Options ValueHelp: Which commands to send when PIR motion sensor triggered OZW Ideal Value is Binary Sensor Report ValueUnits:  Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: List ValueLabel: Reporting Threshold ValueHelp: Enable/disable the selective reporting only when measurements reach a certain threshold or percentage set in the threshold settings. This is used to reduce network traffic. ValueUnits:  Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: Short ValueLabel: Temperature Reporting Threshold ValueHelp: Threshold change in temperature to induce an automatic report. Note: 1. When the unit is Celsius, threshold=Value. 2. When the unit is Fahrenheit, threshold=Value*1.8. The accuracy is 0.1. 3. The high byte is the part of integer, the low byte is the fractional part. ValueUnits: % Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: Short ValueLabel: Humidity Reporting Threshold ValueHelp: Threshold change in humidity to induce an automatic report. Note: The accuracy is 0.1. The high byte is the part of integer, the low byte is the fractional part. ValueUnits: % Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: Short ValueLabel: Luminance Reporting Threshold ValueHelp: Threshold change in luminance to induce an automatic report. ValueUnits: LUX Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: Short ValueLabel: Battery Reporting Threshold ValueHelp: Threshold change in battery level to induce an automatic report. Note: The accuracy is 0.1. The high byte is the part of integer, the low byte is the fractional part. ValueUnits: % Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: List ValueLabel: Low Temp Alarm ValueHelp: Enable/disable to send the alarm report of low temperature(Less than 15 Degress C) ValueUnits:  Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: Int ValueLabel: Group 1 Reports ValueHelp: Which reports need to send automatically in timing intervals for group 1. Bitsets: 0 -> Battery report, 5 -> Temperature, 6 -> Humidity, 7 -> Luminosity ValueUnits:  Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: Int ValueLabel: Group 2 Reports ValueHelp: Which reports need to send automatically in timing intervals for group 2. Bitsets: 0 -> Battery report, 5 -> Temperature, 6 -> Humidity, 7 -> Luminosity ValueUnits:  Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: Int ValueLabel: Group 3 Reports ValueHelp: Which reports need to send automatically in timing intervals for group 3. Bitsets: 0 -> Battery report, 5 -> Temperature, 6 -> Humidity, 7 -> Luminosity ValueUnits:  Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: Int ValueLabel: Group 1 Interval ValueHelp: The interval of sending report group 1. 1 to 2678400 seconds ValueUnits: seconds Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: Int ValueLabel: Group 2 Interval ValueHelp: The interval of sending report group 2. 1 to 2678400 seconds ValueUnits: seconds Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: Int ValueLabel: Group 3 Interval ValueHelp: The interval of sending report group 3. 1 to 2678400 seconds ValueUnits: seconds Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: List ValueLabel: Enable/disable Lock Configuration ValueHelp: Enable/disable Lock Configuration ValueUnits:  Value: 
+18:28:31 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
+18:28:31 - notigication Value -- Genre: Config Type: Button ValueLabel: Reset to default ValueHelp: Reset to factory defaults. ValueUnits:  Value: 

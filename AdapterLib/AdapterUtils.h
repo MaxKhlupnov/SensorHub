@@ -45,7 +45,7 @@ namespace AdapterLib
     HRESULT CreateFolder(_In_ Platform::String^ folderName);
     HRESULT CopyFolder(_In_ Platform::String^ source, _In_ Platform::String^ destination);
     HRESULT DeleteFolder(_In_ Platform::String^ dir);
-	Platform::String^ ToPlatformString(std::string in_str);
+	Platform::String^ ToPlatformString(std::string in_str);	
 	
 
 	template<typename _TDest, typename _Tsrc>

@@ -28,6 +28,7 @@
 
 #pragma once
 #include "AdapterConfig.h"
+#include "AdapterUtils.h"
 
 #include "Manager.h"
 #include "ValueID.h"
@@ -75,74 +76,112 @@ namespace AdapterLib
 
 		property uint8 NodeId;
 
+		property ValueGenre	Genre;
+			
+		property uint8	CommandClassId;
+		property uint8	Instance;
+		property uint8	Index;
+		property ValueType	Type;
+		property uint64		Id;
+
+		property Platform::Object^ Value;
+		property Platform::String^ ValueLabel;
+		property Platform::String^ ValueHelp;
+		property Platform::String^ ValueUnits;
+
 	internal:
-		/**
-		* Create a ZWValue ID from its component parts.
-		* This method is provided only to allow ValueIDs to be saved and recreated by the application.  Only
-		* ValueIDs that have been reported by OpenZWave notifications should ever be used.
-		* \param homeId Home ID of the PC Z-Wave Controller that manages the device.
-		* \param nodeId Node ID of the device reporting the value.
-		* \param genre classification of the value to enable low level system or configuration parameters to be filtered out.
-		* \param commandClassId ID of command class that creates and manages this value.
-		* \param instance Instance index of the command class.
-		* \param valueIndex Index of the value within all the values created by the command class instance.
-		* \param type Type of value (bool, byte, string etc).
-		* \return The ValueID.
-		* \see ValueID
-		*/
-		ZWValueID
-		(
-			uint32 homeId,
-			uint8 nodeId,
-			ValueGenre genre,
-			uint8 commandClassId,
-			uint8 instance,
-			uint8 valueIndex,
-			ValueType type,
-			uint8 pollIntensity
-		)
-		{
-			HomeId = homeId;
-			NodeId = nodeId;
-			//m_valueId = new ValueID(homeId, nodeId, (ValueID::ValueGenre)genre, commandClassId, instance, valueIndex, (ValueID::ValueType)type);
-		}
+		
 
 		ZWValueID(ValueID const& valueId)
 		{
 			HomeId = valueId.GetHomeId();
 			NodeId = valueId.GetNodeId();
+			Genre = static_cast<ValueGenre>(valueId.GetGenre());
+			CommandClassId = valueId.GetCommandClassId();
+			Instance = valueId.GetInstance();
+			Index = valueId.GetIndex();
+			Type = static_cast<ValueType>(valueId.GetType());
+			Id = valueId.GetId();
+			Value = GetValue(valueId);
+			ValueLabel = ToPlatformString(Manager::Get()->GetValueLabel(valueId));
+			ValueHelp = ToPlatformString(Manager::Get()->GetValueHelp(valueId));
+			ValueUnits = ToPlatformString(Manager::Get()->GetValueUnits(valueId));
 		}
 
 	private:
 		
-		/*
-		ValueID CreateUnmanagedValueID(){ return ValueID( *m_valueId ); }
-
-		uint32		GetHomeId()			{ return m_valueId->GetHomeId(); }
-		uint8		GetNodeId()			{ return m_valueId->GetNodeId(); }
-		ValueGenre	GetGenre() {
-			return static_cast<ValueGenre>(m_valueId->GetGenre());
-			// (ValueGenre)Enum::ToObject( ValueGenre::typeid, m_valueId->GetGenre() ); 
+		/// <summary>
+		/// Gets the value.
+		/// </summary>
+		/// <param name="v">The v.</param>
+		/// <returns></returns>
+		Platform::Object^  ZWValueID::GetValue(ValueID const& valueId)
+		{
+			try {
+				switch (valueId.GetType())
+				{
+				case ValueID::ValueType::ValueType_String:
+				{
+					std::string* s_value = new std::string();
+					if (Manager::Get()->GetValueAsString(valueId, s_value)) {		
+						std::wstring* w_value = new std::wstring(s_value->begin(), s_value->end());
+						return ref new Platform::String(w_value->c_str());
+					}
+					break;
+				}
+				case ValueID::ValueType::ValueType_Byte:
+				{
+					uint8* i_value = new uint8();
+					if (Manager::Get()->GetValueAsByte(valueId, i_value)) {
+						//Platform::ValueType b_value = static_cast<bool>(i_value > 0);
+						return byte(i_value);
+					}
+					break;
+				}
+				case ValueID::ValueType::ValueType_Bool:
+				{
+					bool* b_value = new bool();
+					if (Manager::Get()->GetValueAsBool(valueId, b_value)) {
+						return boolean(b_value);
+					}
+					break;
+				}
+				case ValueID::ValueType::ValueType_Short: {
+					short* st_value = new short();
+					if (Manager::Get()->GetValueAsShort(valueId, st_value)) {
+						return short(st_value);
+					}
+					break;
+				}
+				case ValueID::ValueType::ValueType_Int: {
+					int* i_value = new int();
+					if (Manager::Get()->GetValueAsInt(valueId, i_value)) {
+						return int(i_value);
+					}
+					break;
+				}
+				case ValueID::ValueType::ValueType_Decimal: {
+					
+					float f_value = 0.0;
+					
+					if (Manager::Get()->GetValueAsFloat(valueId, & f_value)) {	
+						
+						return float(f_value);
+					}
+					break;
+				}
+				default:
+					break;
+				}
+			}
+			catch (OZWException* err) {
+				// TODO: add error handling
+				return	ToPlatformString(err->GetMsg());
+			}
+	
+			return	nullptr;
+	
 		}
-		uint8		GetCommandClassId()	{ return m_valueId->GetCommandClassId(); }
-		uint8		GetInstance()		{ return m_valueId->GetInstance(); }
-		uint8		GetIndex()			{ return m_valueId->GetIndex(); }
-		ValueType	GetType()			{ 
-			static_cast<ValueType>(m_valueId->GetType());
-			//return (ValueType)Enum::ToObject( ValueType::typeid, m_valueId->GetType() ); 
-		}
-		uint64		GetId()				{ return m_valueId->GetId(); }
-		
-
-		 Comparison Operators
-		bool operator ==	( ZWValueID^ _other ){ return( (*m_valueId) == (*_other->m_valueId) ); }
-		bool operator !=	( ZWValueID^ _other ){ return( (*m_valueId) != (*_other->m_valueId) ); }
-		bool operator <		( ZWValueID^ _other ){ return( (*m_valueId) < (*_other->m_valueId) ); }
-		bool operator >		( ZWValueID^ _other ){ return( (*m_valueId) > (*_other->m_valueId) ); }
-		
-	internal:
-		 ValueID* m_valueId;
-		 */
 	
 	};
 }

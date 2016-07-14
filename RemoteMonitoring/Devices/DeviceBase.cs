@@ -85,8 +85,7 @@ namespace RemoteMonitoring.Devices
         }
 
         protected virtual void InitDeviceInfo(InitialDeviceConfig config)
-        {
-            // = SampleDeviceFactory.GetSampleSimulatedDevice(config.DeviceId, config.Key);
+        {            
             DeviceProperties = DeviceSchemaHelper.GetDeviceProperties(this);
             Commands = CommandSchemaHelper.GetSupportedCommands(this);
             Telemetry = CommandSchemaHelper.GetTelemetrySchema(this);
