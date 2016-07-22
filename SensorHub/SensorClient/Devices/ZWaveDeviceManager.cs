@@ -14,6 +14,8 @@ using SensorClient.Devices.ZWaveMultisensor;
 using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.DeviceSchema;
 using AdapterLib;
 
+using Newtonsoft.Json;
+
 namespace SensorClient.Devices
 {
     public class ZWaveDeviceManager : DeviceManager
@@ -50,10 +52,13 @@ namespace SensorClient.Devices
             AdapterLib.NotificationType notificationType = notification.GetType();
             ZWValueID valueID = notification.GetValueID();
 
-            this._logger.LogInfo("Zwave notification nodeId: {0} HomeId: {1} NotificationType: {2} Genre: {3} Type: {4}  ", new object[] { nodeId, installationId, notificationType.ToString(), valueID.Genre, valueID.Type});
+            string serializedValue = JsonConvert.SerializeObject(notification, new ZWaveMultisensor.Telemetry.ZWaveNotificationJsonConverter());
+            this._logger.LogInfo(serializedValue);
+
+           /* this._logger.LogInfo("Zwave notification nodeId: {0} HomeId: {1} NotificationType: {2} Genre: {3} Type: {4}  ", new object[] { nodeId, installationId, notificationType.ToString(), valueID.Genre, valueID.Type});
             if (valueID.Value != null)
             this._logger.LogInfo("notigication Value -- ValueLabel: {0} ValueHelp: {1} ValueUnits: {2} Value: {3}", new object[] {  valueID.ValueLabel, valueID.ValueHelp, valueID.ValueUnits, valueID.Value });
-
+            */
 
             switch (notificationType)
             {

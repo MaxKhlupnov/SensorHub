@@ -145,6 +145,9 @@
     <Compile Include="Devices\ZWaveMultisensor\Telemetry\PresenceTelemetry.cs" />
     <Compile Include="Devices\ZWaveMultisensor\Telemetry\RoomMonitorTelemetry.cs" />
     <Compile Include="Devices\ZWaveMultisensor\Telemetry\RoomMonitorTelemetryData.cs" />
+    <Compile Include="Devices\ZWaveMultisensor\Telemetry\ZWaveNotificationJsonConverter.cs" />
+    <Compile Include="Devices\ZWaveMultisensor\Telemetry\ZWaveNotificationTelemetryData.cs" />
+    <Compile Include="Devices\ZWaveMultisensor\Telemetry\ZWaveNotificationTelemetry.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
