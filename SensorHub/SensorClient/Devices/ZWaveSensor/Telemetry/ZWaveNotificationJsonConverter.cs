@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using AdapterLib;
 
-namespace SensorClient.Devices.ZWaveMultisensor.Telemetry
+namespace SensorClient.Devices.ZWaveSensor.Telemetry
 {
 
   
@@ -78,6 +78,9 @@ namespace SensorClient.Devices.ZWaveMultisensor.Telemetry
 
             writer.WritePropertyName("Genre");
             writer.WriteValue(ValueID.Genre.ToString());
+
+            writer.WritePropertyName("CommandClassId");
+            writer.WriteValue(ValueID.CommandClassId.ToString("x"));
 
             writer.WritePropertyName("Type");
             writer.WriteValue(ValueID.Type.ToString());

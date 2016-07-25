@@ -56,6 +56,8 @@ namespace AdapterLib
         uint32 Shutdown();				
 
 		NodeInfo^ GetNodeInfo(uint32 homeId, uint8 nodeId);
+		
+		bool SetDefaultConfiguration(uint32 homeId, uint8 nodeId);
 
         //
         // Construction

@@ -10,7 +10,8 @@ using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Configuration
 using RemoteMonitoring;
 using RemoteMonitoring.Logging;
 
-using SensorClient.Devices.ZWaveMultisensor;
+using SensorClient.Devices.ZWaveSensor;
+using SensorClient.Devices.ZWaveSensor.Telemetry;
 using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.DeviceSchema;
 using AdapterLib;
 
@@ -23,11 +24,13 @@ namespace SensorClient.Devices
 
         private static ZWaveAdapter zWaveAdapter = new ZWaveAdapter();
 
+        public static ZWaveAdapter ZwaveAdapter { get { return zWaveAdapter; } }
+
         MultisensorDeviceFactory deviceFactory = null;
         private readonly ILogger _logger;
         public Dictionary<string, dynamic> devicesInitQueue { get; private set; }
 
-        public List<Multisensor> Devices { get; private set; }
+        public List<IZWaveDevice> Devices { get; private set; }
 
         public ZWaveDeviceManager(IConfigurationProvider configProvider, ILogger logger, CancellationToken token) : base(logger, token)
         {
@@ -35,7 +38,7 @@ namespace SensorClient.Devices
             this.deviceFactory = new MultisensorDeviceFactory(logger, configProvider);
             this._logger = logger;
 
-            this.Devices = new List<Multisensor>();
+            this.Devices = new List<IZWaveDevice>();
             this.devicesInitQueue = new Dictionary<string, dynamic>();
 
             zWaveAdapter.Initialize();
@@ -45,6 +48,13 @@ namespace SensorClient.Devices
 
         }
 
+        public void SetDefaultConfiguration()
+        {
+            foreach (Multisensor sensor in Devices) {
+                zWaveAdapter.SetDefaultConfiguration(sensor.homeID, sensor.nodeID);
+            }
+        }
+
         private void ZWaveAdapter_ZWaveNotification(ZWNotification notification)
         {
             byte nodeId = notification.GetNodeId();
@@ -52,10 +62,11 @@ namespace SensorClient.Devices
             AdapterLib.NotificationType notificationType = notification.GetType();
             ZWValueID valueID = notification.GetValueID();
 
-            string serializedValue = JsonConvert.SerializeObject(notification, new ZWaveMultisensor.Telemetry.ZWaveNotificationJsonConverter());
+       /*    string serializedValue = JsonConvert.SerializeObject(notification, new ZWaveNotificationJsonConverter());
             this._logger.LogInfo(serializedValue);
+           
 
-           /* this._logger.LogInfo("Zwave notification nodeId: {0} HomeId: {1} NotificationType: {2} Genre: {3} Type: {4}  ", new object[] { nodeId, installationId, notificationType.ToString(), valueID.Genre, valueID.Type});
+            this._logger.LogInfo("Zwave notification nodeId: {0} HomeId: {1} NotificationType: {2} Genre: {3} Type: {4}  ", new object[] { nodeId, installationId, notificationType.ToString(), valueID.Genre, valueID.Type});
             if (valueID.Value != null)
             this._logger.LogInfo("notigication Value -- ValueLabel: {0} ValueHelp: {1} ValueUnits: {2} Value: {3}", new object[] {  valueID.ValueLabel, valueID.ValueHelp, valueID.ValueUnits, valueID.Value });
             */
@@ -69,18 +80,14 @@ namespace SensorClient.Devices
                         dynamic node = FindInitQueueDevice(nodeId, installationId);
                         if (node == null)
                         {
-                            node = this.deviceFactory.CreateZWaveDevice(nodeId, installationId);                           
+                            AddDeviceToInitQueue(nodeId, installationId);
                         }
 
                         break;
                     }
                 case AdapterLib.NotificationType.NodeNew:
                     {
-                        // Add the new node to our list (and flag as uninitialized)
-                        dynamic node = this.deviceFactory.CreateZWaveDevice(nodeId, installationId);
-                        string deviceID = DeviceSchemaHelper.GetDeviceID(node);
-
-                        this.devicesInitQueue.Add(deviceID, node);
+                        AddDeviceToInitQueue(nodeId, installationId);
                         break;
                     }
                 case AdapterLib.NotificationType.AwakeNodesQueried:
@@ -95,6 +102,15 @@ namespace SensorClient.Devices
             }
         }
         
+        private void AddDeviceToInitQueue(byte nodeId, uint installationId)
+        {
+            // Add the new node to our list (and flag as uninitialized)
+            dynamic node = this.deviceFactory.CreateZWaveDevice(nodeId, installationId);
+            string deviceID = DeviceSchemaHelper.GetDeviceID(node);
+
+            this.devicesInitQueue.Add(deviceID, node);
+            this._logger.LogInfo("Added new ZWave device nodeId: {0} HomeId: {1}", new object[] { nodeId, installationId });
+        }
 
         private async void InitializeDevices()
         {
@@ -102,17 +118,35 @@ namespace SensorClient.Devices
             {
                 byte nodeId = 0;
                 uint installationId = 0;
-                MultisensorDeviceFactory.parseDeviceID(node, out nodeId, out installationId);
-                ///Read node information from OpenZWave
-                NodeInfo nodeInfo = zWaveAdapter.GetNodeInfo(installationId, nodeId);
+                try
+                {
+                    
+                    MultisensorDeviceFactory.parseDeviceID(node, out nodeId, out installationId);
+                    ///Read node information from OpenZWave
+                    NodeInfo nodeInfo = zWaveAdapter.GetNodeInfo(installationId, nodeId);
 
-                dynamic deviceProperties = DeviceSchemaHelper.GetDeviceProperties(node);
-                deviceProperties.Manufacturer = nodeInfo.Manufacturer;
-                deviceProperties.Platform = nodeInfo.Type;
-                deviceProperties.ModelNumber = nodeInfo.Product;
+                    dynamic deviceProperties = DeviceSchemaHelper.GetDeviceProperties(node);
+                    deviceProperties.Manufacturer = nodeInfo.Manufacturer;
+                    deviceProperties.Platform = nodeInfo.Type;
+                    deviceProperties.ModelNumber = nodeInfo.Product;
 
-                Multisensor roomSensor = await this.deviceFactory.CreateMultisensorDevice(node);
-                this.Devices.Add(roomSensor);
+                    IZWaveDevice zWaveDevice;
+                    if (nodeInfo.Type.Contains("Controller"))
+                    {
+                        zWaveDevice = await this.deviceFactory.CreateControllerDevice(node) as IZWaveDevice;
+                    }
+                    else
+                    {
+                        zWaveDevice = await this.deviceFactory.CreateMultisensorDevice(node) as IZWaveDevice;
+                    }
+
+                    zWaveDevice.homeID = installationId;
+                    zWaveDevice.nodeID = nodeId;
+                    this.Devices.Add(zWaveDevice);
+                }catch(Exception ex)
+                {
+                    this._logger.LogInfo("Error {2} creating nodeId: {0} HomeId: {1}", new object[] { nodeId, installationId, ex.Message });
+                }
             }
 
             devicesInitQueue.Clear();
@@ -126,8 +160,11 @@ namespace SensorClient.Devices
         /// <returns></returns>
         private dynamic FindInitQueueDevice(byte nodeId, uint installationId)
         {
-            string deviceId = MultisensorDeviceFactory.MakeMultisensorDeviceId(nodeId, installationId);
-            return devicesInitQueue[deviceId];
+            string deviceId = MultisensorDeviceFactory.MakeZWaveDeviceId(nodeId, installationId);
+            if (devicesInitQueue.ContainsKey(deviceId))
+                return devicesInitQueue[deviceId];
+            else
+                return null;
         }
 
       

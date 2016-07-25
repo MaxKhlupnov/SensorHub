@@ -115,6 +115,23 @@ namespace AdapterLib
         return status;
     }
 
+	bool ZWaveAdapter::SetDefaultConfiguration(uint32 homeId, uint8 nodeId) {
+
+		if (nodeId > 1) {
+
+			// Add an association between the sensor and the controller, if one is not already present
+			Manager::Get()->AddAssociation(homeId, nodeId, 1, 1);
+			Manager::Get()->RefreshNodeInfo(homeId, nodeId);
+			//Send all sensors data
+			m_pMgr->SetConfigParam(homeId, nodeId, (uint8)101, (int32)225, (uint8) 4);
+
+			m_pMgr->SetConfigParam(homeId, nodeId, (uint8)111, (int32)10, (uint8)4);
+
+			return true;
+		}
+		return false;
+		
+	}
 
 	NodeInfo^ ZWaveAdapter::GetNodeInfo(uint32 homeId, uint8 nodeId) {
 		NodeInfo^ info = ref new NodeInfo();
@@ -287,6 +304,7 @@ namespace AdapterLib
             {
                 // Add the new node to our pending device list as we dont yet have all the values for the node
                // adapter->AddDevice(homeId, nodeId, true);
+							
                 break;
             }
             case Notification::Type_NodeRemoved:

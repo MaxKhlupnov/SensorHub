@@ -8,7 +8,7 @@ using RemoteMonitoring.Telemetry;
 using RemoteMonitoring.Logging;
 using RemoteMonitoring.Devices;
 
-namespace SensorClient.Devices.ZWaveMultisensor.Telemetry
+namespace SensorClient.Devices.ZWaveSensor.Telemetry
 {
     class StartupTelemetry : ITelemetry
     {

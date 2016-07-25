@@ -12,14 +12,17 @@ using RemoteMonitoring.Transport.Factory;
 using RemoteMonitoring.Telemetry.Factory;
 using RemoteMonitoring.CommandProcessors;
 
-using SensorClient.Devices.ZWaveMultisensor.Telemetry;
-using SensorClient.Devices.ZWaveMultisensor.CommandProcessors;
+using SensorClient.Devices.ZWaveSensor.Telemetry;
+using SensorClient.Devices.ZWaveSensor.CommandProcessors;
 
-
-namespace SensorClient.Devices.ZWaveMultisensor
+namespace SensorClient.Devices.ZWaveSensor
 {
-    public class Multisensor : DeviceBase, IDevice
+    public class Multisensor : DeviceBase, IZWaveDevice
     {
+
+        public byte nodeID { get; set; }
+        public uint homeID { get; set; }
+
         public Multisensor(ILogger logger, ITransportFactory transportFactory, ITelemetryFactory telemetryFactory,
            IConfigurationProvider configurationProvider) : base(logger, transportFactory, telemetryFactory, configurationProvider)
         {
@@ -49,21 +52,21 @@ namespace SensorClient.Devices.ZWaveMultisensor
 
         public void StartTelemetryData()
         {
-            var remoteMonitorTelemetry = (RoomMonitorTelemetry)_telemetryController;
+            var remoteMonitorTelemetry = (ZWaveSensorTelemetry)_telemetryController;
             remoteMonitorTelemetry.TelemetryActive = true;
             Logger.LogInfo("Device {0}: Telemetry has started", DeviceID);
         }
 
         public void StopTelemetryData()
         {
-            var remoteMonitorTelemetry = (RoomMonitorTelemetry)_telemetryController;
+            var remoteMonitorTelemetry = (ZWaveSensorTelemetry)_telemetryController;
             remoteMonitorTelemetry.TelemetryActive = false;
             Logger.LogInfo("Device {0}: Telemetry has stopped", DeviceID);
         }
 
         public void ChangeSetPointTemp(double setPointTemp)
         {
-            var remoteMonitorTelemetry = (RoomMonitorTelemetry)_telemetryController;
+            var remoteMonitorTelemetry = (ZWaveSensorTelemetry)_telemetryController;
             this.ChangeSetPointTemperature(setPointTemp);
             Logger.LogInfo("Device {0} temperature changed to {1}", DeviceID, setPointTemp);
         }
@@ -78,7 +81,7 @@ namespace SensorClient.Devices.ZWaveMultisensor
 
         public void DiagnosticTelemetry(bool active)
         {
-            var remoteMonitorTelemetry = (RoomMonitorTelemetry)_telemetryController;
+            var remoteMonitorTelemetry = (ZWaveSensorTelemetry)_telemetryController;
             //remoteMonitorTelemetry.ActivateExternalTemperature = active;
             string externalTempActive = active ? "on" : "off";
             Logger.LogInfo("Device {0}: External Temperature: {1}", DeviceID, externalTempActive);

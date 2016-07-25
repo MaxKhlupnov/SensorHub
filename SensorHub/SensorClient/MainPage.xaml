@@ -5,13 +5,16 @@
     xmlns:local="using:SensorClient"
     xmlns:common="using:SensorClient.Common"
     xmlns:controls="using:SensorClient.Controls"
-    xmlns:data="using:SensorClient.Devices.ZWaveMultisensor"
+    xmlns:data="using:SensorClient.Devices.ZWaveSensor"
     xmlns:WinRTcontrols="using:WinRTXamlToolkit.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="1024"
     d:DesignWidth="1240">
+    <Button x:Name="button" Content="Set Configuration" HorizontalAlignment="Left" Height="87" VerticalAlignment="Top" Width="249" 
+            Margin="109,87,0,0" RenderTransformOrigin="0.5,0.5" Click="button_SetConfigurationClick">
+    </Button>
 
- 
+
 </Page>

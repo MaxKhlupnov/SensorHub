@@ -11,7 +11,7 @@ using System.Threading;
 
 using AdapterLib;
 
-namespace SensorClient.Devices.ZWaveMultisensor.Telemetry
+namespace SensorClient.Devices.ZWaveSensor.Telemetry
 {
     public class ZWaveNotificationTelemetry : ITelemetry
     {

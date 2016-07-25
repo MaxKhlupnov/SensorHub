@@ -6,9 +6,9 @@ using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Helpers;
 using RemoteMonitoring.CommandProcessors;
 using RemoteMonitoring.Transport;
 
-using SensorClient.Devices.ZWaveMultisensor;
+using SensorClient.Devices.ZWaveSensor;
 
-namespace SensorClient.Devices.ZWaveMultisensor.CommandProcessors
+namespace SensorClient.Devices.ZWaveSensor.CommandProcessors
 {
     /// <summary>
     /// Command processor to handle the change in the temperature range

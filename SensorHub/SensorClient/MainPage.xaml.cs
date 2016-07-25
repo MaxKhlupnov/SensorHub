@@ -112,6 +112,12 @@ namespace SensorClient
             this.devicesViewModel.SensorStarted(sensor, testDevice);*/
 
         }
+
+        private void button_SetConfigurationClick(object sender, RoutedEventArgs e)
+        {
+            if (this.deviceManager != null)
+                this.deviceManager.SetDefaultConfiguration();
+        }
     }
 
 

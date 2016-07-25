@@ -8,10 +8,10 @@ using RemoteMonitoring.Telemetry.Factory;
 using RemoteMonitoring.Logging;
 using RemoteMonitoring.Devices;
 
-using SensorClient.Devices.ZWaveMultisensor.Telemetry;
+using SensorClient.Devices.ZWaveSensor.Telemetry;
 
 
-namespace SensorClient.Devices.ZWaveMultisensor
+namespace SensorClient.Devices.ZWaveSensor
 {
     public class MultisensorTelemetryFactory : ITelemetryFactory
     {
@@ -27,11 +27,9 @@ namespace SensorClient.Devices.ZWaveMultisensor
             var startupTelemetry = new StartupTelemetry(_logger, device);
             device.TelemetryEvents.Add(startupTelemetry);
            
-            var roomTelemetry = new RoomMonitorTelemetry(_logger, device.DeviceID);
+            var roomTelemetry = new ZWaveSensorTelemetry(_logger, device.DeviceID);
             device.TelemetryEvents.Add(roomTelemetry);
-
-            var presenceTelemetry = new PresenceTelemetry(_logger, device.DeviceID);
-            device.TelemetryEvents.Add(presenceTelemetry);
+           
 
 
             return roomTelemetry;

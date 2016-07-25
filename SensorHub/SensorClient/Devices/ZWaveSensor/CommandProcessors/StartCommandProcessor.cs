@@ -4,18 +4,18 @@ using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.DeviceSchema;
 using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Helpers;
 using RemoteMonitoring.CommandProcessors;
 using RemoteMonitoring.Transport;
+using RemoteMonitoring.Devices;
+using SensorClient.Devices.ZWaveSensor;
 
-
-namespace SensorClient.Devices.ZWaveMultisensor.CommandProcessors
+namespace SensorClient.Devices.ZWaveSensor.CommandProcessors
 {
     /// <summary>
-    /// Command processor to stop telemetry data
-    /// </summary>
-    public class StopCommandProcessor : CommandProcessor 
+    /// Command processor to start telemetry data
+    public class StartCommandProcessor : CommandProcessor
     {
-        private const string STOP_TELEMETRY = "StopTelemetry";
+        private const string START_TELEMETRY = "StartTelemetry";
 
-        public StopCommandProcessor(Multisensor device)
+        public StartCommandProcessor(DeviceBase device)
             : base(device)
         {
 
@@ -23,20 +23,21 @@ namespace SensorClient.Devices.ZWaveMultisensor.CommandProcessors
 
         public async override Task<CommandProcessingResult> HandleCommandAsync(DeserializableCommand deserializableCommand)
         {
-            if (deserializableCommand.CommandName == STOP_TELEMETRY)
+            if (deserializableCommand.CommandName == START_TELEMETRY)
             {
                 var command = deserializableCommand.Command;
 
                 try
                 {
                     var device = Device as Multisensor;
-                    device.StopTelemetryData();
+                    device.StartTelemetryData();
                     return CommandProcessingResult.Success;
                 }
                 catch (Exception)
                 {
                     return CommandProcessingResult.RetryLater;
                 }
+
             }
             else if (NextCommandProcessor != null)
             {

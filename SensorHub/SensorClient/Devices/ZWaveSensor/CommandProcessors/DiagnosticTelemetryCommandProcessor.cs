@@ -1,23 +1,23 @@
 using System;
+using System.Runtime.ExceptionServices;
 using System.Threading.Tasks;
 using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.DeviceSchema;
 using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Helpers;
 using RemoteMonitoring.CommandProcessors;
 using RemoteMonitoring.Transport;
 
-using SensorClient.Devices.ZWaveMultisensor;
+using SensorClient.Devices.ZWaveSensor;
 
-namespace SensorClient.Devices.ZWaveMultisensor.CommandProcessors
+namespace SensorClient.Devices.ZWaveSensor.CommandProcessors
 {
     /// <summary>
-    /// Command processor to handle the change in device state.
-    /// Currently this just changes the DeviceState string on the device.
+    /// Command processor to handle activating external temperature
     /// </summary>
-    public class ChangeDeviceStateCommandProcessor : CommandProcessor
+    public class DiagnosticTelemetryCommandProcessor : CommandProcessor
     {
-        private const string CHANGE_DEVICE_STATE = "ChangeDeviceState";
+        private const string DIAGNOSTIC_TELEMETRY = "DiagnosticTelemetry";
 
-        public ChangeDeviceStateCommandProcessor(Multisensor device)
+        public DiagnosticTelemetryCommandProcessor(Multisensor device)
             : base(device)
         {
 
@@ -25,7 +25,7 @@ namespace SensorClient.Devices.ZWaveMultisensor.CommandProcessors
 
         public async override Task<CommandProcessingResult> HandleCommandAsync(DeserializableCommand deserializableCommand)
         {
-            if (deserializableCommand.CommandName == CHANGE_DEVICE_STATE)
+            if (deserializableCommand.CommandName == DIAGNOSTIC_TELEMETRY)
             {
                 var command = deserializableCommand.Command;
 
@@ -37,21 +37,31 @@ namespace SensorClient.Devices.ZWaveMultisensor.CommandProcessors
                         dynamic parameters = WireCommandSchemaHelper.GetParameters(command);
                         if (parameters != null)
                         {
-                            dynamic deviceState = ReflectionHelper.GetNamedPropertyValue(
-                                parameters,
-                                "DeviceState",
-                                usesCaseSensitivePropertyNameMatch: true,
-                                exceptionThrownIfNoMatch: true);
+                            dynamic activeAsDynamic = 
+                                ReflectionHelper.GetNamedPropertyValue(
+                                    parameters, 
+                                    "Active", 
+                                    usesCaseSensitivePropertyNameMatch: true,
+                                    exceptionThrownIfNoMatch: true);
 
-                            if (deviceState != null)
+                            if (activeAsDynamic != null)
                             {
-                                device.ChangeDeviceState(deviceState.ToString());
+                                var active = Convert.ToBoolean(activeAsDynamic.ToString());
 
-                                return CommandProcessingResult.Success;
+                                if (active != null)
+                                {
+                                    device.DiagnosticTelemetry(active);
+                                    return CommandProcessingResult.Success;
+                                }
+                                else
+                                {
+                                    // Active is not a boolean.
+                                    return CommandProcessingResult.CannotComplete;
+                                }
                             }
                             else
                             {
-                                // DeviceState is a null reference.
+                                // Active is a null reference.
                                 return CommandProcessingResult.CannotComplete;
                             }
                         }
@@ -61,11 +71,6 @@ namespace SensorClient.Devices.ZWaveMultisensor.CommandProcessors
                             return CommandProcessingResult.CannotComplete;
                         }
                     }
-                    else
-                    {
-                        // Unsupported Device type.
-                        return CommandProcessingResult.CannotComplete;
-                }
                 }
                 catch (Exception)
                 {
