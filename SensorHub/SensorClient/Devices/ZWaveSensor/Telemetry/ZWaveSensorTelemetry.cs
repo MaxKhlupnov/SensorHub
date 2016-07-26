@@ -52,37 +52,40 @@ namespace SensorClient.Devices.ZWaveSensor.Telemetry
             uint installationId = notification.GetHomeId();
             AdapterLib.NotificationType notificationType = notification.GetType();
 
-             // Catch only Value changed event 
-            if (notificationType != AdapterLib.NotificationType.ValueChanged)
-                return;
-
-            ZWValueID valueID = notification.GetValueID();
-            string serializedValue = JsonConvert.SerializeObject(notification, new ZWaveNotificationJsonConverter());
-            this._logger.LogInfo(serializedValue);
-
-           
-            ZWaveSensorTelemetryData telemetry = new ZWaveSensorTelemetryData();
-            telemetry.Time = DateTime.Now;
-            telemetry.DeviceId = this._deviceId;
-            telemetry.ValueLabel = valueID.ValueLabel;
-            telemetry.ValueUnits = valueID.ValueUnits;
-
-            telemetry.Type = valueID.Type.ToString();
-            if (valueID != null)
+            // Catch only Value changed event 
+            if (notificationType == AdapterLib.NotificationType.ValueChanged || notificationType != AdapterLib.NotificationType.Notification)
             {
-                try
-                {
-                    telemetry.Value = Convert.ToDouble(valueID.Value);
-                                               
-                }catch (Exception ex)
-                {
-                    this._logger.LogError("Error converting value {0} to double: {1}", new object[] { valueID.Value, ex.Message });
-                    return;
-                }
-            }          
 
-            if (TelemetryActive)
-                TelemetryQueue.Enqueue(telemetry);
+
+                ZWValueID valueID = notification.GetValueID();
+                string serializedValue = JsonConvert.SerializeObject(notification, new ZWaveNotificationJsonConverter());
+                this._logger.LogInfo(serializedValue);
+
+
+                ZWaveSensorTelemetryData telemetry = new ZWaveSensorTelemetryData();
+                telemetry.Time = DateTime.Now;
+                telemetry.DeviceId = this._deviceId;
+                telemetry.ValueLabel = valueID.ValueLabel;
+                telemetry.ValueUnits = valueID.ValueUnits;
+
+                telemetry.Type = valueID.Type.ToString();
+                if (valueID != null)
+                {
+                    try
+                    {
+                        telemetry.Value = Convert.ToDouble(valueID.Value);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        this._logger.LogError("Error converting value {0} to double: {1}", new object[] { valueID.Value, ex.Message });
+                        return;
+                    }
+                }
+
+                if (TelemetryActive)
+                    TelemetryQueue.Enqueue(telemetry);
+            }
 
         }
 
@@ -92,12 +95,15 @@ namespace SensorClient.Devices.ZWaveSensor.Telemetry
             
             while (!token.IsCancellationRequested)
             {
-                if (TelemetryActive)
+                while (TelemetryQueue.Count > 0)
                 {
-                    var monitorData = TelemetryQueue.Dequeue();                    
-                       //_logger.LogInfo("Sending " + messageBody + " for Device: " + _deviceId);
+                    var monitorData = TelemetryQueue.Dequeue();
+                    if (TelemetryActive && monitorData != null)
+                    {
+                        //_logger.LogInfo("Sending " + messageBody + " for Device: " + _deviceId);
 
-                       await sendMessageAsync(monitorData);
+                        await sendMessageAsync(monitorData);
+                    }
                 }
                 await Task.Delay(TimeSpan.FromSeconds(REPORT_FREQUENCY_IN_SECONDS), token);
             }

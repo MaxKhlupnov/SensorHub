@@ -9,6 +9,7 @@ using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Configuration
 
 using RemoteMonitoring;
 using RemoteMonitoring.Logging;
+using RemoteMonitoring.Devices;
 
 using SensorClient.Devices.ZWaveSensor;
 using SensorClient.Devices.ZWaveSensor.Telemetry;
@@ -30,7 +31,7 @@ namespace SensorClient.Devices
         private readonly ILogger _logger;
         public Dictionary<string, dynamic> devicesInitQueue { get; private set; }
 
-        public List<IZWaveDevice> Devices { get; private set; }
+        public List<IDevice> Devices { get; private set; }
 
         public ZWaveDeviceManager(IConfigurationProvider configProvider, ILogger logger, CancellationToken token) : base(logger, token)
         {
@@ -38,7 +39,7 @@ namespace SensorClient.Devices
             this.deviceFactory = new MultisensorDeviceFactory(logger, configProvider);
             this._logger = logger;
 
-            this.Devices = new List<IZWaveDevice>();
+            this.Devices = new List<IDevice>();
             this.devicesInitQueue = new Dictionary<string, dynamic>();
 
             zWaveAdapter.Initialize();
@@ -150,6 +151,7 @@ namespace SensorClient.Devices
             }
 
             devicesInitQueue.Clear();
+            await StartDevicesAsync(this.Devices);
         }
 
         /// <summary>

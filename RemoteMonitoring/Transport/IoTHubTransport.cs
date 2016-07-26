@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.IO;
+using Newtonsoft.Json;
 
 
 namespace RemoteMonitoring.Transport
@@ -95,7 +96,8 @@ namespace RemoteMonitoring.Transport
             }
 
             // sample code to trace the raw JSON that is being sent
-            //string rawJson = JsonConvert.SerializeObject(eventData);
+            string rawJson = JsonConvert.SerializeObject(eventData);
+            this._logger.LogInfo("Sending: " + rawJson);
             //Trace.TraceInformation(rawJson);
 
             bytes = _serializer.SerializeObject(eventData);

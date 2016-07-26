@@ -93,7 +93,7 @@ namespace SensorClient.Devices.ZWaveSensor
                 config = new InitialDeviceConfig();
                 ///HostName=MtcDataCenter.azure-devices.net;DeviceId=makhluDev;SharedAccessKey=Q3e1wSyrkpspcR06m11bNw==
                 config.DeviceId = deviceID;
-                config.Key = @"SunXH340ulzicUe7KzaCZg==";///SQowcaxvaxxE+ZSo4V/lEA==
+                config.Key = @"2OJ5+VP9z0il1FLMljagnA==";///SQowcaxvaxxE+ZSo4V/lEA==
                 config.HostName = @"mtcdatacenter.azure-devices.net";//MtcDataCenter.azure-devices.netstring.Empty;                        
             }
 
@@ -117,7 +117,7 @@ namespace SensorClient.Devices.ZWaveSensor
                 config = new InitialDeviceConfig();
                 ///HostName=MtcDataCenter.azure-devices.net;DeviceId=makhluDev;SharedAccessKey=Q3e1wSyrkpspcR06m11bNw==
                 config.DeviceId = deviceID;
-                config.Key = @"SunXH340ulzicUe7KzaCZg==";///SQowcaxvaxxE+ZSo4V/lEA==
+                config.Key = @"3shWH7GvccSI0pUWsUdPSQ==";///SQowcaxvaxxE+ZSo4V/lEA==
                 config.HostName = @"mtcdatacenter.azure-devices.net";//MtcDataCenter.azure-devices.netstring.Empty;                        
             }
 

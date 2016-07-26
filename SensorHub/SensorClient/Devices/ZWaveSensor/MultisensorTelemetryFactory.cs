@@ -22,11 +22,16 @@ namespace SensorClient.Devices.ZWaveSensor
             _logger = logger;
         }
 
+
+
         public object PopulateDeviceWithTelemetryEvents(IDevice device)
         {
             var startupTelemetry = new StartupTelemetry(_logger, device);
             device.TelemetryEvents.Add(startupTelemetry);
-           
+
+            if (typeof(Multisensor) != device.GetType())
+                return startupTelemetry;
+
             var roomTelemetry = new ZWaveSensorTelemetry(_logger, device.DeviceID);
             device.TelemetryEvents.Add(roomTelemetry);
            
