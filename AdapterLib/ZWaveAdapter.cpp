@@ -341,7 +341,7 @@ namespace AdapterLib
             {	
 				// Add the new node to our list 
 				  
-				  uint32 m_homeId = _notification->GetHomeId();
+			 /*	  uint32 m_homeId = _notification->GetHomeId();
 				  uint8 m_nodeId = _notification->GetNodeId();
 				  //add the value
 				  ValueID value = _notification->GetValueID();
@@ -349,7 +349,7 @@ namespace AdapterLib
 
 				 
 
-           /*     //Value added should be received only during the addition of node. Hence look in the pending device list
+               //Value added should be received only during the addition of node. Hence look in the pending device list
                 auto iter = adapter->FindDevice(adapter->m_pendingDevices, homeId, nodeId);
                 if (iter != adapter->m_pendingDevices.end())
                 {

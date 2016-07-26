@@ -131,7 +131,7 @@ namespace AdapterLib
 				}
 				case ValueID::ValueType::ValueType_Byte:
 				{
-					uint8* i_value = new uint8();
+					byte * i_value = new byte();
 					if (Manager::Get()->GetValueAsByte(valueId, i_value)) {
 						//Platform::ValueType b_value = static_cast<bool>(i_value > 0);
 						return byte(i_value);
