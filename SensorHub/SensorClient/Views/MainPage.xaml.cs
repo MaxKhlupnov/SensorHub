@@ -39,7 +39,7 @@ namespace SensorClient.Views
 
         private void OpenCloudButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.ContentBrowser.Source = new Uri(@"https://mtcdatacenter.azurewebsites.net/");
         }
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
@@ -64,7 +64,8 @@ namespace SensorClient.Views
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (this.ContentBrowser.CanGoBack)
+                this.ContentBrowser.GoBack();
         }
     }
 }

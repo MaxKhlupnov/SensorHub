@@ -97,9 +97,9 @@
             </Popup>
 
         </Grid>
-        <Button Grid.Row="2" x:Name="BackButton" Content="{StaticResource IconBack}" Background="Transparent" BorderThickness="0" BorderBrush="Transparent"  FontFamily="{StaticResource IconFontFamily}" FontSize="24" Click="BackButton_Click" Margin="24,0,0,0" Height="48" Width="48" VerticalAlignment="Top"/>
+        <Button Grid.Row="2" Grid.Column="0"  x:Name="BackButton" Content="{StaticResource IconBack}" Background="Transparent" BorderThickness="0" BorderBrush="Transparent"  FontFamily="{StaticResource IconFontFamily}" FontSize="24" Click="BackButton_Click" Margin="24,0,0,0" Height="48" Width="48" VerticalAlignment="Top"/>
         <ScrollViewer Grid.Row="2" Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <WebView  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="544" Margin="5" Grid.Row="2" Width="340" Source="https://mtcdatacenter.azurewebsites.net/"/>
+            <WebView x:Name="ContentBrowser" HorizontalAlignment="Left" VerticalAlignment="Top" Height="700" Margin="5"  Width="1024" Source="https://mtcdatacenter.azurewebsites.net/"/>
         </ScrollViewer>    
 
     </Grid>
