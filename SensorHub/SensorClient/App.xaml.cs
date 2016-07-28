@@ -17,6 +17,13 @@ using Windows.UI.Xaml.Navigation;
 using Windows.System.Threading;
 using Windows.ApplicationModel.Core;
 
+using System.Threading;
+using System.Threading.Tasks;
+
+using SensorClient.Devices;
+using SensorClient.Common;
+
+using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Configurations;
 
 namespace SensorClient
 {
@@ -24,7 +31,12 @@ namespace SensorClient
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     sealed partial class App : Application
-    {               
+    {
+        private static CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        private static readonly IConfigurationProvider _configProvider = new ConfigurationProvider();
+        public static TraceLogger Logger { get; private set; }
+        public static ZWaveDeviceManager DeviceManager { get; private set; }
+         
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -34,6 +46,15 @@ namespace SensorClient
         {            
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            if (Logger == null)
+            {
+                Logger = new TraceLogger();
+    }
+
+            if (DeviceManager == null)
+            {
+                DeviceManager = new ZWaveDeviceManager(_configProvider, Logger, cancellationTokenSource.Token);
+            }
         }
 
         /// <summary>
@@ -78,7 +99,7 @@ namespace SensorClient
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                rootFrame.Navigate(typeof(SensorClient.Views.MainPage), e.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();

@@ -15,7 +15,6 @@ namespace SensorClient.Devices.ZWaveSensor.Telemetry
 {
     public class ZWaveNotificationTelemetry : ITelemetry
     {
-        private readonly ILogger _logger;
         public bool TelemetryActive { get; set; }
         /// <summary>
         /// Type of notification we capture

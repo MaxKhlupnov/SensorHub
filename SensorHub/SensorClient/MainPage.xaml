@@ -12,9 +12,5 @@
     mc:Ignorable="d"
     d:DesignHeight="1024"
     d:DesignWidth="1240">
-    <Button x:Name="button" Content="Set Configuration" HorizontalAlignment="Left" Height="87" VerticalAlignment="Top" Width="249" 
-            Margin="109,87,0,0" RenderTransformOrigin="0.5,0.5" Click="button_SetConfigurationClick">
-    </Button>
-
-
+    <WebView HorizontalAlignment="Left" Height="1024" VerticalAlignment="Top" Source="https://mtcdatacenter.azurewebsites.net/" Width="1240"/>
 </Page>
