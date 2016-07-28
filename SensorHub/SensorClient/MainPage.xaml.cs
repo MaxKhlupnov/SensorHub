@@ -14,7 +14,6 @@ using SensorClient.Common;
 using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Configurations;
 using SensorClient.Devices;
 
-using WinRTXamlToolkit.Debugging;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace SensorClient
@@ -35,8 +34,7 @@ namespace SensorClient
         TextBox txtDeviceId;
         private TraceLogger _logger = new TraceLogger();
         public MainPage()
-        {
-            DC.ShowLog();
+        {           
            // this.devicesViewModel = new MultisensorViewModel(_logger, _configProvider);
             this.deviceManager = new ZWaveDeviceManager(_configProvider, _logger, cancellationTokenSource.Token);
 
