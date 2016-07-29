@@ -123,6 +123,7 @@
     <Compile Include="Common\TraceLogger.cs" />
     <Compile Include="Common\ValueToFontFamilyConverter.cs" />
     <Compile Include="Common\DoubleToStringConverter.cs" />
+    <Compile Include="AppController.cs" />
     <Compile Include="Controls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
@@ -199,6 +200,10 @@
     <ProjectReference Include="..\..\Common\Common.csproj">
       <Project>{277a58e4-4d92-4bdb-aacd-2f8dfb5603bf}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DashboardWeb\DashboardWeb.csproj">
+      <Project>{71394b97-2990-4e92-a7cc-0642d4860651}</Project>
+      <Name>DashboardWeb</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\RemoteMonitoring\RemoteMonitoring.csproj">
       <Project>{96e8b61d-4196-4602-a669-7fa4b160884e}</Project>

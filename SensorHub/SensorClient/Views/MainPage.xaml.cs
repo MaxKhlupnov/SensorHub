@@ -34,7 +34,7 @@ namespace SensorClient.Views
 
         private void ConfigureSensorsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.ContentBrowser.Source = new Uri(@"http://localhost:8800/");
         }
 
         private void OpenCloudButton_Click(object sender, RoutedEventArgs e)

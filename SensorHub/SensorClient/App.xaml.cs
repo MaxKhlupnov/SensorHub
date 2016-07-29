@@ -1,29 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+
 using Windows.UI.Xaml.Navigation;
-using Windows.System.Threading;
-using Windows.ApplicationModel.Core;
 
-using System.Threading;
-using System.Threading.Tasks;
-
-using SensorClient.Devices;
-using SensorClient.Common;
-
-using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Configurations;
 
 namespace SensorClient
 {
@@ -32,10 +15,7 @@ namespace SensorClient
     /// </summary>
     sealed partial class App : Application
     {
-        private static CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        private static readonly IConfigurationProvider _configProvider = new ConfigurationProvider();
-        public static TraceLogger Logger { get; private set; }
-        public static ZWaveDeviceManager DeviceManager { get; private set; }
+       
          
 
         /// <summary>
@@ -46,15 +26,7 @@ namespace SensorClient
         {            
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            if (Logger == null)
-            {
-                Logger = new TraceLogger();
-    }
-
-            if (DeviceManager == null)
-            {
-                DeviceManager = new ZWaveDeviceManager(_configProvider, Logger, cancellationTokenSource.Token);
-            }
+           
         }
 
         /// <summary>
@@ -62,9 +34,9 @@ namespace SensorClient
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
-
+            await AppController.Initialize();
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
