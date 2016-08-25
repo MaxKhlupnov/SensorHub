@@ -10,6 +10,7 @@ using Devkoes.Restup.WebServer.Http;
 using Devkoes.Restup.WebServer.Rest;
 
 using SensorClient.Devices;
+using SensorClient.Controllers;
 using SensorClient.Common;
 
 using Microsoft.Azure.Devices.Applications.RemoteMonitoring.Common.Configurations;
@@ -50,15 +51,16 @@ namespace SensorClient
 
             var restRouteHandler = new RestRouteHandler();
 
-           /* restRouteHandler.RegisterController<AsyncControllerSample>();
-            restRouteHandler.RegisterController<FromContentControllerSample>();
-            restRouteHandler.RegisterController<PerCallControllerSample>();
-            restRouteHandler.RegisterController<SimpleParameterControllerSample>();
-            restRouteHandler.RegisterController<SingletonControllerSample>();
-            restRouteHandler.RegisterController<ThrowExceptionControllerSample>();
-            restRouteHandler.RegisterController<WithResponseContentControllerSample>();*/
+            restRouteHandler.RegisterController<RestGetConfiguredDevices>();
+            /* 
+             restRouteHandler.RegisterController<FromContentControllerSample>();
+             restRouteHandler.RegisterController<PerCallControllerSample>();
+             restRouteHandler.RegisterController<SimpleParameterControllerSample>();
+             restRouteHandler.RegisterController<SingletonControllerSample>();
+             restRouteHandler.RegisterController<ThrowExceptionControllerSample>();
+             restRouteHandler.RegisterController<WithResponseContentControllerSample>();*/
 
-            httpServer.RegisterRoute("api", restRouteHandler);
+            httpServer.RegisterRoute("webapp", restRouteHandler);
 
             httpServer.RegisterRoute(new StaticFileRouteHandler(@"DashboardWeb\wwwroot"));
             await httpServer.StartServerAsync();

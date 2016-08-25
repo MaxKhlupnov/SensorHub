@@ -111,19 +111,29 @@
     <EmbeddedResource Include="Properties\DemoStaticFiles.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="wwwroot\Assets\camera-icon.png" />
+    <Content Include="wwwroot\Assets\devices-icon.png" />
+    <Content Include="wwwroot\Assets\settings-icon.png" />
+    <Content Include="wwwroot\Assets\store-icon.png" />
+    <Content Include="wwwroot\css\MasterStyleSheet.css" />
     <Content Include="wwwroot\css\theme.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="wwwroot\favicon.ico" />
+    <Content Include="wwwroot\HomeStore.html" />
     <Content Include="wwwroot\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="wwwroot\js\common.js" />
+    <Content Include="wwwroot\js\DashboardWebJavascript.js" />
+    <Content Include="wwwroot\js\HomeStore.js" />
     <Content Include="wwwroot\js\jquery-latest.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="wwwroot\js\script.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="wwwroot\Settings.html" />
     <Content Include="wwwroot\Windows_10_Logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

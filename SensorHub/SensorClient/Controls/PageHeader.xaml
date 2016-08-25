@@ -24,7 +24,7 @@
         <ContentPresenter x:Name="pageTitle" Content="{x:Bind Title}" FontSize="24" FontWeight="Light"
                           IsHitTestVisible="false" TextWrapping="NoWrap" Margin="8,0,0,0" Height="48" VerticalContentAlignment="Center"  
                           RelativePanel.RightOf="backButton" RelativePanel.AlignTopWith="backButton" />
-        
+        <TextBox x:Name="pageUrl" FontSize="24" FontWeight="Light"  Text="http://test.com" HorizontalAlignment="Right" Margin="0,0,-698,0" Width="326"   />
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -40,7 +40,7 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                       
+
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

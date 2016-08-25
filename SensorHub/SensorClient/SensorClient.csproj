@@ -26,6 +26,9 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>arm</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -114,6 +117,7 @@
     <Compile Include="Common\ColorStringConverter.cs" />
     <Compile Include="Common\ComboBoxItemToStringConverter.cs" />
     <Compile Include="Common\ConfigurationProvider.cs" />
+    <Compile Include="Common\DelegateCommand.cs" />
     <Compile Include="Common\DoubleToIntConverter.cs" />
     <Compile Include="Common\MaxGaugeValueConverter.cs" />
     <Compile Include="Common\MinGaugeValueConverter.cs" />
@@ -124,10 +128,13 @@
     <Compile Include="Common\ValueToFontFamilyConverter.cs" />
     <Compile Include="Common\DoubleToStringConverter.cs" />
     <Compile Include="AppController.cs" />
+    <Compile Include="Controllers\RestGetConfiguredDevices.cs" />
     <Compile Include="Controls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataModel\RestDeviceDataModel.cs" />
     <Compile Include="DataModel\MultisensorViewModel.cs" />
+    <Compile Include="DataModel\RestDebugViewModel.cs" />
     <Compile Include="Devices\ZWaveSensor\Controller.cs" />
     <Compile Include="Devices\ZWaveSensor\IZWaveDevice.cs" />
     <Compile Include="Devices\ZWaveSensor\MultisensorDeviceFactory.cs" />
@@ -186,6 +193,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\Debug.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPage.xaml">
       <SubType>Designer</SubType>

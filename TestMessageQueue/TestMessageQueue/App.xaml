@@ -1,0 +1,13 @@
+﻿<Application
+    x:Class="TestMessageQueue.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestMessageQueue"
+    xmlns:localData="using:TestMessageQueue.Data">
+
+    <Application.Resources>
+
+        <!-- Application-specific resources -->
+        <x:String x:Key="AppName">TestMessageQueue</x:String>
+    </Application.Resources>
+</Application>

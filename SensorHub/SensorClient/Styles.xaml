@@ -25,6 +25,7 @@
     <x:String x:Key="IconHome">&#xE80F;</x:String>
     <x:String x:Key="IconWirelessSensor">&#xE957;</x:String>
     <x:String x:Key="IconCloud">&#xE753;</x:String>
+    <x:String x:Key="IconDebug">&#xE99a;</x:String>
 
     <!--Colours-->
     <Color x:Key="AccentColor">#005a98</Color>
@@ -123,7 +124,7 @@
     <!-- Buttons -->
     <Style x:Key="ShutdownButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{StaticResource ButtonForegroundThemeBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>

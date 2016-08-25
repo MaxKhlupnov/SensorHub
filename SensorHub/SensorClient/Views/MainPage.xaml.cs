@@ -25,6 +25,13 @@ namespace SensorClient.Views
         public MainPage()
         {
             this.InitializeComponent();
+            this.ContentBrowser.ContentLoading += ContentBrowser_ContentLoading;
+        }
+
+        private void ContentBrowser_ContentLoading(WebView sender, WebViewContentLoadingEventArgs args)
+        {
+            if (this.ContentBrowser.Source != null)
+                pageUrl.Text = this.ContentBrowser.Source.ToString();
         }
 
         private void MainPageButton_Click(object sender, RoutedEventArgs e)
@@ -66,6 +73,21 @@ namespace SensorClient.Views
         {
             if (this.ContentBrowser.CanGoBack)
                 this.ContentBrowser.GoBack();
+        }
+
+        private void OpenDebugButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GoButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.ContentBrowser.Source = new Uri(pageUrl.Text);
+            }catch(Exception ex)
+            {
+            } 
         }
     }
 }
