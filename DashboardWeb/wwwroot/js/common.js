@@ -101,7 +101,8 @@ function PlatformServiceHelper() {
 
  
     this.MakeServiceCall = function (url_parm, data_parm, callback) {
-        this.Type = "POST";
+        //this.Type = "POST";
+        this.Type = "GET";
         this.Url = url_parm;
         this.Data = data_parm;
         this.ContentType = "application/json; charset=utf-8";

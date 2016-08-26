@@ -5,6 +5,7 @@
     <title>Settings</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <script type="text/javascript" src="js/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="js/AAD.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
      <link rel="stylesheet" media="all" type="text/css" href="css/MasterStyleSheet.css" />
     <script>
@@ -16,21 +17,22 @@
         //Load  1. HomeID, 2. RemoteAccessURL  3. Apps  4. Devices
         var DEFAULTEMAIL;
         var WIRELESSNETWORK;
-        
+       
         $(document).ready(
             function () {
                 //Ask dashboard for all the information we need to display
-                new PlatformServiceHelper().MakeServiceCall("webapp/GetConfSettingWeb", '{"confKey":"HomeId"}', GetSettingsCallback);
+
+              /*  new PlatformServiceHelper().MakeServiceCall("webapp/GetConfSettingWeb", '{"confKey":"HomeId"}', GetSettingsCallback);
                 new PlatformServiceHelper().MakeServiceCall("webapp/GetConfSettingWeb", '{"confKey":"DataStoreAccountName"}', GetSettingsCallback);
                 new PlatformServiceHelper().MakeServiceCall("webapp/GetConfSettingWeb", '{"confKey":"OrgId"}', GetSettingsCallback);
                 new PlatformServiceHelper().MakeServiceCall("webapp/GetPrivateConfSettingWeb", '{"confKey":"NotificationEmail"}', GetSettingsCallback);
                 new PlatformServiceHelper().MakeServiceCall("webapp/GetPrivateConfSettingWeb", '{"confKey":"WifiSsid"}', GetSettingsCallback);
                 new PlatformServiceHelper().MakeServiceCall("webapp/GetRemoteAccessUrlWeb", "", GetSettingsRemoteAccessUrlWebCallback);
-                new PlatformServiceHelper().MakeServiceCall("webapp/GetInstalledAppsWeb", "", GetAppsCallback);
+                new PlatformServiceHelper().MakeServiceCall("webapp/GetInstalledAppsWeb", "", GetAppsCallback);*/
                 new PlatformServiceHelper().MakeServiceCall("webapp/GetConfiguredDevicesWeb", "", GetConfiguredDevicesCallback);
-                new PlatformServiceHelper().MakeServiceCall("webapp/GetOrphanedDevicesWeb", "", GetOrphanedDevicesCallback);
+             /*   new PlatformServiceHelper().MakeServiceCall("webapp/GetOrphanedDevicesWeb", "", GetOrphanedDevicesCallback);
                 new PlatformServiceHelper().MakeServiceCall("webapp/GetAllUsersWeb", "", GetAllUsersCallback);
-                new PlatformServiceHelper().MakeServiceCall("webapp/GetAllGroupsWeb", "", GetAllGroupsCallback);
+                new PlatformServiceHelper().MakeServiceCall("webapp/GetAllGroupsWeb", "", GetAllGroupsCallback);*/
             }
          );
       
@@ -108,22 +110,16 @@
         function GetConfiguredDevicesCallback(context, result) {
             $("#status").hide();
             $("#installedDevices").html("");
-
-            if (result[0] == "") {
-
-                if (result.length == 1) {
-                    $("#installedDevices").html('<div class="settings_listitem"> No devices fully installed<br /></div>');
-                }
-                else {
-                    for (i = 1; i + 2 < result.length; i = i + 3) {
-                        //i:friendly name, i+1: module facing name, i+2:location
-                        $("#installedDevices").append('<div class="settings_listitem">' + result[i] + " in " + result[i + 2] + '<button class= "btn" onclick="RemoveDevice(' +  "'" + result[i] + "',"+ "'" + result[i + 1] + "'" + ')"  >Remove </button> </div>');
-                    }
-                }
-
+            if (result.length == 0) {
+                $("#installedDevices").html('<div class="settings_listitem"> No devices fully installed<br /></div>');
             }
             else {
-                DisplayDebugging("GetDevices" + result[0]);
+                for (i = 0; i < result.length; i ++) {
+                    
+                    $("#installedDevices").append('<div class="settings_listitem">' + result[i].DeviceFriendlyName + " in "
+                        + result[i].DeviceLocation
+                        + '<button class= "btn" onclick="RemoveDevice(' + "'" + result[i].DeviceModuleName + "'," + "'" + result[i].DeviceId + "'" + ')"  >Remove </button> </div>');
+                }
             }
         }
 
@@ -179,18 +175,10 @@
             }
         }
 
-        function RemoveDevice(deviceFriendlyName, moduleName) {
+        function RemoveDevice(deviceId, deviceModuleName) {
             $("#status").hide();
 
-            if (IsZwaveDevice(moduleName)) {
-                //Handle removal of Zwave by going to the remove zwave page
-                var url = "RemoveZwaveDevice.html?DeviceName=" + deviceFriendlyName + "&NodeId=" + moduleName;
-                window.location.href = encodeURI(url);
-            }
-            else {
-                new PlatformServiceHelper().MakeServiceCall("webapp/RemoveDeviceWeb", '{"deviceFriendlyName": "' + deviceFriendlyName + '"}', RemoveDeviceCallback);
-            }
-          
+                new PlatformServiceHelper().MakeServiceCall("webapp/RemoveDeviceWeb/" + deviceModuleName + "/" + deviceId, RemoveDeviceCallback);
         }
 
         function RemoveDeviceCallback(context, result) {

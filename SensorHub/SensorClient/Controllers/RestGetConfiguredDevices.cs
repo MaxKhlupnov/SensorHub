@@ -24,8 +24,9 @@ namespace SensorClient.Controllers
             new RestDeviceDataModel()
             {
                 DeviceId = "2_123456",
-                ModuleFacingName = "ZWaveAzureBridge",
-                DeviceLocation = "Nekuchny garden"
+                DeviceModuleName = "ZWaveMultisensor",
+                DeviceFriendlyName = "Multisensor",
+                DeviceLocation = "Нескучный сад"
             }
             };
 

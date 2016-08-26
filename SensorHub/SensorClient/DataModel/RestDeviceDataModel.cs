@@ -10,7 +10,8 @@ namespace SensorClient.DataModel
     {
         public string DeviceId { get; set; }
 
-        public string ModuleFacingName { get; set; }
+        public string DeviceModuleName { get; set; }
+        public string DeviceFriendlyName { get; set; }
 
         public string DeviceLocation { get; set; }
 

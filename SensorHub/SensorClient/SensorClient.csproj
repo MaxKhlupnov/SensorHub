@@ -129,6 +129,7 @@
     <Compile Include="Common\DoubleToStringConverter.cs" />
     <Compile Include="AppController.cs" />
     <Compile Include="Controllers\RestGetConfiguredDevices.cs" />
+    <Compile Include="Controllers\SimpleParameterControllerSample.cs" />
     <Compile Include="Controls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>

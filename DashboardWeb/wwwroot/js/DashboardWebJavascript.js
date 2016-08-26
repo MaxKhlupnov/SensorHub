@@ -190,8 +190,8 @@ function buildIconURL(aName) {
     }
 
     function GoToAddUnconfiguredDevice(scoutName) {
-        //call format: AddDeviceUnconfiguredDevicesForScout.html?ScoutName=HomeOS.Hub.Scouts.WebCam or empty string for all scouts
-        var url = "AddDeviceUnconfiguredDevicesForScout.html?ScoutName=" + scoutName;
+        //call format: AddDeviceUnconfiguredForScout.html?ScoutName=HomeOS.Hub.Scouts.WebCam or empty string for all scouts
+        var url = "AddDeviceUnconfiguredForScout.html?ScoutName=" + scoutName;
         UpdateDebugInfo(this, url);
         window.location.href = encodeURI(url);
     }
