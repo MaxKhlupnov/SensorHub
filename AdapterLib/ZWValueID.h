@@ -131,32 +131,32 @@ namespace AdapterLib
 				}
 				case ValueID::ValueType::ValueType_Byte:
 				{
-					byte * i_value = new byte();
-					if (Manager::Get()->GetValueAsByte(valueId, i_value)) {
+					uint8 i_value = 0;
+					if (Manager::Get()->GetValueAsByte(valueId, & i_value)) {
 						//Platform::ValueType b_value = static_cast<bool>(i_value > 0);
-						return byte(i_value);
+						return i_value;
 					}
 					break;
 				}
 				case ValueID::ValueType::ValueType_Bool:
 				{
-					bool* b_value = new bool();
-					if (Manager::Get()->GetValueAsBool(valueId, b_value)) {
-						return boolean(b_value);
+					bool b_value = false;
+					if (Manager::Get()->GetValueAsBool(valueId, & b_value)) {
+						return b_value;
 					}
 					break;
 				}
 				case ValueID::ValueType::ValueType_Short: {
-					short* st_value = new short();
-					if (Manager::Get()->GetValueAsShort(valueId, st_value)) {
-						return short(st_value);
+					short st_value = 0;
+					if (Manager::Get()->GetValueAsShort(valueId, & st_value)) {
+						return st_value;
 					}
 					break;
 				}
 				case ValueID::ValueType::ValueType_Int: {
-					int* i_value = new int();
-					if (Manager::Get()->GetValueAsInt(valueId, i_value)) {
-						return int(i_value);
+					int i_value = 0;
+					if (Manager::Get()->GetValueAsInt(valueId, & i_value)) {
+						return i_value;
 					}
 					break;
 				}

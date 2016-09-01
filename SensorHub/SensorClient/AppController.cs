@@ -52,7 +52,7 @@ namespace SensorClient
             var restRouteHandler = new RestRouteHandler();
 
             restRouteHandler.RegisterController<RestGetConfiguredDevices>();
-            restRouteHandler.RegisterController<SimpleParameterControllerSample>();
+            restRouteHandler.RegisterController<RestGetAllUnconfiguredDevices>();
             /* 
              restRouteHandler.RegisterController<FromContentControllerSample>();
              restRouteHandler.RegisterController<PerCallControllerSample>();

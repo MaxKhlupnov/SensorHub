@@ -18,7 +18,7 @@
         var SCOUTNAME = "";
 
         //Expect URL to be called with HomeId and ScoutName parameters, this gets unconfigured devices for that scout
-        //e.g. http://localhost:51430/GuiWeb/AddDeviceUnconfiguredForScout.html?HomeId=Brush&ScoutName=HomeOS.Hub.Scouts.WebCam
+        //e.g. http://localhost:8800/AddDeviceUnconfiguredForScout.html?HomeId=Brush&ScoutName=HomeOS.Hub.Scouts.WebCam
         $(document).ready(
             function () {
                 var qs = getQueryStringArray();
@@ -54,34 +54,39 @@
             UpdateDebugInfo(context, result);
             ClearDeviceList();
 
-            //Convention is that first result should be empty if success.
-            if (result[0] == "") {
+            //Check if we have unconfigured devices
+            if (result.length > 0) {
                 $("#retryButton").show();   //always show the retry/scanAgain button because it can take some time to find everything
                 $("#scoutButton").show();  //show the configure scouts button in case they want to configure what scouts are showing
-                if (result.length == 1) {
+                
+                if (result.Error) {
+                    // Check if something goes wrong
+                    ShowDebugInfo();
+                    UpdateDebugInfo(context, result.Error);
+                    return;
+                }
+
+                var url;
+                for (i = 0; i  < result.length; i++) {
+                    //i is deviceName, i+1 is scoutName
+                    ClearInformationText();
+                    if (result[i].DeviceModuleName != ORPHAN)
+                        url = buildURL(result[i].DeviceModuleName, result[i].DeviceId);
+                    else
+                        url = buildOrphanURL(result[i].DeviceId);
+
+                    $("#deviceList").append('<a href="' + url + '">' + result[i].DeviceFriendlyName + "</a><br/>");
+                }
+            }
+
+            else {                
                     if (SCOUTNAME != "")
                         $("#deviceList").html("No unconfigured devices found by " + SCOUTNAME);
                     else
                         $("#deviceList").html("No unconfigured devices found");
                     return;
-                }
-
-                var url;
-                for (i = 1; i + 1 < result.length; i = i + 2) {
-                    //i is deviceName, i+1 is scoutName
-                    ClearInformationText();
-                    if (result[i + 1] != ORPHAN)
-                        url = buildURL(result[i + 1], result[i]);
-                    else
-                        url = buildOrphanURL(result[i]);
-
-                    $("#deviceList").append('<a href="' + url + '">' + result[i] + "</a><br/>");
-                }
-            }
-
-            else {
-                ShowDebugInfo();
-                UpdateDebugInfo(context, result[0]);
+                
+                
             }
         }
 
@@ -89,7 +94,7 @@
         //Examples: The URL of this page is 
         //      http://localhost:51430/<homeid>/GuiWeb/AddDeviceFinalDeviceSetup.html?DeviceId=camera
         //Example of final URL we want is
-        //  http://localhost:51430/<homeid>/scouts/HomeOs.Hub.Scouts.Webcam/index.html?DeviceId=camera
+        //  http://localhost:8800/scouts/HomeOs.Hub.Scouts.Webcam/index.html?DeviceId=camera
         //returns the location of the web page for configuring scouts of this type
         function buildURL(sName, deviceName) {
             var scoutUrl = "../scouts/" + sName + "/index.html?DeviceId=" + deviceName;
@@ -118,7 +123,7 @@
 </head>
 <body>
   <!--  Expect URL to be called with HomeId and ScoutName parameters
-    e.g. http://localhost:51430/GuiWeb/AddDeviceUnconfiguredForScout.html?HomeId=Brush&ScoutName=HomeOS.Hub.Scouts.WebCam
+    e.g. http://localhost:8800/AddDeviceUnconfiguredForScout.html?HomeId=Brush&ScoutName=HomeOS.Hub.Scouts.WebCam
       -->
   
 

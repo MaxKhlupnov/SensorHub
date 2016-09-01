@@ -129,6 +129,7 @@
     <Compile Include="Common\DoubleToStringConverter.cs" />
     <Compile Include="AppController.cs" />
     <Compile Include="Controllers\RestGetConfiguredDevices.cs" />
+    <Compile Include="Controllers\RestGetAllUnconfiguredDevices.cs" />
     <Compile Include="Controllers\SimpleParameterControllerSample.cs" />
     <Compile Include="Controls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
@@ -159,7 +160,6 @@
     <Compile Include="Devices\ZWaveSensor\Telemetry\ZWaveSensorTelemetryData.cs" />
     <Compile Include="Devices\ZWaveSensor\Telemetry\ZWaveNotificationJsonConverter.cs" />
     <Compile Include="Devices\ZWaveSensor\Telemetry\ZWaveNotificationTelemetryData.cs" />
-    <Compile Include="Devices\ZWaveSensor\Telemetry\ZWaveNotificationTelemetry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
