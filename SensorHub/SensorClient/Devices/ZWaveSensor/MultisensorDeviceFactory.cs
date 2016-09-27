@@ -91,10 +91,23 @@ namespace SensorClient.Devices.ZWaveSensor
             if (config == null)
             {
                 config = new InitialDeviceConfig();
-                ///HostName=MtcDataCenter.azure-devices.net;DeviceId=makhluDev;SharedAccessKey=Q3e1wSyrkpspcR06m11bNw==
                 config.DeviceId = deviceID;
-                config.Key = @"2OJ5+VP9z0il1FLMljagnA==";///SQowcaxvaxxE+ZSo4V/lEA==
                 config.HostName = @"mtcdatacenter.azure-devices.net";//MtcDataCenter.azure-devices.netstring.Empty;                        
+                if (deviceID.Equals("6_3454969560"))
+                    config.Key = @"z2mJQ0QryYlXgO09NJAmpA==";///SQowcaxvaxxE+ZSo4V/lEA==
+                else if (deviceID.Equals("4_3454969560"))
+                    config.Key = @"X42NPPxbWmbXVLhEoa1MsQ==";
+                else if (deviceID.Equals("5_3454969560"))
+                    config.Key = @"7OkPJOxToTrHwOwnTatQLQ==";
+                else if (deviceID.Equals("2_3387883301"))
+                    config.Key = @"90mXKEfBedMHarxHT2d+5g==";
+                else if (deviceID.Equals("3_3387883301"))
+                    config.Key = @"g/U6pJV3/m01U2fK28C4tQ==";
+                else
+                    throw new ArgumentException(String.Format("Unknown device id {0}"), deviceID);
+                
+
+
             }
 
             Multisensor newDevice = this.CreateDevice(this._logger, this._transportFactory, this._telemetryFactory,
@@ -115,10 +128,16 @@ namespace SensorClient.Devices.ZWaveSensor
             if (config == null)
             {
                 config = new InitialDeviceConfig();
-                ///HostName=MtcDataCenter.azure-devices.net;DeviceId=makhluDev;SharedAccessKey=Q3e1wSyrkpspcR06m11bNw==
+                config.HostName = @"mtcdatacenter.azure-devices.net";
                 config.DeviceId = deviceID;
-                config.Key = @"3shWH7GvccSI0pUWsUdPSQ==";///SQowcaxvaxxE+ZSo4V/lEA==
-                config.HostName = @"mtcdatacenter.azure-devices.net";//MtcDataCenter.azure-devices.netstring.Empty;                        
+
+                if (deviceID.Equals("1_3454969560"))
+                    config.Key = @"3shWH7GvccSI0pUWsUdPSQ=="; // Ключ для контроллера в Эрмитаже
+                else if (deviceID.Equals("1_3387883301"))
+                    config.Key = @"NjXQ18eeyWMKhZ4VRCbPkw==";// Ключ для контроллера в AV стойке помещения 10
+                else
+                    throw new ArgumentException(String.Format("Unknown controller device id {0}"), deviceID);
+
             }
 
             Controller newDevice = new Controller(this._logger, this._transportFactory, this._telemetryFactory, this._configProvider);

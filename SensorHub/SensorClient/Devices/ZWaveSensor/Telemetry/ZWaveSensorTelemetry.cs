@@ -50,6 +50,13 @@ namespace SensorClient.Devices.ZWaveSensor.Telemetry
         {
             byte nodeId = notification.GetNodeId();
             uint installationId = notification.GetHomeId();
+           
+            //catch only events from this sensor    
+            string notificationId = MultisensorDeviceFactory.MakeZWaveDeviceId(nodeId, installationId);
+            if (!_deviceId.Equals(notificationId, StringComparison.CurrentCultureIgnoreCase))
+                return;
+
+
             AdapterLib.NotificationType notificationType = notification.GetType();
 
             // Catch only Value changed event 
@@ -60,6 +67,8 @@ namespace SensorClient.Devices.ZWaveSensor.Telemetry
                 ZWValueID valueID = notification.GetValueID();
                 string serializedValue = JsonConvert.SerializeObject(notification, new ZWaveNotificationJsonConverter());
                 this._logger.LogInfo(serializedValue);
+
+                           
 
 
                 ZWaveSensorTelemetryData telemetry = new ZWaveSensorTelemetryData();

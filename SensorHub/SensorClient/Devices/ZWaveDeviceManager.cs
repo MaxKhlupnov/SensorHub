@@ -63,14 +63,14 @@ namespace SensorClient.Devices
             AdapterLib.NotificationType notificationType = notification.GetType();
             ZWValueID valueID = notification.GetValueID();
 
-       /*    string serializedValue = JsonConvert.SerializeObject(notification, new ZWaveNotificationJsonConverter());
-            this._logger.LogInfo(serializedValue);
+            /*string serializedValue = JsonConvert.SerializeObject(notification, new ZWaveNotificationJsonConverter());
+            this._logger.LogInfo(serializedValue);*/
            
 
-            this._logger.LogInfo("Zwave notification nodeId: {0} HomeId: {1} NotificationType: {2} Genre: {3} Type: {4}  ", new object[] { nodeId, installationId, notificationType.ToString(), valueID.Genre, valueID.Type});
+            this._logger.LogInfo("NotificationType: {2} nodeId: {0}_{1}  Genre: {3} Type: {4}  ", new object[] { nodeId, installationId, notificationType.ToString(), valueID.Genre, valueID.Type});
             if (valueID.Value != null)
-            this._logger.LogInfo("notigication Value -- ValueLabel: {0} ValueHelp: {1} ValueUnits: {2} Value: {3}", new object[] {  valueID.ValueLabel, valueID.ValueHelp, valueID.ValueUnits, valueID.Value });
-            */
+            this._logger.LogInfo("{0} = {3} ({2}) - {1} ", new object[] {  valueID.ValueLabel, valueID.ValueHelp, valueID.ValueUnits, valueID.Value });
+            
 
             switch (notificationType)
             {
@@ -91,7 +91,10 @@ namespace SensorClient.Devices
                         AddDeviceToInitQueue(nodeId, installationId);
                         break;
                     }
-                case AdapterLib.NotificationType.AwakeNodesQueried:
+               // case AdapterLib.NotificationType.EssentialNodeQueriesComplete:
+              //  case AdapterLib.NotificationType.AwakeNodesQueried:
+                case AdapterLib.NotificationType.AllNodesQueriedSomeDead:
+                case AdapterLib.NotificationType.AllNodesQueried:
                     {
                         InitializeDevices();
                         break;

@@ -131,8 +131,9 @@ bool ZWManager::GetValueAsDecimal
 	string value;
 	if( Manager::Get()->GetValueAsString(id->CreateUnmanagedValueID(), &value ) )
 	{
-		String^ decimal = gcnew String(value.c_str());
-		o_value = Decimal::Parse( decimal );
+		String^ decimal = gcnew String(value.c_str());		 
+		decimal = decimal->Replace(L".", L",");
+		o_value = Decimal::Parse(decimal );
 		return true;
 	}
 	return false;

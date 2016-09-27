@@ -1,3 +1,83 @@
+08:04:32 - {"HomeId":4153803973,"NodeId":2,"Type":"NodeEvent","Code":"MsgComplete","ValueID":{"Genre":"Basic","Type":"Bool","ValueLabel":"","ValueUnits":"","Value":null}}
+08:04:33 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Alarm Type","ValueUnits":"","Value":0}}
+08:04:33 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Alarm Level","ValueUnits":"","Value":200}}
+08:04:33 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"SourceNodeId","ValueUnits":"","Value":160}}
+08:04:33 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Burglar","ValueUnits":"","Value":96}}
+08:08:33 - {"HomeId":4153803973,"NodeId":2,"Type":"NodeEvent","Code":"MsgComplete","ValueID":{"Genre":"Basic","Type":"Bool","ValueLabel":"","ValueUnits":"","Value":null}}
+08:08:34 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Alarm Type","ValueUnits":"","Value":72}}
+08:08:34 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Alarm Level","ValueUnits":"","Value":32}}
+08:08:34 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"SourceNodeId","ValueUnits":"","Value":152}}
+08:08:34 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Burglar","ValueUnits":"","Value":96}}
+08:12:28 - {"HomeId":4153803973,"NodeId":2,"Type":"NodeEvent","Code":"MsgComplete","ValueID":{"Genre":"Basic","Type":"Bool","ValueLabel":"","ValueUnits":"","Value":null}}
+08:12:29 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Alarm Type","ValueUnits":"","Value":216}}
+08:12:29 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Alarm Level","ValueUnits":"","Value":8}}
+08:12:29 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"SourceNodeId","ValueUnits":"","Value":80}}
+08:12:29 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Burglar","ValueUnits":"","Value":24}}
+08:23:08 - {"HomeId":4153803973,"NodeId":2,"Type":"NodeEvent","Code":"MsgComplete","ValueID":{"Genre":"Basic","Type":"Bool","ValueLabel":"","ValueUnits":"","Value":null}}
+08:23:08 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Alarm Type","ValueUnits":"","Value":248}}
+08:23:08 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Alarm Level","ValueUnits":"","Value":112}}
+08:23:08 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"SourceNodeId","ValueUnits":"","Value":136}}
+08:23:08 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Burglar","ValueUnits":"","Value":88}}
+08:24:19 - {"HomeId":4153803973,"NodeId":2,"Type":"NodeEvent","Code":"MsgComplete","ValueID":{"Genre":"Basic","Type":"Bool","ValueLabel":"","ValueUnits":"","Value":null}}
+08:24:19 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Alarm Type","ValueUnits":"","Value":192}}
+08:24:19 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Alarm Level","ValueUnits":"","Value":248}}
+08:24:19 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"SourceNodeId","ValueUnits":"","Value":24}}
+08:24:19 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Burglar","ValueUnits":"","Value":120}}
+08:28:20 - {"HomeId":4153803973,"NodeId":2,"Type":"NodeEvent","Code":"MsgComplete","ValueID":{"Genre":"Basic","Type":"Bool","ValueLabel":"","ValueUnits":"","Value":null}}
+08:28:21 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Alarm Type","ValueUnits":"","Value":248}}
+08:28:21 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Alarm Level","ValueUnits":"","Value":112}}
+08:28:21 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"SourceNodeId","ValueUnits":"","Value":104}}
+08:28:21 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Burglar","ValueUnits":"","Value":144}}
+08:29:01 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Battery Level","ValueUnits":"%","Value":184}}
+08:29:02 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Decimal","ValueLabel":"Luminance","ValueUnits":"lux","Value":366.0}}
+08:29:03 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Decimal","ValueLabel":"Temperature","ValueUnits":"C","Value":22.5}}
+08:29:03 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Decimal","ValueLabel":"Relative Humidity","ValueUnits":"%","Value":58.0}}
+09:01:01 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Byte","ValueLabel":"Battery Level","ValueUnits":"%","Value":24}}
+09:01:02 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Decimal","ValueLabel":"Luminance","ValueUnits":"lux","Value":718.0}}
+09:01:03 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Decimal","ValueLabel":"Temperature","ValueUnits":"C","Value":22.3}}
+09:01:03 - {"HomeId":4153803973,"NodeId":2,"Type":"ValueChanged","Code":"MsgComplete","ValueID":{"Genre":"User","Type":"Decimal","ValueLabel":"Relative Humidity","ValueUnits":"%","Value":58.0}}
+
+
+
+20:09:02 - notigication Value -- ValueLabel: Application Version ValueHelp:  ValueUnits:  Value: 1.03
+20:09:02 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: Group Genre: Basic Type: Bool  
+20:09:03 - Zwave notification nodeId: 0 HomeId: 4153803973 NotificationType: ControllerCommand Genre: Basic Type: Bool  
+20:09:03 - Zwave notification nodeId: 0 HomeId: 4153803973 NotificationType: ControllerCommand Genre: Basic Type: Bool  
+20:09:03 - Zwave notification nodeId: 0 HomeId: 4153803973 NotificationType: ControllerCommand Genre: Basic Type: Bool  
+20:09:03 - Zwave notification nodeId: 0 HomeId: 4153803973 NotificationType: ControllerCommand Genre: Basic Type: Bool  
+20:09:03 - Zwave notification nodeId: 0 HomeId: 4153803973 NotificationType: ControllerCommand Genre: Basic Type: Bool  
+20:09:03 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: Notification Genre: Basic Type: Bool  
+20:09:03 - Zwave notification nodeId: 0 HomeId: 4153803973 NotificationType: ControllerCommand Genre: Basic Type: Bool  
+20:09:03 - Zwave notification nodeId: 0 HomeId: 4153803973 NotificationType: ControllerCommand Genre: Basic Type: Bool  
+20:10:54 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: Notification Genre: Basic Type: Bool  
+20:10:54 - Zwave notification nodeId: 0 HomeId: 4153803973 NotificationType: ControllerCommand Genre: Basic Type: Bool  
+20:10:54 - Zwave notification nodeId: 0 HomeId: 4153803973 NotificationType: ControllerCommand Genre: Basic Type: Bool  
+20:10:54 - Zwave notification nodeId: 0 HomeId: 4153803973 NotificationType: ControllerCommand Genre: Basic Type: Bool  
+20:10:54 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: Notification Genre: Basic Type: Bool  
+20:10:55 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueChanged Genre: System Type: List  
+20:10:55 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueChanged Genre: System Type: Byte  
+20:10:55 - notigication Value -- ValueLabel: Timeout ValueHelp:  ValueUnits: seconds Value: 88
+20:10:55 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueChanged Genre: System Type: Int  
+20:10:55 - notigication Value -- ValueLabel: Wake-up Interval ValueHelp:  ValueUnits: Seconds Value: 68691376
+20:10:55 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueChanged Genre: Basic Type: Byte  
+20:10:55 - notigication Value -- ValueLabel: Basic ValueHelp:  ValueUnits:  Value: 152
+20:10:55 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueChanged Genre: User Type: Bool  
+20:10:55 - notigication Value -- ValueLabel: Sensor ValueHelp:  ValueUnits:  Value: 216
+20:10:57 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueChanged Genre: User Type: Decimal  
+20:10:57 - notigication Value -- ValueLabel: Temperature ValueHelp:  ValueUnits: C Value: 23.8
+20:10:58 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueChanged Genre: User Type: Decimal  
+20:10:58 - notigication Value -- ValueLabel: Luminance ValueHelp:  ValueUnits: lux Value: 81
+20:11:01 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueChanged Genre: User Type: Decimal  
+20:11:01 - notigication Value -- ValueLabel: Relative Humidity ValueHelp:  ValueUnits: % Value: 59
+20:11:02 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueChanged Genre: User Type: Byte  
+20:11:02 - notigication Value -- ValueLabel: Battery Level ValueHelp:  ValueUnits: % Value: 0
+20:11:02 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: NodeQueriesComplete Genre: Basic Type: Bool  
+20:11:02 - Zwave notification nodeId: 255 HomeId: 4153803973 NotificationType: AllNodesQueried Genre: Basic Type: Bool  
+20:11:12 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: Notification Genre: Basic Type: Bool  
+20:11:12 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: Notification Genre: Basic Type: Bool  
+20:11:36 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: Notification Genre: Basic Type: Bool  
+20:11:37 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueChanged Genre: Basic Type: Byte
+
 9:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: Config Type: Short  
 19:44:28 - notigication Value -- ValueLabel: Temperature Reporting Threshold ValueHelp: Threshold change in temperature to induce an automatic report. Note: 1. When the unit is Celsius, threshold=Value. 2. When the unit is Fahrenheit, threshold=Value*1.8. The accuracy is 0.1. 3. The high byte is the part of integer, the low byte is the fractional part. ValueUnits: % Value: -10072
 19:44:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: ValueAdded Genre: Config Type: Short  
@@ -41,6 +121,8 @@
 19:45:28 - Zwave notification nodeId: 2 HomeId: 4153803973 NotificationType: Notification Genre: Basic Type: Bool  
 
 
+Severity	Code	Description	Project	File	Line	Suppression State
+Error	C2440	'<function-style-cast>': cannot convert from 'float *' to 'float'	AdapterLib	c:\projects\sensorhub\adapterlib\ZWValueID.h	167	
 
 17:01:04 - Zwave notification nodeId: 2 HomeId: 3876108540 NotificationType ValueAdded 
 17:01:04 - notigication Value -- Genre: System Type: String ValueLabel: Library Version ValueHelp:  ValueUnits:  Value: 
